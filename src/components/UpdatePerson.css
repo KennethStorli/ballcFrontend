@@ -1,0 +1,24 @@
+p{
+  margin-right: -54px;
+}
+
+.formbtnDel{
+  margin: 10px;
+  background: #b80000;
+
+}
+
+.formbtnSave{
+  margin: 10px;
+  background: #008b02;
+
+}
+
+.formbtnDel:hover {
+  background: #970101;
+}
+
+.formbtnSave:hover {
+  background: #007501
+;
+}
