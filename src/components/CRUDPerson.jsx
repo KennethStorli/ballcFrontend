@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Tabs, Tab } from 'react-bootstrap';
-import { Container, Row, Col, Input, Button } from 'mdbreact';
+import { Row, Col, Image } from 'react-bootstrap';
 import CreatePerson from './CreatePerson';
 import UpdatePerson from './UpdatePerson';
 

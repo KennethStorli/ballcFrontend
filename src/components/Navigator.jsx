@@ -49,13 +49,18 @@ export default class Navigator extends Component {
               </NavItem>
             </Nav>
             <Nav pullRight>
-              <NavItem eventKey={1} href="/User" to="/User">
+              <NavItem eventKey={4} href="/User" to="/User">
                 Profile
               </NavItem>Login
 
               <NavItem eventKey={1} onClick={this.handleShow}>
                 Login
               </NavItem>
+              <NavDropdown eventKey={5} title="Admin" id="basic-nav-dropdown">
+                <MenuItem eventKey={5.1} href="/Person" to="/Person">Create person</MenuItem>
+                <MenuItem eventKey={5.1} href="/Team" to="/Team">Create team</MenuItem>
+
+              </NavDropdown>
             </Nav>
           </Navbar.Collapse>
         </Navbar>

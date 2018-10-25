@@ -3,7 +3,7 @@ import {Glyphicon, ListGroup, ListGroupItem} from 'react-bootstrap';
 import { Container, Row, Col, Input, Button } from 'mdbreact';
 import './Teamlist.css'
 
-export default class Teamform extends React.Component  {
+export default class Teamlist extends React.Component  {
 //REMEBER TO PUT A <ROW> INFRONT OF THE CALL, PLS
 
 alertClicked(){
