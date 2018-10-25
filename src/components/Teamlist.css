@@ -1,0 +1,11 @@
+.Teamlist {
+  flex: 1;
+  height: 735px;
+  overflow-y: scroll;
+  background-color: #efefef;
+}
+
+.searchicon{
+  padding-top: 9px;
+  margin-right: -15px;
+}

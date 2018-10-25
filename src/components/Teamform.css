@@ -1,0 +1,24 @@
+.teamformbtn {
+  margin: 10px;
+}
+
+.teamformbtnDel{
+  margin: 10px;
+  background: #b80000;
+
+}
+
+.teamformbtnSave{
+  margin: 10px;
+  background: #008b02;
+
+}
+
+.teamformbtnDel:hover {
+  background: #970101;
+}
+
+.teamformbtnSave:hover {
+  background: #007501
+;
+}
