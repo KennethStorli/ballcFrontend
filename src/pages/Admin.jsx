@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import { Jumbotron, Grid, Button, Row } from 'react-bootstrap';
-import Teamform from '../components/Teamform';
-import Teamlist from '../components/Teamlist'
 
 
 import './Home.css'
@@ -12,13 +10,13 @@ export default class Admin extends Component {
   render(){
     return(
       <div>
-        <Grid>
-          <Row>
-            <Teamlist/>
-            <Teamform/>
-          </Row>
-        </Grid>
-        </div>
+        <Link to="/Team">
+          <Button bsStyle="primary">Update a team</Button>
+        </Link>
+        <Link to="/Person">
+          <Button bsStyle="primary">Update a person</Button>
+        </Link>
+      </div>
       )
     }
   }
