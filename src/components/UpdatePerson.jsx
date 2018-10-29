@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import {Glyphicon, ListGroup, ListGroupItem} from 'react-bootstrap';
-import { Tabs, Tab } from 'react-bootstrap';
 import { Input, Button } from 'mdbreact';
-import { Row, Col, Image } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 import './UpdatePerson.css'
 
 export default class UpdatePerson extends Component  {
 //REMEBER TO PUT A <ROW> INFRONT OF THE CALL, PLS
+
+  constructor(props){
+    console.log('list of favourites', props.editplayer)
+  }
 
   render() {
     return(

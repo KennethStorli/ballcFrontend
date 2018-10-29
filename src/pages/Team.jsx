@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
-import { Jumbotron, Grid, Button, Row } from 'react-bootstrap';
+import { Grid, Row } from 'react-bootstrap';
 import Teamform from '../components/Teamform';
 import Teamlist from '../components/Teamlist'
 

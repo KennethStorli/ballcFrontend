@@ -1,6 +1,5 @@
 import React from 'react';
-import {ListGroup, ListGroupItem, Formgroup, Formcontrol } from 'react-bootstrap';
-import { Container, Row, Col, Input, Button } from 'mdbreact';
+import { Col, Input, Button } from 'mdbreact';
 import './Teamform.css'
 
 export default class Teamform extends React.Component  {

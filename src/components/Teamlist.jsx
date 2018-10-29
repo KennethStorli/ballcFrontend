@@ -1,6 +1,6 @@
 import React from 'react';
 import {Glyphicon, ListGroup, ListGroupItem} from 'react-bootstrap';
-import { Container, Row, Col, Input, Button } from 'mdbreact';
+import {  Col, Input } from 'mdbreact';
 import './Teamlist.css'
 
 export default class Teamlist extends React.Component  {
