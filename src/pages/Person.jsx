@@ -34,7 +34,7 @@ export default class Person extends Component {
   }
 
   componentDidMount() {
-    fetch(`http://ballc-frontend-be.herokuapp.com/persons`)
+    fetch(`https://ballc-frontend-be.herokuapp.com/persons`)
     .then(result => result.json())
     .then(persons => this.setState({persons}))
 
@@ -82,11 +82,11 @@ export default class Person extends Component {
                             this.setState({ personToEdit: name, contactID: name.contacts });
                             console.log(this.state.contactID);
 
-                            fetch(`http://ballc-frontend-be.herokuapp.com/address/${name.address}`)
+                            fetch(`https://ballc-frontend-be.herokuapp.com/address/${name.address}`)
                             .then(result => result.json())
                             .then(address => this.setState({address}));
 
-                            fetch(`http://ballc-frontend-be.herokuapp.com/contact/${name.contacts}`)
+                            fetch(`https://ballc-frontend-be.herokuapp.com/contact/${name.contacts}`)
                             .then(result => result.json())
                             .then(contact => this.setState({contact}));
                           }
