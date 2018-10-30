@@ -5,3 +5,10 @@
 h2{
   padding: 50px;
 }
+
+.deletebtns{
+  float: right;
+  margin-top: -7px;
+  margin-right: -12px;
+
+}

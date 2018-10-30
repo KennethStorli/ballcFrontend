@@ -1,14 +1,11 @@
 import React, { Component } from 'react'
-import {Row, Grid, Col } from 'react-bootstrap';
+import {Row, Grid, Col, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 import { Tabs, Tab } from 'react-bootstrap';
 import { ListGroup, ListGroupItem} from 'react-bootstrap';
 import { Input, Button } from 'mdbreact';
 import CreatePerson from '../components/CreatePerson';
 import Search from '../components/Search'
 import '../components/UpdatePerson.css'
-
-
-
 import './Home.css'
 
 export default class Person extends Component {
@@ -38,10 +35,10 @@ export default class Person extends Component {
     .then(result => result.json())
     .then(persons => this.setState({persons}))
 
-  /* fetch(`http://ballc-frontend-be.herokuapp.com/contacts`)
+   fetch(`http://ballc-frontend-be.herokuapp.com/contacts`)
     .then(result => result.json())
     .then(contact => this.setState({contact}))
-*/
+
   }
 
   editperson(){
@@ -56,14 +53,19 @@ export default class Person extends Component {
           return name.first_name.indexOf(this.state.filterText) !== -1 || name.last_name.indexOf(this.state.filterText) !== -1
         }
       )
+      let filteredContacts = []
 
+    if(this.state.contactID.length != 0  ){
+      console.log(this.state.contact)
+      console.log(this.state.contactID)
+      console.log('filtering')
+       filteredContacts = this.state.contact.filter(
+        (contact) => {
+          return this.state.contactID.indexOf(contact.contact_id) !== -1
+        }
+      )
+    }
 
-  /*  let filteredContacts = this.state.contact.filter(
-          (contacts) => {
-            return contacts.contact_id.indexOf(this.state.name.contacts) !== -1
-          }
-        )
-*/
     return(
       <div>
         <Grid>
@@ -80,15 +82,14 @@ export default class Person extends Component {
                         onClick={
                           e => {
                             this.setState({ personToEdit: name, contactID: name.contacts });
-                            console.log(this.state.contactID);
 
                             fetch(`https://ballc-frontend-be.herokuapp.com/address/${name.address}`)
                             .then(result => result.json())
                             .then(address => this.setState({address}));
 
-                            fetch(`https://ballc-frontend-be.herokuapp.com/contact/${name.contacts}`)
+                            /*fetch(`https://ballc-frontend-be.herokuapp.com/contact/${name.contacts}`)
                             .then(result => result.json())
-                            .then(contact => this.setState({contact}));
+                            .then(contact => this.setState({contact}));*/
                           }
                         }
                         key={name.person_id}>
@@ -170,18 +171,35 @@ export default class Person extends Component {
                         name="country"
                         value={(this.state.address ? this.state.address.country : '')}
                         onChange={this.onChange}/>
+
+
+                      <br/>
+
+                      <p>Available contacts:  (Click to edit)</p>
+
+                      <div className="ContactList">
+                        <ListGroup>
+                          <div>
+                            {filteredContacts.map(contact =>
+                              <ListGroupItem
+                                className="listingplayer"
+                                key={contact.contact_id}>
+                                {contact.contact_type}{':'} {contact.contact_detail}
+                              </ListGroupItem>)}
+                          </div>
+                        </ListGroup>
+                      </div>
+
+
                       <Col sm={6}>
-                        <p>Type:</p>
-                        <Input
-                          name="email"
-                          value={(this.state.contact ? this.state.contact.contact_type : '')}
-
-                          onChange={this.onChange}/>
+                        <FormGroup controlId="formControlsSelect">
+                          <p>Type</p>
+                          <FormControl componentClass="select" placeholder="select">
+                            <option value="select">Phonenumber</option>
+                            <option value="other">Email</option>
+                          </FormControl>
+                        </FormGroup>
                       </Col>
-
-
-
-
                       <Col sm={6}>
                         <p> Phonenumber:</p>
                         <Input
