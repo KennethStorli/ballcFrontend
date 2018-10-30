@@ -20,7 +20,6 @@ constructor(props){
     postal_code:'',
     city:'',
     country:'',
-    phonenumber:'',
     dob:'',
     phonenumber:'',
     email:'',

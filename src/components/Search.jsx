@@ -12,7 +12,6 @@ export default class Search extends Component{
   }
 
   render(){
-    console.log('filterText value', this.props.filterText)
     return(
       <div>
         <Col sm={1}>
