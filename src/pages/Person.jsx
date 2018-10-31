@@ -19,9 +19,32 @@ export default class Person extends Component {
       contact:[],
       contactID:[],
       filterText:'',
-      personToEdit: 1,
+      contactToChange: null,
+      personToEdit: null,
+
+
+      firstname: '',
+      lastname: '',
+      address_1:'',
+      address_2:'',
+      address_3:'',
+      postal:'',
+      city:'',
+      country:'',
+      contact_type:'',
+      contact_detail:'',
+      dob:''
+
     };
-    this.editperson = this.editperson.bind(this)
+
+    this.onChangeFName = this.onChangeFName.bind(this)
+    this.onChangeLName = this.onChangeLName.bind(this)
+    this.onChangeA1 = this.onChangeA1.bind(this)
+    this.onChangeA2 = this.onChangeA2.bind(this)
+    this.onChangeA3 = this.onChangeA3.bind(this)
+    this.onChangePostal = this.onChangePostal.bind(this)
+    this.onChangeCity = this.onChangeCity.bind(this)
+    this.onChangeCountry = this.onChangeCountry.bind(this)
   }
 
   filterUpdate(value){
@@ -30,18 +53,70 @@ export default class Person extends Component {
     })
   }
 
+  onChangeFName(event){
+    const firstnameinput = event.target.value
+    this.setState({
+      firstname: firstnameinput
+    })
+  }
+
+  onChangeLName(event){
+    const lastnameinput = event.target.value
+    this.setState({
+      lastname: lastnameinput
+    })
+  }
+
+  onChangeA1(event){
+    const address1input = event.target.value
+    this.setState({
+      address_1: address1input
+    })
+  }
+
+  onChangeA2(event){
+    const address2input = event.target.value
+    this.setState({
+      address_2: address2input
+    })
+  }
+
+  onChangeA3(event){
+    const address3input = event.target.value
+    this.setState({
+      address_3: address3input
+    })
+  }
+
+  onChangePostal(event){
+    const postalinput = event.target.value
+    this.setState({
+      postal_code: postalinput
+    })
+  }
+
+  onChangeCity(event){
+    const cityinput = event.target.value
+    this.setState({
+      city: cityinput
+    })
+  }
+
+  onChangeCountry(event){
+    const countryinput = event.target.value
+    this.setState({
+      country: countryinput
+    })
+  }
+
   componentDidMount() {
-    fetch(`https://ballc-frontend-be.herokuapp.com/persons`)
+    fetch(`http://ballc-frontend-be.herokuapp.com/persons`)
     .then(result => result.json())
     .then(persons => this.setState({persons}))
 
    fetch(`http://ballc-frontend-be.herokuapp.com/contacts`)
     .then(result => result.json())
     .then(contact => this.setState({contact}))
-
-  }
-
-  editperson(){
 
   }
 
@@ -55,10 +130,7 @@ export default class Person extends Component {
       )
       let filteredContacts = []
 
-    if(this.state.contactID.length != 0  ){
-      console.log(this.state.contact)
-      console.log(this.state.contactID)
-      console.log('filtering')
+    if(this.state.contactID.length !== 0  ){
        filteredContacts = this.state.contact.filter(
         (contact) => {
           return this.state.contactID.indexOf(contact.contact_id) !== -1
@@ -81,17 +153,28 @@ export default class Person extends Component {
                         className="listingplayer"
                         onClick={
                           e => {
-                            this.setState({ personToEdit: name, contactID: name.contacts });
+                            this.setState({
+                              firstname: name.first_name,
+                              lastname: name.last_name,
+                              dob:name.date_of_birth,
+                              personToEdit: name,
+                              contactID: name.contacts,
+                            });
 
-                            fetch(`https://ballc-frontend-be.herokuapp.com/address/${name.address}`)
+                            fetch(`http://ballc-frontend-be.herokuapp.com/address/${name.address}`)
                             .then(result => result.json())
-                            .then(address => this.setState({address}));
-
-                            /*fetch(`https://ballc-frontend-be.herokuapp.com/contact/${name.contacts}`)
-                            .then(result => result.json())
-                            .then(contact => this.setState({contact}));*/
+                            .then(address => this.setState({
+                              address,
+                              address_1: address.address_line_1,
+                              address_2: address.address_line_2,
+                              address_3: address.address_line_3,
+                              postal_code: address.postal_code,
+                              city: address.city,
+                              country: address.country
+                            }))
                           }
                         }
+
                         key={name.person_id}>
                         {name.first_name} {name.last_name}
                       </ListGroupItem>)}
@@ -113,64 +196,58 @@ export default class Person extends Component {
 
                       <p>First name:</p>
                       <Input
-                        name="username"
-                        group type="username"
-                        validate error="wrong"
-                        success="right"
-                        value={(this.state.personToEdit ? this.state.personToEdit.first_name : '')}
-                        onChange={this.onChange}/>
+                        name="firstname"
+                        value={(this.state.personToEdit ? this.state.firstname : '')}
+                        onChange={this.onChangeFName
+                        }/>
 
                       <p>Last name:</p>
                       <Input
-                        name="email"
-                        group type="email"
-                        validate error="wrong"
-                        placeholder="Email"
-                        value={(this.state.personToEdit ? this.state.personToEdit.last_name : '')}
-
-                        onChange={this.onChange}
-                      success="right"/>
+                        name="last_name"
+                        value={(this.state.personToEdit ? this.state.lastname : '')}
+                        onChange={this.onChangeLName
+                        }/>
 
 
                       <p>Address 1:</p>
                       <Input
                         name="address_1"
-                        value={(this.state.address ? this.state.address.address_line_1 : '')}
-                        onChange={this.onChange}
+                        value={(this.state.address ? this.state.address_1 : '')}
+                        onChange={this.onChangeA1}
                       validate/>
 
                       <p>Address 2:</p>
                       <Input
                         name="address_2"
-                        value={(this.state.address.address_line_2 ? this.state.address.address_line_2 : '')}
-                        onChange={this.onChange}
+                        value={(this.state.address ? this.address_2 : '')}
+                        onChange={this.onChangeA2}
                       validate/>
 
                       <p>Address 3:</p>
                       <Input
                         name="address_3"
-                        value={(this.state.address.address_line_3 ? this.state.address.address_line_3 : '')}
-                        onChange={this.onChange}/>
+                        value={(this.state.address ? this.state.address_3 : '')}
+                        onChange={this.onChangeA3}/>
                       <Col sm={6}>
                         <p>Postal code:</p>
                         <Input
                           name="postal"
-                          value={(this.state.address ? this.state.address.postal_code : '')}
-                          onChange={this.onChange}/>
+                          value={(this.state.address ? this.state.postal_code : '')}
+                          onChange={this.onChangePostal}/>
                       </Col>
                       <Col sm={6}>
                         <p>City:</p>
                         <Input
                           name="city"
-                          value={(this.state.address ? this.state.address.city : '')}
-                          onChange={this.onChange}/>
+                          value={(this.state.address ? this.state.city : '')}
+                          onChange={this.onChangeCity}/>
                       </Col>
 
                       <p>Country:</p>
                       <Input
                         name="country"
-                        value={(this.state.address ? this.state.address.country : '')}
-                        onChange={this.onChange}/>
+                        value={(this.state.address ? this.state.country : '')}
+                        onChange={this.onChangeCountry}/>
 
 
                       <br/>
@@ -183,6 +260,14 @@ export default class Person extends Component {
                             {filteredContacts.map(contact =>
                               <ListGroupItem
                                 className="listingplayer"
+                                onClick={
+                                  e =>
+                                  this.setState({
+                                    contactToChange: contact,
+                                    contact_type:contact.contact_type,
+                                    contact_detail:contact.contact_detail,
+                                  })
+                                }
                                 key={contact.contact_id}>
                                 {contact.contact_type}{':'} {contact.contact_detail}
                               </ListGroupItem>)}
@@ -192,31 +277,28 @@ export default class Person extends Component {
 
 
                       <Col sm={6}>
-                        <FormGroup controlId="formControlsSelect">
-                          <p>Type</p>
-                          <FormControl componentClass="select" placeholder="select">
-                            <option value="select">Phonenumber</option>
-                            <option value="other">Email</option>
-                          </FormControl>
-                        </FormGroup>
-                      </Col>
-                      <Col sm={6}>
-                        <p> Phonenumber:</p>
+                        <p> Type:</p>
                         <Input
                           name="phone"
-                          value={(this.state.contact ? this.state.contact.contact_detail : '')}
+                          value={(this.state.contactToChange ? this.state.contactToChange.contact_type : '')}
+                          onChange={e => this.setState({ text: e.target.value })}
+                        />
+                      </Col>
+                      <Col sm={6}>
+                        <p> Contact:</p>
+                        <Input
+                          name="phone"
+                          value={(this.state.contactToChange ? this.state.contactToChange.contact_detail : '')}
                           onChange={this.onChange}/>
                       </Col>
-
-                      <br/>
-                      <br/>
-                      <br/>
-                      <br/>
-
-                      <p>Date of Birth (DD/MM/YY)</p>
+                      <div className="text-center">
+                        <Button className="formbtnSave" color="primary" onClick={this.signup} >Add</Button>
+                        <Button className="formbtnSave" color="primary" onClick={this.signup} >Save</Button>
+                        <Button className="formbtnDel" color="primary" onClick={this.signup} >Del</Button>
+                      </div>
+                      <p>Date of Birth (YYYY/MM/DD)</p>
                       <Input
                         name="username"
-                        group type="username"
                         value={(this.state.personToEdit ? this.state.personToEdit.date_of_birth : '')}
                         onChange={this.onChange}/>
 
