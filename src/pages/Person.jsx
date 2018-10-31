@@ -117,6 +117,20 @@ export default class Person extends Component {
     })
   }
 
+  onChangeContactType(event){
+    const contacttypeinput = event.target.value
+    this.setState({
+      contact_type: contacttypeinput
+    })
+  }
+
+  onChangeContactDetail(event){
+    const contactdetailinput = event.target.value
+    this.setState({
+      contact_detail: contactdetailinput
+    })
+  }
+
   componentDidMount() {
     fetch(`http://ballc-frontend-be.herokuapp.com/persons`)
     .then(result => result.json())
@@ -288,16 +302,17 @@ export default class Person extends Component {
                         <p> Type:</p>
                         <Input
                           name="phone"
-                          value={(this.state.contactToChange ? this.state.contactToChange.contact_type : '')}
-                          onChange={e => this.setState({ text: e.target.value })}
+                          value={(this.state.contactToChange ? this.state.contact_type : '')}
+                          onChange={this.onChangeContactType
+                          }
                         />
                       </Col>
                       <Col sm={6}>
                         <p> Contact:</p>
                         <Input
                           name="phone"
-                          value={(this.state.contactToChange ? this.state.contactToChange.contact_detail : '')}
-                          onChange={this.onChange}/>
+                          value={(this.state.contactToChange ? this.state.contact_detail : '')}
+                          onChange={this.onChangeContactDetail}/>
                       </Col>
                       <div className="text-center">
                         <Button className="formbtnSave" color="primary" onClick={this.signup} >Add</Button>
