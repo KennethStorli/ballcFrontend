@@ -45,6 +45,7 @@ export default class Person extends Component {
     this.onChangePostal = this.onChangePostal.bind(this)
     this.onChangeCity = this.onChangeCity.bind(this)
     this.onChangeCountry = this.onChangeCountry.bind(this)
+    this.onChangeDOB = this.onChangeDOB.bind(this)
   }
 
   filterUpdate(value){
@@ -106,6 +107,13 @@ export default class Person extends Component {
     const countryinput = event.target.value
     this.setState({
       country: countryinput
+    })
+  }
+
+  onChangeDOB(event){
+    const DOBinput = event.target.value
+    this.setState({
+      dob: DOBinput
     })
   }
 
@@ -219,7 +227,7 @@ export default class Person extends Component {
                       <p>Address 2:</p>
                       <Input
                         name="address_2"
-                        value={(this.state.address ? this.address_2 : '')}
+                        value={(this.state.address ? this.address_2 : '' )}
                         onChange={this.onChangeA2}
                       validate/>
 
@@ -296,11 +304,12 @@ export default class Person extends Component {
                         <Button className="formbtnSave" color="primary" onClick={this.signup} >Save</Button>
                         <Button className="formbtnDel" color="primary" onClick={this.signup} >Del</Button>
                       </div>
-                      <p>Date of Birth (YYYY/MM/DD)</p>
+                      <p>Date of Birth</p>
                       <Input
                         name="username"
-                        value={(this.state.personToEdit ? this.state.personToEdit.date_of_birth : '')}
-                        onChange={this.onChange}/>
+                        type="date"
+                        value={(this.state.personToEdit ? this.state.dob : '')}
+                        onChange={this.onChangeDOB}/>
 
                     </div>
 
