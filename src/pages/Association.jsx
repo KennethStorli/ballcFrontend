@@ -167,7 +167,7 @@ export default class Person extends Component {
         <Grid>
           <Row>
             <Col xs={12} sm={6}>
-              <p className="h5 text-center mb-4">REGISTERED PEOPLE</p>
+              <p className="h5 text-center mb-4">REGISTERED ASSOCIATIONS</p>
               <br/>
               <div className="Teamlist">
                 <ListGroup>

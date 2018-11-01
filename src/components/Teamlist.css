@@ -5,6 +5,15 @@
   background-color: #efefef;
 }
 
+.divlist {
+  flex: 1;
+  height: 124px;
+  margin-bottom: 10px;
+  overflow-y: scroll;
+  background-color: #efefef;
+}
+
+
 .ContactList{
   flex: 1;
   height:83px;
