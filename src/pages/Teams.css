@@ -1,3 +1,18 @@
 .allTeams{
+  height: 400px;
+}
+
+.teamimages{
   height: 250px;
+  width: 250px;
+  padding: 50px;
+}
+
+.teamnames{
+  color: black;
+}
+
+
+.buffer{
+  height: 100px;
 }

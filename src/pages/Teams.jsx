@@ -5,7 +5,7 @@ import { Tabs, Tab } from 'react-bootstrap';
 import { ListGroup, ListGroupItem} from 'react-bootstrap';
 import { Input, Button } from 'mdbreact';
 import CreatePerson from '../components/CreatePerson';
-import Search from '../components/Search'
+import SearchSmall from '../components/SearchSmall'
 import '../components/UpdatePerson.css'
 import './Home.css'
 import './Teams.css'
@@ -17,20 +17,26 @@ export default class Teams extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      key: 1,
-      persons:[],
-      address:[],
-      contact:[],
-      contactID:[],
+
+      teams:[],
+      teamID:'',
+      filterText:'',
     };
 
   }
+
+  filterUpdate(value){
+    this.setState({
+      filterText: value
+    })
+  }
+
 
   componentDidMount() {
     fetch(`https://ballc-frontend-be.herokuapp.com/teams`)
     .then(result => result.json())
     .then(teams => this.setState({teams}))
-
+    console.log(this.state.teams)
 
   }
 
@@ -38,20 +44,45 @@ export default class Teams extends Component {
 
     render() {
 
+      let filteredTeams = this.state.teams.filter(
+        (team) => {
+          return team.teamName.indexOf(this.state.filterText) !== -1 || team.teamName.toLowerCase().indexOf(this.state.filterText) !== -1
+        }
+      )
+      let filteredContacts = []
+
     return(
       <div>
         <Grid>
           <Row>
-
-            <p className="h5 text-center mb-4">REGISTERED PEOPLE</p>
             <br/>
-            {this.state.teams.map(team =>
-              <Col xs={12} sm={4}>
-                <div
-                  className="allTeams"
-                  key={team.team_id}>
-                  <h1>{team.team_name}</h1>
-                </div>
+            <br/>
+            <Col xs={12} sm={4}>
+            </Col>
+            <Col xs={12} sm={4}>
+              <SearchSmall
+                filterText={this.state.filterText}
+                filterUpdate={this.filterUpdate.bind(this)}
+              />
+            </Col>
+            <Col xs={12} sm={4}>
+            </Col>
+            <div className="buffer"></div>
+            {filteredTeams.map(team =>
+              <Col xs={12} sm={3} key={team.team_id}>
+
+                <Link to={{
+                  pathname:`./Teaminfo/${team.teamName}`,
+                  state: ({
+                    id: team.team_id,
+                    
+                  }) }}>
+                  <div
+                  className="allTeams">
+                    <Image src={`images/teams/${team.teamName}.jpg`} circle className="teamimages" />
+                    <h1 className="teamnames">{team.teamName}</h1>
+                  </div>
+                </Link>
               </Col>
             )}
               <br/>

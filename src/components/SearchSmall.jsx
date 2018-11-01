@@ -20,7 +20,7 @@ export default class Search extends Component{
         </Col>
         <Col sm={4}>
           <input
-            className="search"
+            className="SmallSearch"
             id="search"
             type="text"
             ref={ (value) => {this.myValue = value}   }
