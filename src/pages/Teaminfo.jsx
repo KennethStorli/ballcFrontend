@@ -1,5 +1,11 @@
 import React, { Component} from 'react';
+import './Teaminfo.css'
+import {Row, Grid, Col } from 'react-bootstrap';
 import Association from './Association'
+import Owner from './Owner'
+
+import './Teams.css'
+
 
 export default class Teaminfo extends Component{
     constructor(props) {
@@ -13,6 +19,8 @@ export default class Teaminfo extends Component{
         players: [],
         owner: '',
         association:'',
+        coach:'',
+        location:'',
 
         teamID: props.location.state.id,
       };
@@ -24,7 +32,11 @@ export default class Teaminfo extends Component{
       fetch(`https://ballc-frontend-be.herokuapp.com/team/${this.state.teamID}`)
       .then(result => result.json())
       .then(team => this.setState({team,
-          association: team.association}))
+          association: team.association,
+          owner: team.owner,
+          location: team.location,
+          coach: team.coach
+        }))
     }
 
 
@@ -32,14 +44,40 @@ export default class Teaminfo extends Component{
 
 
       return (
-        <div>
-          <h1>{this.state.team.teamName}</h1>
-          <Association association={this.state.team.association}/>
-          {console.log(this.state.team.association)}
-          <h1>{this.state.association}</h1>
+          <div>
+            <h1>{this.state.team.teamName}</h1>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
 
-        </div>
-
+            <Row>
+                <Col xs={12} sm={3}>
+                  <div className="bufferTeaminfo">
+                    <p className="ass_name">Association:</p>
+                    <Association association={this.state.team.association}/>
+                  </div>
+                </Col>
+                <Col xs={12} sm={3}>
+                  <div className="bufferTeaminfo">
+                    <p className="ass_name">Owner:</p>
+                    <Owner owner={this.state.team.owner}/>
+                  </div>
+                </Col>
+                <Col xs={12} sm={3}>
+                  <div className="bufferTeaminfo">
+                    <p className="ass_name">Association:</p>
+                    <Association association={this.state.team.association}/>
+                  </div>
+                </Col>
+                <Col xs={12} sm={3}>
+                  <div className="bufferTeaminfo">
+                    <p className="ass_name">Association:</p>
+                    <Association association={this.state.team.association}/>
+                  </div>
+                </Col>
+            </Row>
+          </div>
       );
     }
 

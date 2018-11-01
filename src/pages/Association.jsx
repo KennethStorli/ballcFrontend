@@ -1,5 +1,5 @@
 import React, { Component} from 'react';
-
+import './Teaminfo.css'
 
 export default class Association extends Component{
     constructor(props) {
@@ -21,13 +21,10 @@ export default class Association extends Component{
 
       return (
         <div>
-          <h1>KMS</h1>
-          <h1>{this.state.associations.name}</h1>
-          {console.log(this.props.association)}
-
+          <p className="ass_name">{this.state.associations.name}</p>
+          <p className="ass_description">{this.state.associations.description}</p>
         </div>
 
-          );
-          }
-
-          }
+      );
+    }
+  }

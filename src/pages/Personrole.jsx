@@ -1,17 +1,17 @@
 import React, { Component} from 'react';
-import Personrole from './Personrole'
+
 
 export default class Owner extends Component{
   constructor(props) {
     super(props);
     this.state = {
-      owners:[],
-      owner: this.props.owner,
+      persons:[],
+      person: this.props.person,
     };
 
   }
   componentWillReceiveProps(nextprop) {
-    fetch(`https://ballc-frontend-be.herokuapp.com/owner/${nextprop.owner}`)
+    fetch(`https://ballc-frontend-be.herokuapp.com/owner/${nextprop.person}`)
     .then(result => result.json())
     .then(owners => this.setState({owners}))
   }
@@ -21,9 +21,7 @@ export default class Owner extends Component{
 
       return (
         <div>
-          <Personrole person={this.state.owners.person_id}/>
-          <h1>{this.state.owners.owner_id}</h1>
-          {console.log(this.state.owner)}
+          <h1>{this.state.persons.first_name} {this.state.persons.last_name}</h1>
         </div>
 
       );
