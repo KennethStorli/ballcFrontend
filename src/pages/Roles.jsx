@@ -3,6 +3,7 @@ import { Row, Grid, Col, Checkbox } from 'react-bootstrap';
 import { ListGroup, ListGroupItem, FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
 import { Button, Input } from 'mdbreact'
 import '../components/Teamlist.css'
+import { PostData } from '../PostData';
 
 
 export default class Roles extends Component {
@@ -17,11 +18,14 @@ export default class Roles extends Component {
       coach: false,
       owner:false,
       number:'',
+      person_id:''
 
 
     };
     this.onChangeNumber = this.onChangeNumber.bind(this)
 
+    this.onCoachCheck = this.onCoachCheck.bind(this)
+    this.onOwnerCheck = this.onOwnerCheck.bind(this)
   }
   onChangeNumber(event){
     const number = event.target.value
@@ -39,6 +43,27 @@ export default class Roles extends Component {
     .then(result => result.json())
     .then(teams => this.setState({teams}))
   }
+
+  onCoachCheck(e){
+    this.setState({coach: !this.state.coach});
+  }
+
+  onOwnerCheck(e){
+    this.setState({owner: !this.state.owner});
+  }
+
+  addRole = () =>{
+    let user = Object.assign({}, this.state);    //creating copy of object
+
+    var data = {
+      coach: user.coach,
+      owner: user.owner,
+      person_id:user.person_id,
+      team_id:user.selectTeam.team_id
+    }
+
+    PostData('addrole', data);
+  }
     render(){
       return(
         <Grid>
@@ -54,6 +79,7 @@ export default class Roles extends Component {
                           onClick={
                             e => {
                               this.setState({
+                                person_id: name.person_id,
                                 first_name: name.first_name,
                                 last_name:name.last_name,
 
@@ -77,13 +103,13 @@ export default class Roles extends Component {
 
                 <br/>
                 <br/>
-                <Checkbox onClick={this.onAdminCheck} defaultChecked={this.state.admin}>
+                <Checkbox onClick={this.onCoachCheck} defaultChecked={this.state.admin}>
                   Coach
                 </Checkbox>
 
                 <br/>
                 <br/>
-                <Checkbox onClick={this.onAdminCheck} defaultChecked={this.state.admin}>
+                <Checkbox onClick={this.onOwnerCheck} defaultChecked={this.state.admin}>
                   Owner
                 </Checkbox>
 
@@ -131,7 +157,8 @@ export default class Roles extends Component {
                             onClick={
                               e => {
                                 this.setState({
-                                  selectTeam: name
+                                  selectTeam: name,
+
                                 });
                               }
                             }
@@ -146,7 +173,7 @@ export default class Roles extends Component {
                 <br/>
                 <br/>
 
-                <Button>Save user</Button>
+                <Button onClick={this.addRole}>Save user</Button>
               </Col>
             </Row>
           </div>

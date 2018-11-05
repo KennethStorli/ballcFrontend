@@ -171,10 +171,6 @@ export default class Person extends Component {
       contact_detail:'',
       dob:''
     */
-<<<<<<< HEAD
-=======
-
->>>>>>> master
     var data = {
       address: user.address_id,
       person_id:user.person_id,
