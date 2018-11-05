@@ -37,3 +37,9 @@
   overflow-y: scroll;
   background-color: #efefef;
 }
+
+.chooseTeam{
+  border-radius: 10px;
+  background-color: #efefef;
+  padding: 10px
+}
