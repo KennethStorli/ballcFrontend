@@ -9,6 +9,18 @@ alertClicked(){
   alert('You clicked the third ListGroupItem');
 }
 
+constructor(props) {
+  super(props);
+  this.state = {
+    key: 1,
+
+
+  };
+
+
+}
+
+
   render() {
     return(
         <Col xs={12} sm={6} className="Teamwrapper">

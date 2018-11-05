@@ -8,7 +8,6 @@ import Search from '../components/Search'
 import '../components/UpdatePerson.css'
 import './Home.css';
 import {PostData} from '../PostData';
-import axios from 'axios';
 
 
 export default class Person extends Component {
@@ -25,7 +24,6 @@ export default class Person extends Component {
       contactToChange: null,
       personToEdit: null,
 
-      contact_id:'',
       location:'',
       address_id:'',
       person_id:'',
@@ -187,68 +185,8 @@ export default class Person extends Component {
       city: user.city,
       country: user.country
     }
+    
     PostData('updateaddress', data2);
-
-
-  }
-
-  delPerson = () => {
-
-    let user = Object.assign({}, this.state);    //creating copy of object
-
-    var data5 = {
-      address_id: user.address_id,
-      person_id: user.person_id
-    }
-    PostData('delperson', data5);
-
-    fetch(`http://ballc-frontend-be.herokuapp.com/userslist`)
-    .then(result => {
-     console.log(result.text())
-    })
-  }
-
-  updateContact = () => {
-
-    let user = Object.assign({}, this.state);    //creating copy of object
-
-
-    var data3 = {
-      person: user.person_id,
-      contact_id: user.contact_id,
-      contact_type: user.contact_type,
-      contact_detail: user.contact_detail,
-    }
-
-    console.log(data3);
-    PostData('updatecontact', data3);
-  }
-
-  addContact = () => {
-
-    let user = Object.assign({}, this.state);    //creating copy of object
-
-    var data4 = {
-      person: user.person_id,
-      contact_type: user.contact_type,
-      contact_detail: user.contact_detail,
-    }
-
-    PostData('addcontact', data4);
-  }
-
-  delContact = () => {
-
-    let user = Object.assign({}, this.state);    //creating copy of object
-
-    var data4 = {
-      person: user.person_id,
-      contact_id: user.contact_id,
-      contact_type: user.contact_type,
-      contact_detail: user.contact_detail,
-    }
-
-    PostData('delcontact', data4);
   }
 
     render() {
@@ -398,7 +336,6 @@ export default class Person extends Component {
                                   e =>
                                   this.setState({
                                     contactToChange: contact,
-                                    contact_id: contact.contact_id,
                                     contact_type:contact.contact_type,
                                     contact_detail:contact.contact_detail,
                                   })
@@ -429,9 +366,9 @@ export default class Person extends Component {
                           onChange={this.onChangeContactDetail}/>
                       </Col>
                       <div className="text-center">
-                        <Button className="formbtnSave" color="primary" onClick={this.addContact} >Add</Button>
-                        <Button className="formbtnSave" color="primary" onClick={this.updateContact} >Save</Button>
-                        <Button className="formbtnDel" color="primary" onClick={this.delContact} >Del</Button>
+                        <Button className="formbtnSave" color="primary" onClick={this.signup} >Add</Button>
+                        <Button className="formbtnSave" color="primary" onClick={this.signup} >Save</Button>
+                        <Button className="formbtnDel" color="primary" onClick={this.signup} >Del</Button>
                       </div>
                       <p>Date of Birth</p>
                       <Input
@@ -444,7 +381,7 @@ export default class Person extends Component {
 
                     <div className="text-center">
                       <Button className="formbtnSave" color="primary" onClick={this.updatePerson} >Save edit</Button>
-                      <Button className="formbtnDel" color="primary" onClick={this.delPerson} >Delete person</Button>
+                      <Button className="formbtnDel" color="primary" onClick={this.signup} >Delete person</Button>
 
                     </div>
                   </form>
