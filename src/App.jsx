@@ -10,6 +10,7 @@ import Person from './pages/Person';
 import Team from './pages/Team';
 import Association from './pages/Association';
 import Teaminfo from './pages/Teaminfo';
+import Roles from './pages/Roles';
 
 
 
@@ -45,6 +46,8 @@ class App extends Component {
           <Route path="/Team" component={Team}></Route>
           <Route path="/Association" component={Association}></Route>
           <Route path="/Teaminfo" component={Teaminfo}></Route>
+          <Route path="/Roles" component={Roles}></Route>
+
 
 
         </div>
