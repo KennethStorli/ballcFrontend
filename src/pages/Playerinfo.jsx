@@ -22,7 +22,7 @@ export default class Coach extends Component{
     render() {
       let filteredPlayers = this.state.players.filter(
         (players) => {
-          return team.allplayers.indexOf(this.state.players)
+          return this.state.allplayers.indexOf(this.state.players)
         }
       )
       let filteredContacts = []
@@ -33,8 +33,8 @@ export default class Coach extends Component{
               <Col xs={12} sm={3} key={players.player_id}>
                 <h2>{this.state.players.first_name}</h2>
               </Col>
+            )}
           </div>
-          );
-          }
-
-          }
+        )
+      }
+    }
