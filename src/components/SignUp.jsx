@@ -83,7 +83,7 @@ class Login extends React.Component  {
               </div>
 
               <div className="text-center">
-                <Button color="primary" onClick={this.signup} >Login</Button>
+                <Button color="primary" onClick={this.signup} >Sign Up</Button>
               </div>
             </form>
           </Col>

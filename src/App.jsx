@@ -24,6 +24,8 @@ import Season3 from './pages/Season3';
 */
 
 import Navbar from './components/Navigator'
+import NavigatorAdm from './components/NavigatorAdm'
+
 
 
 class App extends Component {
@@ -32,6 +34,8 @@ class App extends Component {
       <Router>
         <div>
           <Navbar/>
+          <NavigatorAdm/>
+
           <Route exact path="/" component={Home}></Route>
           <Route path="/next" component={Next}></Route>
           <Route path="/Teams" component={Teams}></Route>

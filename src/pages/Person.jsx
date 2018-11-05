@@ -6,10 +6,16 @@ import { Input, Button } from 'mdbreact';
 import CreatePerson from '../components/CreatePerson';
 import Search from '../components/Search'
 import '../components/UpdatePerson.css'
+<<<<<<< HEAD
 import './Home.css';
 import {PostData} from '../PostData';
 import axios from 'axios';
 
+=======
+import '../components/Teamlist.css'
+
+import './Home.css'
+>>>>>>> master
 
 export default class Person extends Component {
 
