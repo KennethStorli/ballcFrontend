@@ -6,6 +6,8 @@ import { Input, Button } from 'mdbreact';
 import CreatePerson from '../components/CreatePerson';
 import Search from '../components/Search'
 import '../components/UpdatePerson.css'
+import '../components/Teamlist.css'
+
 import './Home.css'
 
 export default class Person extends Component {

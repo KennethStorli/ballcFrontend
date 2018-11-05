@@ -51,14 +51,15 @@ export default class Navigator extends Component {
             <Nav pullRight>
               <NavItem eventKey={4} href="/User" to="/User">
                 Profile
-              </NavItem>Login
-
+              </NavItem>
               <NavItem eventKey={1} onClick={this.handleShow}>
                 Login
               </NavItem>
-              <NavDropdown eventKey={5} title="Admin" id="basic-nav-dropdown">
-                <MenuItem eventKey={5.1} href="/Person" to="/Person">Create person</MenuItem>
-                <MenuItem eventKey={5.1} href="/Team" to="/Team">Create team</MenuItem>
+              <NavDropdown eventKey={5} title="Admin"   id="basic-nav-dropdown">
+                <MenuItem eventKey={5.2} href="/Person" to="/Person">Person</MenuItem>
+                <MenuItem eventKey={5.3} href="/Team" to="/Team">Team</MenuItem>
+                <MenuItem eventKey={5.3} href="/Team" to="/Team">Season</MenuItem>
+                <MenuItem eventKey={5.3} href="/Team" to="/Team">Match</MenuItem>
 
               </NavDropdown>
             </Nav>
