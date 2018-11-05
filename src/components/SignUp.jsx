@@ -24,7 +24,7 @@ class Login extends React.Component  {
     if(this.state.password === this.state.confpassword){
       if(this.state.username && this.state.password && this.state.email){
         console.log("Login function");
-        PostData('user', this.state)
+        PostData('signup', this.state)
       }
       else {
         alert("Please fill out all the fields!")
@@ -73,7 +73,7 @@ class Login extends React.Component  {
                   group type="password"
                   onChange={this.onChange}
                 validate/>
-                
+
                 <p> Confirm Password: </p>
                 <Input
                   name="confpassword"

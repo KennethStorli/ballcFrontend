@@ -13,26 +13,17 @@ export default class User extends Component {
       email:'',
       admin: false,
       id:'',
-      name:''
+      name:'',
+      adminBinary:'',
 
     };
-    this.onChangeUserName = this.onChangeUserName.bind(this)
     this.onAdminCheck = this.onAdminCheck.bind(this)
   }
 
-  onChangeUserName(event){
-    const username = event.target.value
-    this.setState({
-      name: username
-    })
-  }
 
   onAdminCheck(e){
     this.setState({admin: !this.state.admin});
-    console.log(this.state.admin)
   }
-
-
 
   componentDidMount() {
     fetch(`https://ballc-frontend-be.herokuapp.com/userslist`)
@@ -58,7 +49,6 @@ export default class User extends Component {
                                 admin: name.admin,
                                 name: name.name,
                               });
-
                             }
                           }
                           key={name.id}>
@@ -78,11 +68,18 @@ export default class User extends Component {
                 <p>Email:</p>
                 <p>{(this.state.email ? this.state.email: '')}</p>
 
+                <p>Admin:</p>
+                <p>{(this.state.admin ? this.state.admin: '')}</p>
+
                 <br/>
                 <br/>
-                <Checkbox onClick={this.onAdminCheck} defaultChecked={this.state.admin}>
-                  Admin
-                </Checkbox>
+                <p><input
+                  name="isGoing"
+                  type="checkbox"
+                  checked={this.state.admin}
+                  onChange={this.onAdminCheck} /> Admin </p>
+
+
                 <br/>
                 <br/>
                 <Button>Save user</Button>
