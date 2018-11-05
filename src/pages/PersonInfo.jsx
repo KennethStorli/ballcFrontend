@@ -1,6 +1,5 @@
 import React, { Component} from 'react';
 import {Col} from 'react-bootstrap'
-import PersonInfo from './PersonInfo'
 import './Teams.css'
 
 
@@ -9,15 +8,15 @@ export default class Coach extends Component{
     constructor(props) {
       super(props);
       this.state = {
-        coaches:[],
-        coach: this.props.coach,
+        people:[],
+        person: this.props.person,
       };
 
     }
     componentWillReceiveProps(nextprop) {
-      fetch(`https://ballc-frontend-be.herokuapp.com/coach/${nextprop.coach}`)
+      fetch(`https://ballc-backend-api.herokuapp.com/persons/${nextprop.person}`)
       .then(result => result.json())
-      .then(coaches => this.setState({coaches}))
+      .then(people => this.setState({people}))
     }
 
     render() {
@@ -25,14 +24,10 @@ export default class Coach extends Component{
 
       return (
           <div>
-            <Col xs={12} sm={3}>
-              <h1>Coach</h1>
-              <hr/>
-
-
-              <PersonInfo person={this.state.coaches.person}/>
-
-            </Col>
+            <div className="infoName">
+              <h2>{this.state.people.first_name} {this.state.people.last_name}</h2>
+            </div>
+            <p type="date">{this.state.people.date_of_birth}</p>
           </div>
           );
           }

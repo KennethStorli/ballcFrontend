@@ -1,4 +1,7 @@
 import React, { Component} from 'react';
+import {Col} from 'react-bootstrap'
+import './Teams.css'
+
 
 
 export default class Association extends Component{
@@ -20,13 +23,17 @@ export default class Association extends Component{
 
 
       return (
-        <div>
-          <h1>KMS</h1>
-          <h1>{this.state.associations.name}</h1>
-          {console.log(this.props.association)}
+          <div>
+            <Col xs={12} sm={3}>
+              <h1>Association</h1>
+              <hr/>
+              <div className="infoName">
+                <h2>{this.state.associations.name}</h2>
+              </div>
 
-        </div>
-
+              <p>{this.state.associations.description}</p>
+            </Col>
+          </div>
           );
           }
 

@@ -16,3 +16,22 @@
 .buffer{
   height: 100px;
 }
+
+.info1{
+  size: 20px;
+}
+
+.info2{
+  size:10px;
+}
+
+
+.infoName{
+  height: 200px;
+  text-align: center;
+}
+
+
+.playerinfo{
+  padding-top: 400px;
+}
