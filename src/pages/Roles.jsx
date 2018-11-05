@@ -1,7 +1,7 @@
 import React,  { Component } from 'react';
 import {Row, Grid, Col, Checkbox } from 'react-bootstrap';
-import { ListGroup, ListGroupItem} from 'react-bootstrap';
-import {Button} from 'mdbreact'
+import { ListGroup, ListGroupItem, FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
+import { Button, Input } from 'mdbreact'
 import '../components/Teamlist.css'
 
 
@@ -10,6 +10,11 @@ export default class Roles extends Component {
     super(props);
     this.state = {
       persons:[],
+      teams:[],
+      first_name:'',
+      last_name:'',
+      coach: false,
+      owner:false,
 
 
     };
@@ -20,6 +25,10 @@ export default class Roles extends Component {
     fetch(`http://ballc-frontend-be.herokuapp.com/persons`)
     .then(result => result.json())
     .then(persons => this.setState({persons}))
+
+    fetch(`http://ballc-frontend-be.herokuapp.com/teams`)
+    .then(result => result.json())
+    .then(teams => this.setState({teams}))
   }
     render(){
       return(
@@ -36,6 +45,8 @@ export default class Roles extends Component {
                           onClick={
                             e => {
                               this.setState({
+                                first_name: name.first_name,
+                                last_name:name.last_name,
 
                               });
 
@@ -50,21 +61,65 @@ export default class Roles extends Component {
               </Col>
               <Col xs={12} sm={6}>
                 <p>Name:</p>
-                <p>{(this.state.first_name ? this.state.first_name: '')} {this.state.last_name ? this.state.last_name}</p>
+                <p>{(this.state.first_name ? this.state.first_name: '')} {(this.state.last_name ? this.state.last_name: '')}</p>
 
                 <br/>
                 <hr/>
-                <br/>
-                <p>Email:</p>
-                <p>{(this.state.email ? this.state.email: '')}</p>
 
                 <br/>
                 <br/>
                 <Checkbox onClick={this.onAdminCheck} defaultChecked={this.state.admin}>
-                  Admin
+                  Coach
                 </Checkbox>
+
                 <br/>
                 <br/>
+                <Checkbox onClick={this.onAdminCheck} defaultChecked={this.state.admin}>
+                  Owner
+                </Checkbox>
+
+                <br/>
+
+                <br/>
+                <br/>
+                <Col xs={12} sm={6}>
+                  <p>Normal Position</p>
+                  <FormControl componentClass="select" placeholder="goalkeeper">
+                    <option value="goalkeeper">Goalkeeper</option>
+                    <option value="defence">Defence</option>
+                    <option value="midfield">Midfield</option>
+                    <option value="forward">Forward</option>
+                  </FormControl>
+                </Col>
+                <Col xs={12} sm={6}>
+                  <p> Number </p>
+                  <Input
+                    name="Number"
+                    value={(this.state.personToEdit ? this.state.firstname : '')}
+                    onChange={this.onChangeFName
+                    }/>
+                </Col>
+                <div className="TeamlistShort">
+                  <ListGroup>
+                    <div>
+                      {this.state.teams.map(name =>
+                        <ListGroupItem
+                          className="listingplayer"
+                          onClick={
+                            e => {
+                              this.setState({
+
+
+                              });
+
+                            }
+                          }
+                          key={name.team_id}>
+                          {name.teamName}
+                        </ListGroupItem>)}
+                    </div>
+                  </ListGroup>
+                </div>
                 <Button>Save user</Button>
 
               </Col>

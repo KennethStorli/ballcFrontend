@@ -30,3 +30,10 @@
   width: 495px;
   border-color: #eeeeef;
 }
+
+.TeamlistShort {
+  flex: 1;
+  height: 200px;
+  overflow-y: scroll;
+  background-color: #efefef;
+}
