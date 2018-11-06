@@ -10,63 +10,24 @@ export default class Address extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      address:[],
-      address_1:'',
-      address_2:'',
-      address_3:'',
-      postal_code:'',
-      city:'',
-      country:'',
+      address: [],
+      locations: [],
+      addressID: '',
+      location_id:'',
+      location_name: '',
+      location_description:'',
     };
 
-  }
-
-  onChangeA1(event){
-    const address1input = event.target.value
-    this.setState({
-      address_1: address1input
-    })
-  }
-
-  onChangeA2(event){
-    const address2input = event.target.value
-    this.setState({
-      address_2: address2input
-    })
-  }
-
-  onChangeA3(event){
-    const address3input = event.target.value
-    this.setState({
-      address_3: address3input
-    })
-  }
-
-  onChangePostal(event){
-    const postalinput = event.target.value
-    this.setState({
-      postal_code: postalinput
-    })
-  }
-
-  onChangeCity(event){
-    const cityinput = event.target.value
-    this.setState({
-      city: cityinput
-    })
-  }
-
-  onChangeCountry(event){
-    const countryinput = event.target.value
-    this.setState({
-      country: countryinput
-    })
   }
 
   componentDidMount() {
     fetch(`https://ballc-frontend-be.herokuapp.com/addresses`)
     .then(result => result.json())
     .then(address => this.setState({address}))
+
+    fetch(`https://ballc-frontend-be.herokuapp.com/locations`)
+    .then(result => result.json())
+    .then(locations => this.setState({locations}))
   }
     render(){
       return(
@@ -74,31 +35,27 @@ export default class Address extends Component {
           <div>
             <Row>
               <Col xs={12} sm={6}>
-                <p className="h5 text-center mb-4">REGISTERED ADDRESSES</p>
+                <p className="h5 text-center mb-4">REGISTERED LOCATIONS</p>
                 <br/>
                 <div className="Teamlist">
                   <ListGroup>
                     <div>
-                      {this.state.address.map(address =>
+                      {this.state.locations.map(location =>
                         <ListGroupItem
                           className="listingplayer"
                           onClick={
                             e => {
                               this.setState({
-                                address_id: address.address_id,
-                                address_1: address.address_line_1,
-                                address_2: address.address_line_2,
-                                address_3: address.address_line_3,
-                                postal_code: address.postal_code,
-                                city: address.city,
-                                country: address.country
-
+                                location_id: location.location_id,
+                                location_name: location.name,
+                                location_description: location.description,
+                                address_id: location.address_id
                               });
 
                             }
                           }
-                          key={address.address_id}>
-                          {address.address_line_1}
+                          key={location.location_id}>
+                          {location.name}
                         </ListGroupItem>)}
                     </div>
                   </ListGroup>
@@ -167,7 +124,7 @@ export default class Address extends Component {
                     <br/>
                     <br/>
                     <br/>
-                    
+
 
                     <div className="text-center">
                       <Button className="formbtnSave" color="primary" onClick={this.updatePerson} >Save edit</Button>

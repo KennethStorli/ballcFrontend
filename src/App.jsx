@@ -11,6 +11,11 @@ import Team from './pages/Team';
 import Association from './pages/Association';
 import Teaminfo from './pages/Teaminfo';
 import Roles from './pages/Roles';
+import Address from './pages/Address';
+import Locations from './pages/CRUDLocation';
+import Associations from './pages/CRUDAssociation';
+
+
 
 
 
@@ -47,6 +52,11 @@ class App extends Component {
           <Route path="/Association" component={Association}></Route>
           <Route path="/Teaminfo" component={Teaminfo}></Route>
           <Route path="/Roles" component={Roles}></Route>
+          <Route path="/Address" component={Address}></Route>
+          <Route path="/Locations" component={Locations}></Route>
+          <Route path="/Associations" component={Associations}></Route>
+
+
 
 
 
