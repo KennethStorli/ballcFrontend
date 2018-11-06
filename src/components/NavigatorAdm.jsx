@@ -51,9 +51,9 @@ export default class Navigator extends Component {
               </NavDropdown>
 
               <NavDropdown eventKey={2} title="Other" id="basic-nav-dropdown">
-                <MenuItem eventKey={2.1} href="/" to="/">Address</MenuItem>
-                <MenuItem eventKey={2.2} href="/" to="/">Locations</MenuItem>
-                <MenuItem eventKey={2.3} href="/" to="/">Associations</MenuItem>
+                <MenuItem eventKey={2.1} href="/Address" to="/Address">Address</MenuItem>
+                <MenuItem eventKey={2.2} href="/Locations" to="/Locations">Locations</MenuItem>
+                <MenuItem eventKey={2.3} href="/Associations" to="/Associations">Associations</MenuItem>
 
               </NavDropdown>
             </Nav>
