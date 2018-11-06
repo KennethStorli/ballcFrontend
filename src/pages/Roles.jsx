@@ -15,14 +15,18 @@ export default class Roles extends Component {
       selectTeam:[],
       first_name:'',
       last_name:'',
+      team_id:'',
       coach: false,
       owner:false,
+      player:false,
       number:'',
-      person_id:''
+      person_id:'',
+      selected:'goalkeeper'
 
 
     };
     this.onChangeNumber = this.onChangeNumber.bind(this)
+    this.selectOption = this.selectOption.bind(this)
 
     this.onCoachCheck = this.onCoachCheck.bind(this)
     this.onOwnerCheck = this.onOwnerCheck.bind(this)
@@ -52,6 +56,12 @@ export default class Roles extends Component {
     this.setState({owner: !this.state.owner});
   }
 
+  selectOption = (event) =>{
+    let selectedOp = event.target.value;
+    this.setState({selected: selectedOp});
+    console.log(selectedOp);
+  }
+
   addRole = () =>{
     let user = Object.assign({}, this.state);    //creating copy of object
 
@@ -62,7 +72,22 @@ export default class Roles extends Component {
       team_id:user.selectTeam.team_id
     }
 
-    PostData('addrole', data);
+    if(this.state.number != ''){
+      this.setState({player: true});
+      var data3 = {
+        number: user.number,
+        player: user.player,
+        selected: user.selected, 
+        team: user.team_id
+      }
+      var data2 = {...data, ...data3 }
+      console.log("it is a player");
+      PostData('addrole', data2);
+    }else{
+      PostData('addrole', data);
+    }
+
+    
   }
     render(){
       return(
@@ -121,8 +146,8 @@ export default class Roles extends Component {
 
                   <Col xs={12} sm={6}>
                     <p>Normal Position</p>
-                    <FormControl componentClass="select" placeholder="goalkeeper">
-                      <option value="goalkeeper">Goalkeeper</option>
+                    <FormControl componentClass="select" onChange={this.selectOption} placeholder="goalkeeper">
+                      <option  value="goalkeeper">Goalkeeper</option>
                       <option value="defence">Defence</option>
                       <option value="midfield">Midfield</option>
                       <option value="forward">Forward</option>
@@ -158,7 +183,7 @@ export default class Roles extends Component {
                               e => {
                                 this.setState({
                                   selectTeam: name,
-
+                                  team_id: name.team_id
                                 });
                               }
                             }
