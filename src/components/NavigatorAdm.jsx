@@ -1,9 +1,5 @@
 import React, { Component } from 'react'
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
-import { Modal, Tabs, Tab } from 'react-bootstrap';
-import Login from  './Login';
-import SignUp from './SignUp'
-
 import './NavigatorAdm.css'
 
 export default class Navigator extends Component {
@@ -37,9 +33,11 @@ export default class Navigator extends Component {
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav>
-              <NavItem eventKey={3} href="/" to="/">
-                Seasons
-              </NavItem>
+              <NavDropdown eventKey={2} title="Seasons" id="basic-nav-dropdown">
+                <MenuItem eventKey={2.1} href="/NewSeason" to="/NewSeason">Create new season</MenuItem>
+                <MenuItem eventKey={2.2} href="/EditSeason" to="/EditSeason">Edit seasons</MenuItem>
+              </NavDropdown>
+
 
               <NavItem eventKey={3} href="/team" to="/">
                 Teams

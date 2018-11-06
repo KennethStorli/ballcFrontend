@@ -25,7 +25,6 @@ export default class Coach extends Component{
           return this.state.allplayers.indexOf(this.state.players)
         }
       )
-      let filteredContacts = []
 
       return (
           <div>

@@ -1,10 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import {Row, Grid, Col, Image } from 'react-bootstrap';
-import { Tabs, Tab } from 'react-bootstrap';
-import { ListGroup, ListGroupItem} from 'react-bootstrap';
-import { Input, Button } from 'mdbreact';
-import CreatePerson from '../components/CreatePerson';
 import SearchSmall from '../components/SearchSmall'
 import '../components/UpdatePerson.css'
 import './Home.css'
@@ -49,7 +45,6 @@ export default class Teams extends Component {
           return team.teamName.indexOf(this.state.filterText) !== -1 || team.teamName.toLowerCase().indexOf(this.state.filterText) !== -1
         }
       )
-      let filteredContacts = []
 
     return(
       <div>
@@ -75,7 +70,7 @@ export default class Teams extends Component {
                   pathname:`./Teaminfo/${team.teamName}`,
                   state: ({
                     id: team.team_id,
-                    
+
                   }) }}>
                   <div
                   className="allTeams">

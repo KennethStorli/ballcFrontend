@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Row, Grid, Col, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
+import {Row, Grid, Col} from 'react-bootstrap';
 import { Tabs, Tab } from 'react-bootstrap';
 import { ListGroup, ListGroupItem} from 'react-bootstrap';
 import { Input, Button } from 'mdbreact';
@@ -8,7 +8,6 @@ import Search from '../components/Search'
 import '../components/UpdatePerson.css'
 import './Home.css';
 import {PostData} from '../PostData';
-import axios from 'axios';
 
 import '../components/Teamlist.css'
 
