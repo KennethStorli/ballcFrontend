@@ -2,16 +2,20 @@ import React,  { Component } from 'react';
 import { Row, Grid, Col, Checkbox, Tab, Tabs } from 'react-bootstrap';
 import { ListGroup, ListGroupItem, FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
 import { Button, Input } from 'mdbreact'
-import  NewAddress from '../components/NewAddress'
+import  NewLocation from '../components/NewLocation'
+
 import '../components/Teamlist.css'
 
 
-export default class Address extends Component {
+export default class CRUDLocation extends Component {
   constructor(props) {
     super(props);
     this.state = {
       address: [],
       locations: [],
+      selectLoc:[],
+      selectedAddress:[],
+      selectAdd:'',
       addressID: '',
       location_id:'',
       location_name: '',
@@ -46,12 +50,19 @@ export default class Address extends Component {
                           onClick={
                             e => {
                               this.setState({
+                                selectLoc: location,
                                 location_id: location.location_id,
                                 location_name: location.name,
                                 location_description: location.description,
-                                address_id: location.address_id
                               });
 
+                              fetch(`https://ballc-frontend-be.herokuapp.com/address/${location.address}`)
+                              .then(result => result.json())
+                              .then(selectedAddress => this.setState({
+                                selectedAddress,
+                                selectAdd: selectedAddress.address_line_1
+                              }))
+                              console.log(location.address)
                             }
                           }
                           key={location.location_id}>
@@ -64,63 +75,58 @@ export default class Address extends Component {
               <Col xs={12} sm={6}>
                 <Tabs defaultActiveKey={this.state.key} id="uncontrolled-tab-example">
                   <Tab eventKey={1} title="Edit Address">
-
                     <br/>
                     <br/>
-                    <br/>
-                    <p>Address 1:</p>
+                    <p>Location name:</p>
                     <Input
-                      name="address_1"
-                      value={(this.state.address ? this.state.address_1 : '')}
+                      name="loc"
+                      value={(this.state.selectLoc ? this.state.location_name : '')}
                       onChange={this.onChangeA1}
                     validate/>
                     <br/>
                     <br/>
                     <br/>
-                    <p>Address 2:</p>
+                    <p>Description:</p>
                     <Input
-                      name="address_2"
-                      value={(this.state.address ? this.address_2 : '' )}
+                      name="des"
+                      value={(this.state.selectLoc ? this.state.location_description : '' )}
                       onChange={this.onChangeA2}
                     validate/>
                     <br/>
                     <br/>
+                    <hr/>
                     <br/>
-                    <p>Address 3:</p>
-                    <Input
-                      name="address_3"
-                      value={(this.state.address ? this.state.address_3 : '')}
-                      onChange={this.onChangeA3}/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <Col sm={6}>
-                      <p>Postal code:</p>
-                      <Input
-                        name="postal"
-                        value={(this.state.address ? this.state.postal_code : '')}
-                        onChange={this.onChangePostal}/>
-                    </Col>
-                    <Col sm={6}>
-                      <p>City:</p>
-                      <Input
-                        name="city"
-                        value={(this.state.address ? this.state.city : '')}
-                        onChange={this.onChangeCity}/>
-                    </Col>
-                    <br/>
-                    <br/>
-                    <br/>
+                    <div className="chooseTeam">
 
-                    <br/>
-                    <br/>
-                    <br/>
-                    <p>Country:</p>
-                    <Input
-                      name="country"
-                      value={(this.state.address ? this.state.country : '')}
-                      onChange={this.onChangeCountry}/>
-                    <br/>
+                      <p>Current address:</p>
+                      <Input
+                        name="address"
+                        value={(this.state.selectAdd ? this.state.selectAdd : '')}
+                        onChange={this.onChangeA3}/>
+                      <br/>
+                      <br/>
+                      <p>Select new address:</p>
+
+                      <div className="TeamlistShort">
+                        <ListGroup>
+                          <div>
+                            {this.state.address.map(address =>
+                              <ListGroupItem
+                                className="listingplayer"
+                                onClick={
+                                  e => {
+                                    this.setState({
+                                      selectAdd: address.address_line_1
+                                    });
+                                  }
+                                }
+                                key={address.address_id}>
+                                {address.address_line_1}
+                              </ListGroupItem>)}
+                          </div>
+                        </ListGroup>
+                      </div>
+                    </div>
                     <br/>
                     <br/>
                     <br/>
@@ -128,12 +134,12 @@ export default class Address extends Component {
 
                     <div className="text-center">
                       <Button className="formbtnSave" color="primary" onClick={this.updatePerson} >Save edit</Button>
-                      <Button className="formbtnDel" color="primary" onClick={this.delPerson} >Delete address</Button>
+                      <Button className="formbtnDel" color="primary" onClick={this.delPerson} >Delete location</Button>
 
                     </div>
                   </Tab>
                   <Tab eventKey={2} title="New Address">
-                    <NewAddress/>
+                    <NewLocation/>
                   </Tab>
                 </Tabs>
               </Col>
