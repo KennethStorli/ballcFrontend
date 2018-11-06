@@ -17,7 +17,7 @@ class Login extends React.Component  {
   login(){
     if(this.state.username && this.state.password){
       console.log("Login function");
-      PostData('user', this.state)
+      PostData('login', this.state)
     }
   }
 
