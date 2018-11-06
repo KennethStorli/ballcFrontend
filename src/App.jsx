@@ -16,6 +16,7 @@ import Locations from './pages/CRUDLocation';
 import Associations from './pages/CRUDAssociation';
 import NewSeason from './pages/NewSeason';
 import EditSeason from './pages/EditSeason';
+import Match from './pages/Match'
 
 
 
@@ -60,6 +61,8 @@ class App extends Component {
           <Route path="/Associations" component={Associations}></Route>
           <Route path="/NewSeason" component={NewSeason}></Route>
           <Route path="/EditSeason" component={EditSeason}></Route>
+          <Route path="/Match" component={Match}></Route>
+
 
 
 
