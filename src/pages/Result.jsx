@@ -9,7 +9,7 @@ const options = [
   { value: 'vanilla', label: 'Vanilla' }
 ];
 
-export default class Match extends Component {
+export default class Result extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -60,7 +60,7 @@ export default class Match extends Component {
 
     return (
       <Grid>
-        <h1> ADD MATCH </h1>
+        <h1> ADD RESULTS </h1>
 
         <Row>
           <Col xs={12} sm={6}>

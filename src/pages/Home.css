@@ -12,3 +12,11 @@ h2{
   margin-right: -12px;
 
 }
+
+.newScore{
+  background-color: #efefef;
+  padding: 10px;
+  padding-bottom: 25px;
+  border-radius: 10px;
+
+}
