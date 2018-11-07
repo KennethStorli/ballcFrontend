@@ -1,5 +1,5 @@
 import React,  { Component } from 'react';
-import {Row, Grid, Col, Checkbox } from 'react-bootstrap';
+import {Row, Grid, Col } from 'react-bootstrap';
 import { ListGroup, ListGroupItem} from 'react-bootstrap';
 import {Button} from 'mdbreact'
 import '../components/Teamlist.css'

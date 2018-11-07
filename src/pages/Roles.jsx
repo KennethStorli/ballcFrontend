@@ -1,8 +1,9 @@
 import React,  { Component } from 'react';
 import { Row, Grid, Col, Checkbox } from 'react-bootstrap';
-import { ListGroup, ListGroupItem, FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
+import { ListGroup, ListGroupItem, FormControl} from 'react-bootstrap';
 import { Button, Input } from 'mdbreact'
 import '../components/Teamlist.css'
+import { PostData } from '../PostData';
 
 
 export default class Roles extends Component {
@@ -14,14 +15,21 @@ export default class Roles extends Component {
       selectTeam:[],
       first_name:'',
       last_name:'',
+      team_id:'',
       coach: false,
       owner:false,
+      player:false,
       number:'',
+      person_id:'',
+      selected:'goalkeeper'
 
 
     };
     this.onChangeNumber = this.onChangeNumber.bind(this)
+    this.selectOption = this.selectOption.bind(this)
 
+    this.onCoachCheck = this.onCoachCheck.bind(this)
+    this.onOwnerCheck = this.onOwnerCheck.bind(this)
   }
   onChangeNumber(event){
     const number = event.target.value
@@ -39,6 +47,48 @@ export default class Roles extends Component {
     .then(result => result.json())
     .then(teams => this.setState({teams}))
   }
+
+  onCoachCheck(e){
+    this.setState({coach: !this.state.coach});
+  }
+
+  onOwnerCheck(e){
+    this.setState({owner: !this.state.owner});
+  }
+
+  selectOption = (event) =>{
+    let selectedOp = event.target.value;
+    this.setState({selected: selectedOp});
+    console.log(selectedOp);
+  }
+
+  addRole = () =>{
+    let user = Object.assign({}, this.state);    //creating copy of object
+
+    var data = {
+      coach: user.coach,
+      owner: user.owner,
+      person_id:user.person_id,
+      team_id:user.selectTeam.team_id
+    }
+
+    if(this.state.number != ''){
+      this.setState({player: true});
+      var data3 = {
+        number: user.number,
+        player: user.player,
+        selected: user.selected, 
+        team: user.team_id
+      }
+      var data2 = {...data, ...data3 }
+      console.log("it is a player");
+      PostData('addrole', data2);
+    }else{
+      PostData('addrole', data);
+    }
+
+    
+  }
     render(){
       return(
         <Grid>
@@ -54,6 +104,7 @@ export default class Roles extends Component {
                           onClick={
                             e => {
                               this.setState({
+                                person_id: name.person_id,
                                 first_name: name.first_name,
                                 last_name:name.last_name,
 
@@ -77,13 +128,13 @@ export default class Roles extends Component {
 
                 <br/>
                 <br/>
-                <Checkbox onClick={this.onAdminCheck} defaultChecked={this.state.admin}>
+                <Checkbox onClick={this.onCoachCheck} defaultChecked={this.state.admin}>
                   Coach
                 </Checkbox>
 
                 <br/>
                 <br/>
-                <Checkbox onClick={this.onAdminCheck} defaultChecked={this.state.admin}>
+                <Checkbox onClick={this.onOwnerCheck} defaultChecked={this.state.admin}>
                   Owner
                 </Checkbox>
 
@@ -95,8 +146,8 @@ export default class Roles extends Component {
 
                   <Col xs={12} sm={6}>
                     <p>Normal Position</p>
-                    <FormControl componentClass="select" placeholder="goalkeeper">
-                      <option value="goalkeeper">Goalkeeper</option>
+                    <FormControl componentClass="select" onChange={this.selectOption} placeholder="goalkeeper">
+                      <option  value="goalkeeper">Goalkeeper</option>
                       <option value="defence">Defence</option>
                       <option value="midfield">Midfield</option>
                       <option value="forward">Forward</option>
@@ -131,7 +182,8 @@ export default class Roles extends Component {
                             onClick={
                               e => {
                                 this.setState({
-                                  selectTeam: name
+                                  selectTeam: name,
+                                  team_id: name.team_id
                                 });
                               }
                             }
@@ -146,7 +198,7 @@ export default class Roles extends Component {
                 <br/>
                 <br/>
 
-                <Button>Save user</Button>
+                <Button onClick={this.addRole}>Save user</Button>
               </Col>
             </Row>
           </div>

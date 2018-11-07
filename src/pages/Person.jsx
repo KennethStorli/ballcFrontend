@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Row, Grid, Col, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
+import {Row, Grid, Col} from 'react-bootstrap';
 import { Tabs, Tab } from 'react-bootstrap';
 import { ListGroup, ListGroupItem} from 'react-bootstrap';
 import { Input, Button } from 'mdbreact';
@@ -8,7 +8,6 @@ import Search from '../components/Search'
 import '../components/UpdatePerson.css'
 import './Home.css';
 import {PostData} from '../PostData';
-import axios from 'axios';
 
 import '../components/Teamlist.css'
 
@@ -171,7 +170,6 @@ export default class Person extends Component {
       contact_detail:'',
       dob:''
     */
-
     var data = {
       address: user.address_id,
       person_id:user.person_id,
@@ -297,7 +295,11 @@ export default class Person extends Component {
                               contactID: name.contacts,
                             });
 
+<<<<<<< HEAD
                             fetch(`http://ballc-frontend-be.herokuapp.com/address/${name.address}`)
+=======
+                            fetch(`https://ballc-frontend-be.herokuapp.com/address/${name.address}`)
+>>>>>>> 9f22f89826ca35bc5c98b8f754b3a4f74c9e0508
                             .then(result => result.json())
                             .then(address => this.setState({
                               address,

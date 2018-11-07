@@ -1,6 +1,6 @@
 import React,  { Component } from 'react';
-import { Row, Grid, Col, Checkbox, Tab, Tabs } from 'react-bootstrap';
-import { ListGroup, ListGroupItem, FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
+import { Row, Grid, Col, Tab, Tabs } from 'react-bootstrap';
+import { ListGroup, ListGroupItem} from 'react-bootstrap';
 import { Button, Input } from 'mdbreact'
 import  NewAddress from '../components/NewAddress'
 import '../components/Teamlist.css'
@@ -167,7 +167,7 @@ export default class Address extends Component {
                     <br/>
                     <br/>
                     <br/>
-                    
+
 
                     <div className="text-center">
                       <Button className="formbtnSave" color="primary" onClick={this.updatePerson} >Save edit</Button>

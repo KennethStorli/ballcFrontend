@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
-import { Button, Row, Col, Grid } from 'react-bootstrap';
+import { Row, Col, Grid } from 'react-bootstrap';
 
 
 import './Home.css'

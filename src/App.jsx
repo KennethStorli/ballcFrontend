@@ -14,6 +14,12 @@ import Roles from './pages/Roles';
 import Address from './pages/Address';
 import Locations from './pages/CRUDLocation';
 import Associations from './pages/CRUDAssociation';
+import NewSeason from './pages/NewSeason';
+import EditSeason from './pages/EditSeason';
+import Match from './pages/Match';
+import Result from './pages/Result';
+
+
 
 
 
@@ -55,6 +61,13 @@ class App extends Component {
           <Route path="/Address" component={Address}></Route>
           <Route path="/Locations" component={Locations}></Route>
           <Route path="/Associations" component={Associations}></Route>
+          <Route path="/NewSeason" component={NewSeason}></Route>
+          <Route path="/EditSeason" component={EditSeason}></Route>
+          <Route path="/Match" component={Match}></Route>
+          <Route path="/Result" component={Result}></Route>
+
+
+
 
 
 
