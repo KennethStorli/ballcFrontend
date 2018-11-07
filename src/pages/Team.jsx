@@ -217,6 +217,7 @@ export default class Team extends Component {
                             onClick={
                               e => {
                                 this.setState({
+                                  selectedAssociation:association,
                                   associationName:association.name
                                 });
                               }

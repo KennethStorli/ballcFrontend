@@ -295,11 +295,7 @@ export default class Person extends Component {
                               contactID: name.contacts,
                             });
 
-<<<<<<< HEAD
-                            fetch(`http://ballc-frontend-be.herokuapp.com/address/${name.address}`)
-=======
                             fetch(`https://ballc-frontend-be.herokuapp.com/address/${name.address}`)
->>>>>>> 9f22f89826ca35bc5c98b8f754b3a4f74c9e0508
                             .then(result => result.json())
                             .then(address => this.setState({
                               address,
