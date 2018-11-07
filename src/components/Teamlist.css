@@ -5,6 +5,19 @@
   background-color: #efefef;
 }
 
+.TeamlistMatch {
+  flex: 1;
+  height: 630px;
+  overflow-y: scroll;
+  background-color: #efefef;
+}
+.ScoreList {
+  flex: 1;
+  height: 580px;
+  overflow-y: auto;
+  overflow-x:hidden;
+}
+
 .divlist {
   flex: 1;
   height: 124px;

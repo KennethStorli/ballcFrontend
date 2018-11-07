@@ -2,6 +2,7 @@ import React,  { Component } from 'react';
 import { Row, Grid, Col, Tab, Tabs } from 'react-bootstrap';
 import { ListGroup, ListGroupItem} from 'react-bootstrap';
 import { Button, Input } from 'mdbreact'
+import { Link } from 'react-router-dom'
 import  NewLocation from '../components/NewLocation'
 
 import '../components/Teamlist.css'
@@ -128,7 +129,10 @@ export default class CRUDLocation extends Component {
                       </div>
                     </div>
                     <br/>
-                    <br/>
+
+                    <Link to='/Address'>
+                      <p className="newAddressLink">Create new address</p>
+                    </Link>
                     <br/>
 
 

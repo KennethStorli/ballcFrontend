@@ -53,7 +53,8 @@ export default class EditSeason extends Component{
       return (
           <div>
             <Grid>
-              <h1>Edit season</h1>
+              <br/>              <br/>
+              
               <Row>
                 <Col xs={12} sm={6}>
                   <p className="h5 text-center mb-4">REGISTERED SEASONS</p>

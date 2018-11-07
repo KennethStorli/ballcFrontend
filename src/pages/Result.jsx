@@ -13,8 +13,8 @@ export default class Result extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hometeam:'',
-      awayteam: '',
+      hometeam: this.props.hometeam,
+      awayteam: this.props.awayteam,
       homescoreHome: 0,
       homescoreAway: 0,
       emptyarrayHome:[],
@@ -59,36 +59,32 @@ export default class Result extends Component {
   render() {
 
     return (
-      <Grid>
-        <h1> ADD RESULTS </h1>
-
-        <Row>
-          <Col xs={12} sm={6}>
-            <h2> HOME TEAM </h2>
-            <p> SCORE </p>
-            <Input
-              name="homescore"
-              onChange={this.filterUpdateHome.bind(this)}/>
-            <br/>
-            <br/>
-            {this.state.emptyarrayHome.map(team =>
-              <Goal key={team}/>)}
+      <div>
+        <Col xs={12} sm={6}>
+          <h2>{this.state.hometeam} </h2>
+          <p> SCORE </p>
+          <Input
+            name="homescore"
+            onChange={this.filterUpdateHome.bind(this)}/>
+          <br/>
+          <br/>
+          {this.state.emptyarrayHome.map(team =>
+            <Goal key={team}/>)}
 
 
-          </Col>
-          <Col xs={12} sm={6}>
-            <h2>AWAY TEAM</h2>
-            <p> SCORE </p>
-            <Input
-              name="awayscore"
-              onChange={this.filterUpdateAway.bind(this)}/>
-            <br/>
-            <br/>
-            {this.state.emptyarrayAway.map(team =>
-              <Goal key={team}/>)}
-          </Col>
-        </Row>
-      </Grid>
+        </Col>
+        <Col xs={12} sm={6}>
+          <h2>{this.state.awayteam}</h2>
+          <p> SCORE </p>
+          <Input
+            name="awayscore"
+            onChange={this.filterUpdateAway.bind(this)}/>
+          <br/>
+          <br/>
+          {this.state.emptyarrayAway.map(team =>
+            <Goal key={team}/>)}
+        </Col>
+      </div>
     );
   }
 }

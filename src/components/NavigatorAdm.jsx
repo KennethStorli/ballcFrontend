@@ -39,20 +39,22 @@ export default class Navigator extends Component {
               </NavDropdown>
 
 
-              <NavItem eventKey={3} href="/team" to="/">
+              <NavItem eventKey={3} href="/Team" to="/Team">
                 Teams
               </NavItem>
-              <NavDropdown eventKey={2} title="Matches" id="basic-nav-dropdown">
-                <MenuItem eventKey={2.1} href="/Match" to="/Match">Matches</MenuItem>
-                <MenuItem eventKey={2.3} href="/Result" to="/Result">Results</MenuItem>
-              </NavDropdown>
-
-              <NavDropdown eventKey={2} title="Other" id="basic-nav-dropdown">
-                <MenuItem eventKey={2.1} href="/Address" to="/Address">Address</MenuItem>
-                <MenuItem eventKey={2.2} href="/Locations" to="/Locations">Locations</MenuItem>
-                <MenuItem eventKey={2.3} href="/Associations" to="/Associations">Associations</MenuItem>
-
-              </NavDropdown>
+              <NavItem eventKey={3} href="/Match" to="/Match">
+                Match
+              </NavItem>
+              <NavItem eventKey={3} href="/Associations" to="/Associations">
+                Associations
+              </NavItem>
+              <NavItem eventKey={3} href="/Locations" to="/Locations">
+                Locations
+              </NavItem>
+              <NavItem eventKey={3} href="/Address" to="/Address">
+                Address
+              </NavItem>
+              
             </Nav>
             <Nav pullRight>
               <NavDropdown eventKey={2} title="Person" id="basic-nav-dropdown">

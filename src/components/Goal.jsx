@@ -9,6 +9,7 @@ export default class Match extends Component {
       super(props);
       this.state = {
         players:[],
+        goaltypes:[],
         selectedOption: null,
 
       };
@@ -21,6 +22,10 @@ export default class Match extends Component {
       .then(result => result.json())
       .then(players => this.setState({players}))
 
+      fetch(`https://ballc-frontend-be.herokuapp.com/goaltypeformatch`)
+      .then(result => result.json())
+      .then(goaltypes => this.setState({goaltypes}))
+
     }
 
 
@@ -31,11 +36,13 @@ export default class Match extends Component {
     render() {
       const { selectedOption } = this.state.players;
       let players = this.state.players
+      let goaltypes = this.state.goaltypes
 
 
     return (
       <div>
         <hr/>
+
         <div className="newScore">
           <p>Select player</p>
           <Select
@@ -44,13 +51,12 @@ export default class Match extends Component {
             options={players}
           />
           <br/>
-          <br/>
           <p>Select goaltype</p>
 
           <Select
             value={selectedOption}
             onChange={this.handleChange}
-            options={players}
+            options={goaltypes}
           />
         </div>
       </div>
