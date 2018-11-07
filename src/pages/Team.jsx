@@ -19,7 +19,11 @@ export default class Team extends Component {
       coaches:[],
       owners:[],
       persons:[],
-      ownerNames:[]
+      ownerNames:[],
+      selectedAssociation:'',
+      selectedCoach:'',
+      selectedLocation:'',
+      selectedOwner:''
     };
   }
   componentDidMount() {
@@ -122,7 +126,10 @@ export default class Team extends Component {
                             e => {
                               this.setState({
                                 selectTeam: team,
-                                teamname:team.teamName
+                                selectedAssociation: this.getTeamAssociation(team.association),
+                                selectedLocation: this.getTeamLocation(team.location),
+                                selectedCoach: this.getTeamCoach(team.coach),
+                                selectedOwner: this.getTeamOwner(team.owner)
                               });
                             }
                           }
@@ -159,7 +166,7 @@ export default class Team extends Component {
                   <p>Association:</p>
                   <Input
                       name="Association"
-                      value={(this.state.selectTeam ? this.getTeamAssociation(this.state.selectTeam.association) : '')}
+                      value={(this.state.selectedAssociation ? this.state.selectedAssociation : '')}
                       onChange={this.onChangeNumber
                       }/>
                 </div>
@@ -171,7 +178,7 @@ export default class Team extends Component {
                   <p>Location:</p>
                   <Input
                       name="Location"
-                      value={(this.state.selectTeam ? this.getTeamLocation(this.state.selectTeam.location) : '')}
+                      value={(this.state.selectedLocation ? this.state.selectedLocation : '')}
                       onChange={this.onChangeNumber
                       }/>
                 </div>
@@ -183,7 +190,7 @@ export default class Team extends Component {
                   <p>Coach:</p>
                   <Input
                       name="Coach"
-                      value={(this.state.selectTeam ? this.getTeamCoach(this.state.selectTeam.coach) : '')}
+                      value={(this.state.selectedCoach ? this.state.selectedCoach : '')}
                       onChange={this.onChangeNumber
                       }/>
                 </div>
@@ -195,7 +202,7 @@ export default class Team extends Component {
                   <p>Owner:</p>
                   <Input
                       name="Owner"
-                      value={(this.state.selectTeam ? this.getTeamOwner(this.state.selectTeam.owner) : '')}
+                      value={(this.state.selectedOwner ? this.state.selectedOwner : '')}
                       onChange={this.onChangeNumber
                       }/>
                 </div>
@@ -217,8 +224,7 @@ export default class Team extends Component {
                             onClick={
                               e => {
                                 this.setState({
-                                  selectedAssociation:association,
-                                  associationName:association.name
+                                  selectedAssociation:association.name
                                 });
                               }
                             }
@@ -240,7 +246,7 @@ export default class Team extends Component {
                             onClick={
                               e => {
                                 this.setState({
-                                  locationName:location.name
+                                  selectedLocation:location.name
                                 });
                               }
                             }
@@ -262,7 +268,7 @@ export default class Team extends Component {
                             onClick={
                               e => {
                                 this.setState({
-                                  coachName:coach.person
+                                  selectedCoach:this.getPersonName(coach.person)
                                 });
                               }
                             }
@@ -284,7 +290,7 @@ export default class Team extends Component {
                             onClick={
                               e => {
                                 this.setState({
-                                  ownerName:owner.person
+                                  selectedOwner:this.getPersonName(owner.person)
                                 });
                               }
                             }
