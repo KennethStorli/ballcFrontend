@@ -23,7 +23,8 @@ export default class Team extends Component {
       selectedAssociation:'',
       selectedCoach:'',
       selectedLocation:'',
-      selectedOwner:''
+      selectedOwner:'',
+      selectedTeamName:''
     };
   }
   componentDidMount() {
@@ -50,6 +51,13 @@ export default class Team extends Component {
     fetch(`http://ballc-frontend-be.herokuapp.com/persons`)
     .then(result => result.json())
     .then(persons => this.setState({persons}))
+  }
+
+  onChangeName(event){
+    const teamNameInput = event.target.value
+    this.setState({
+      selectedTeamName: teamNameInput
+    })
   }
 
   getTeamAssociation(id) {
@@ -126,6 +134,7 @@ export default class Team extends Component {
                             e => {
                               this.setState({
                                 selectTeam: team,
+                                selectedTeamName: team.teamName,
                                 selectedAssociation: this.getTeamAssociation(team.association),
                                 selectedLocation: this.getTeamLocation(team.location),
                                 selectedCoach: this.getTeamCoach(team.coach),
@@ -154,9 +163,8 @@ export default class Team extends Component {
                   <p>Team name:</p>
                   <Input
                       name="Team Name"
-                      value={this.state.selectTeam ? this.state.selectTeam.teamName : ''}
-                      onChange={this.onChangeNumber
-                      }/>
+                      value={this.state.selectedTeamName ? this.state.selectedTeamName : ''}
+                      onChange={this.onChangeName.bind(this)}/>
                 </div>
                 <br/>
                 <hr/>
