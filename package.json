@@ -5,6 +5,7 @@
   "dependencies": {
     "@opuscapita/react-dates": "^0.5.5",
     "axios": "^0.18.0",
+    "babel-plugin-react-intl": "^3.0.1",
     "cors": "^2.8.4",
     "mdbootstrap": "^4.5.13",
     "mdbreact": "^4.8.2",
@@ -12,6 +13,7 @@
     "react-bootstrap": "^0.32.4",
     "react-day-picker": "^7.2.4",
     "react-dom": "^16.6.0",
+    "react-intl": "^2.7.2",
     "react-native-elements": "^0.19.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "^2.0.5",

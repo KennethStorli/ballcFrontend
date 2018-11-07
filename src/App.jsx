@@ -18,6 +18,7 @@ import NewSeason from './pages/NewSeason';
 import EditSeason from './pages/EditSeason';
 import Match from './pages/Match'
 
+import {IntlProvider, FormattedMessage} from 'react-intl';
 
 
 
@@ -63,6 +64,8 @@ class App extends Component {
           <Route path="/EditSeason" component={EditSeason}></Route>
           <Route path="/Match" component={Match}></Route>
 
+          <button type="button" onClick={this.props.switchToNorwegian}>Norsk</button>
+          <button type="button" onClick={this.props.switchToEnglish}>Engelsk</button>
 
 
 
