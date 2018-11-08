@@ -14,10 +14,12 @@ export default class Match extends Component {
     super(props);
     this.state = {
       teamsformatch:[],
+      seasons:[],
       homeID:'',
       awayID:'',
       selectedOptionHome:'',
       selectedOptionAway: '',
+      selectedOptionSeason:'',
       selectedDay:undefined,
       selectedDayString:'',
 
@@ -54,6 +56,10 @@ export default class Match extends Component {
     fetch(`https://ballc-frontend-be.herokuapp.com/teamsformatch`)
     .then(result => result.json())
     .then(teamsformatch => this.setState({teamsformatch}))
+
+    fetch(`https://ballc-frontend-be.herokuapp.com/seasons`)
+    .then(result => result.json())
+    .then(seasons => this.setState({seasons}))
   }
 
   handleChangeHome = (selectedOptionHome) => {
@@ -66,19 +72,33 @@ export default class Match extends Component {
     awayID:selectedOptionAway.value });
     console.log(`Awayteam:`, selectedOptionAway);
   }
+  handleChangeSeason = (selectedOptionSeason) => {
+    this.setState({ selectedOptionSeason});
+  }
 
 
   render() {
     const { selectedOptionHome } = this.state.teamsformatch;
     const { selectedOptionAway } = this.state.teamsformatch;
+    const { selectedOptionSeason } = this.state.seasons;
+
 
 
     return (
       <div>
         <Grid>
           <Row>
+            <br/>
+            <Col xs={12} sm={4}></Col>
+            <Col xs={12} sm={4}>
+              <p>SEASON</p>
+              <Select
+                value={selectedOptionSeason}
+                onChange={this.handleChangeSeason}
+                options={this.state.seasons}
+              />
+            </Col>
             <br/><br/><br/>
-
             <Col xs={12} sm={6}>
               <p>HOME TEAM</p>
               <Select
@@ -103,7 +123,7 @@ export default class Match extends Component {
                 <p></p>
               )}
             </Col>
-            
+
             <Col xs={12} sm={6}>
               {this.state.selectedOptionAway ? (
                 <Matchpositions teamid={this.state.awayID}/>
