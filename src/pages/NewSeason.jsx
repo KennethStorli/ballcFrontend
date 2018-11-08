@@ -3,6 +3,7 @@ import { Input } from 'mdbreact'
 import { Grid, Row, Col } from 'react-bootstrap'
 import DayPicker from 'react-day-picker';
 import {Button} from 'mdbreact'
+import {PostData} from '../PostData';
 
 import 'react-day-picker/lib/style.css';
 
@@ -70,6 +71,19 @@ export default class NewSeason extends Component{
      });
 
     }
+
+    addSeason = () =>{
+      let user = Object.assign({}, this.state);    //creating copy of object
+
+      var data = {
+        start_date: user.selectedDayStartString,
+        end_date: user.selectedDayEndString,
+        name: user.seasonName,
+        description: user.seasonDescription
+      }
+
+      PostData('/addseason', data)
+    }
     render() {
 
       return (
@@ -130,7 +144,7 @@ export default class NewSeason extends Component{
 
               <div className="buffer"/>
               <div className="text-center">
-                <Button className="formbtn" color="primary" onClick={this.delPerson} >Create new season</Button>
+                <Button className="formbtn" color="primary" onClick={this.addSeason} >Create new season</Button>
 
               </div>
 

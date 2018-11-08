@@ -2,10 +2,14 @@ import React, { Component } from 'react'
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import { Modal, Tabs, Tab } from 'react-bootstrap';
 import Login from  './Login';
+<<<<<<< Updated upstream
 import SignUp from './SignUp'
 import FAQs from './FAQ'
 import Content from './Content'
 
+=======
+import SignUp from './SignUp';
+>>>>>>> Stashed changes
 
 import './Navigator.css'
 
@@ -20,9 +24,17 @@ export default class Navigator extends Component {
 
     this.state = {
       show: false,
+<<<<<<< Updated upstream
       showHelp: false
+=======
+      users: null,
+      username:''
+>>>>>>> Stashed changes
     };
   }
+
+
+
 
   handleClose() {
     this.setState({ show: false });
@@ -63,6 +75,16 @@ export default class Navigator extends Component {
               </NavItem>
             </Nav>
             <Nav pullRight>
+<<<<<<< Updated upstream
+=======
+              <NavItem eventKey={4} href="/User" to="/User">
+                Profile
+                <p>{this.state.username}</p>
+              </NavItem>
+              <NavItem>
+                
+              </NavItem>
+>>>>>>> Stashed changes
               <NavItem eventKey={1} onClick={this.handleShow}>
                 Login
               </NavItem>

@@ -69,7 +69,7 @@ export default class Roles extends Component {
       coach: user.coach,
       owner: user.owner,
       person_id:user.person_id,
-      team_id:user.selectTeam.team_id
+      team_id:user.team_id
     }
 
     if(this.state.number != ''){

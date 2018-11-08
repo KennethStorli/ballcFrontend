@@ -2,6 +2,7 @@ import React,  { Component } from 'react';
 import { ListGroup, ListGroupItem } from 'react-bootstrap';
 import { Button, Input } from 'mdbreact'
 import '../components/Teamlist.css'
+import {PostData} from '../PostData';
 
 
 export default class NewLocation extends Component {
@@ -9,15 +10,46 @@ export default class NewLocation extends Component {
     super(props);
     this.state = {
       address: [],
-      selectAdd:[]
+      selectAdd:[],
+      address_id: '',
+      location_name: '',
+      description: ''
     };
-
+    this.onChangeA1 = this.onChangeA1.bind(this);
+    this.onChangeA2 = this.onChangeA2.bind(this);
   }
 
   componentDidMount() {
     fetch(`https://ballc-frontend-be.herokuapp.com/addresses`)
     .then(result => result.json())
     .then(address => this.setState({address}))
+ }
+
+ onChangeA1(event){
+  const address1input = event.target.value
+  this.setState({
+    location_name: address1input
+  })
+}
+
+onChangeA2(event){
+  const address2input = event.target.value
+  this.setState({
+    description: address2input
+  })
+}
+
+
+ createlocation = () =>{
+  let user = Object.assign({}, this.state);    //creating copy of object
+
+  let data = {
+    address: user.address_id,
+    name: user.location_name,
+    description: user.description
+
+  }
+  PostData('/addlocation', data);
  }
 
     render(){
@@ -63,7 +95,8 @@ export default class NewLocation extends Component {
                       onClick={
                         e => {
                           this.setState({
-                            selectAdd: address
+                            selectAdd: address,
+                            address_id:address.address_id
                           });
                         }
                       }
@@ -78,7 +111,7 @@ export default class NewLocation extends Component {
           <br/>
           <br/>
           <div className="text-center">
-            <Button color="primary" onClick={this.createperson} >Create new address</Button>
+            <Button color="primary" onClick={this.createlocation} >Create new address</Button>
           </div>
         </div>
 

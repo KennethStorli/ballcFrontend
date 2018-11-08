@@ -4,6 +4,8 @@ import { ListGroup, ListGroupItem} from 'react-bootstrap';
 import { Button, Input } from 'mdbreact'
 import { Link } from 'react-router-dom'
 import  NewLocation from '../components/NewLocation'
+import {PostData} from '../PostData';
+
 
 import '../components/Teamlist.css'
 
@@ -23,6 +25,9 @@ export default class CRUDLocation extends Component {
       location_description:'',
     };
 
+    this.onChangeA1 = this.onChangeA1.bind(this);
+    this.onChangeA2 = this.onChangeA2.bind(this);
+
   }
 
   componentDidMount() {
@@ -34,6 +39,48 @@ export default class CRUDLocation extends Component {
     .then(result => result.json())
     .then(locations => this.setState({locations}))
   }
+
+  onChangeA1(event){
+    const address1input = event.target.value
+    this.setState({
+      location_name: address1input
+    })
+  }
+  
+  onChangeA2(event){
+    const address2input = event.target.value
+    this.setState({
+      location_description: address2input
+    })
+  }
+
+
+  updateLocation = () =>{
+    let user = Object.assign({}, this.state);    //creating copy of object
+
+    let data = {
+      location_id: user.location_id,
+      address: user.addressID,
+      name: user.location_name,
+      description: user.location_description
+  
+    }
+    PostData('/updatelocation', data);
+  }
+
+  delLocation = () =>{
+    let user = Object.assign({}, this.state);    //creating copy of object
+
+    let data = {
+      location_id: user.location_id,
+      address: user.addressID,
+      name: user.location_name,
+      description: user.location_description
+  
+    }
+    PostData('/dellocation', data);
+  }
+  
     render(){
       return(
         <Grid>
@@ -61,7 +108,8 @@ export default class CRUDLocation extends Component {
                               .then(result => result.json())
                               .then(selectedAddress => this.setState({
                                 selectedAddress,
-                                selectAdd: selectedAddress.address_line_1
+                                selectAdd: selectedAddress.address_line_1,
+                                addressID: selectedAddress.address_id
                               }))
                               console.log(location.address)
                             }
@@ -137,8 +185,8 @@ export default class CRUDLocation extends Component {
 
 
                     <div className="text-center">
-                      <Button className="formbtnSave" color="primary" onClick={this.updatePerson} >Save edit</Button>
-                      <Button className="formbtnDel" color="primary" onClick={this.delPerson} >Delete location</Button>
+                      <Button className="formbtnSave" color="primary" onClick={this.updateLocation} >Save edit</Button>
+                      <Button className="formbtnDel" color="primary" onClick={this.delLocation} >Delete location</Button>
 
                     </div>
                   </Tab>

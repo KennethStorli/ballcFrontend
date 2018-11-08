@@ -7,6 +7,7 @@ import Result from './Result'
 import {Button } from 'mdbreact'
 import DayPicker from 'react-day-picker';
 import Matchpositions from '../components/Matchpositions'
+import {PostData} from '../PostData';
 
 
 export default class Match extends Component {
@@ -34,6 +35,7 @@ export default class Match extends Component {
     return(<Goal/>)
   }
 }
+
 
 
 
@@ -76,6 +78,18 @@ export default class Match extends Component {
     this.setState({ selectedOptionSeason});
   }
 
+  addMatch = () =>{
+    let user = Object.assign({}, this.state);    //creating copy of object
+
+    var data = {
+      start_date: user.selectedDayStartString,
+      end_date: user.selectedDayEndString,
+      name: user.seasonName,
+      description: user.seasonDescription
+    }
+
+    PostData('/addmatch', data)
+  }
 
   render() {
     const { selectedOptionHome } = this.state.teamsformatch;
@@ -157,8 +171,8 @@ export default class Match extends Component {
                 <p></p>
               )}
 
-              <Button className="formbtnSave" color="primary" onClick={this.delPerson} >Save results</Button>
-              <Button className="formbtnDel" color="primary" onClick={this.delPerson} >Delete results</Button>
+              <Button className="formbtnSave" color="primary" onClick={this.addMatch} >Save results</Button>
+              <Button className="formbtnDel" color="primary" onClick={this.delResult} >Delete results</Button>
             </Col>
           </Row>
         </Grid>

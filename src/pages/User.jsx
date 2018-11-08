@@ -3,7 +3,7 @@ import {Row, Grid, Col } from 'react-bootstrap';
 import { ListGroup, ListGroupItem} from 'react-bootstrap';
 import {Button, Input} from 'mdbreact'
 import '../components/Teamlist.css'
-
+import { PostData } from '../PostData';
 
 export default class User extends Component {
   constructor(props) {
@@ -12,6 +12,7 @@ export default class User extends Component {
       users: [],
       email:'',
       admin: false,
+      password:'',
       id:'',
       name:'',
       adminBinary:'',
@@ -39,11 +40,24 @@ export default class User extends Component {
     })
   }
 
+  checkAdmin = () =>{
+    let user = Object.assign({}, this.state);    //creating copy of object
+
+    var data = {
+      user_id: user.id,
+      password: user.password,
+      email: user.email,
+      username: user.name,
+      admin: user.admin
+    }
+    PostData('setadmin', data)
+  }
   componentDidMount() {
     fetch(`https://ballc-frontend-be.herokuapp.com/userslist`)
     .then(result => result.json())
     .then(users => this.setState({users}))
   }
+  
     render(){
       return(
         <Grid>
@@ -59,12 +73,15 @@ export default class User extends Component {
                           onClick={
                             e => {
                               this.setState({
+                                id: name.user_id,
+                                password: name.password,
                                 email: name.email,
                                 admin: name.admin,
-                                name: name.username,
+                                name: name.username
                               });
                             }
                           }
+
                           key={name.id}>
                           {name.username}
                         </ListGroupItem>)}
@@ -103,7 +120,7 @@ export default class User extends Component {
                 <br/>
                 <br/>
                 <Button>Save user</Button>
-                <Button className="formbtnDel" color="primary" onClick={this.delPerson} >Delete user</Button>
+                <Button className="formbtnDel" color="primary" onClick={this.checkAdmin} >Delete user</Button>
 
               </Col>
             </Row>

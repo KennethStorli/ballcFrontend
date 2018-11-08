@@ -18,9 +18,13 @@ import NewSeason from './pages/NewSeason';
 import EditSeason from './pages/EditSeason';
 import Match from './pages/Match';
 import Result from './pages/Result';
+<<<<<<< Updated upstream
 import Goaltypes from './pages/Goaltypes'
 import Profile from './pages/Profile'
 
+=======
+import axios from 'axios';
+>>>>>>> Stashed changes
 
 
 
@@ -44,12 +48,54 @@ import NavigatorAdm from './components/NavigatorAdm'
 
 
 class App extends Component {
+
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     show: false,
+  //     users:[],
+  //   }
+    
+  //   var username= null;
+
+  // }
+
+  // componentDidMount() {
+  //   fetch(`http://localhost:8080/checkadmin`)
+  //   .then(result => result.json())
+  //   .then(users => this.setState({users}))
+
+  // }
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      show: false,
+     users:'',
+    };
+  }
+
+
+  showUser(){
+    /*
+    var user = null;
+    axios.get('http://localhost:8080/checkadmin')
+    .then(response => {
+      this.setState({users: response.data})
+    })
+    return(
+      
+    )
+    */
+  }
   render() {
     return (
       <Router>
         <div>
           <Navbar/>
           <NavigatorAdm/>
+{this.showUser()}
+    {console.log(this.state.users)}
 
           <Route exact path="/" component={Home}></Route>
           <Route path="/next" component={Next}></Route>
