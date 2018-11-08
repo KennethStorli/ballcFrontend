@@ -37,13 +37,14 @@ export default class Navigator extends Component {
                 <MenuItem eventKey={2.1} href="/NewSeason" to="/NewSeason">Create new season</MenuItem>
                 <MenuItem eventKey={2.2} href="/EditSeason" to="/EditSeason">Edit seasons</MenuItem>
               </NavDropdown>
+              <NavDropdown eventKey={2} title="Match" id="basic-nav-dropdown">
+                <MenuItem eventKey={2.1} href="/Match" to="/Match">Create new match</MenuItem>
+                <MenuItem eventKey={2.2} href="/Results" to="/Results">Assign results</MenuItem>
+              </NavDropdown>
 
 
               <NavItem eventKey={3} href="/Team" to="/Team">
                 Teams
-              </NavItem>
-              <NavItem eventKey={3} href="/Match" to="/Match">
-                Match
               </NavItem>
               <NavItem eventKey={3} href="/Associations" to="/Associations">
                 Associations
@@ -54,7 +55,7 @@ export default class Navigator extends Component {
               <NavItem eventKey={3} href="/Address" to="/Address">
                 Address
               </NavItem>
-              
+
             </Nav>
             <Nav pullRight>
               <NavDropdown eventKey={2} title="Person" id="basic-nav-dropdown">
