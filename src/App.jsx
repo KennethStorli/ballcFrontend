@@ -18,6 +18,7 @@ import NewSeason from './pages/NewSeason';
 import EditSeason from './pages/EditSeason';
 import Match from './pages/Match';
 import Result from './pages/Result';
+import Goaltypes from './pages/Goaltypes'
 
 
 
@@ -65,6 +66,7 @@ class App extends Component {
           <Route path="/EditSeason" component={EditSeason}></Route>
           <Route path="/Match" component={Match}></Route>
           <Route path="/Result" component={Result}></Route>
+          <Route path="/Goaltypes" component={Goaltypes}></Route>
 
 
 

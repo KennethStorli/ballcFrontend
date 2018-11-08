@@ -40,6 +40,8 @@ export default class Navigator extends Component {
               <NavDropdown eventKey={2} title="Match" id="basic-nav-dropdown">
                 <MenuItem eventKey={2.1} href="/Match" to="/Match">Create new match</MenuItem>
                 <MenuItem eventKey={2.2} href="/Result" to="/Result">Assign results</MenuItem>
+                <MenuItem eventKey={2.2} href="/Goaltypes" to="/Goaltypes">Goaltypes</MenuItem>
+
               </NavDropdown>
 
 
