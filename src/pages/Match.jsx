@@ -6,6 +6,7 @@ import Goal from '../components/Goal'
 import Result from './Result'
 import {Button } from 'mdbreact'
 import DayPicker from 'react-day-picker';
+import Matchpositions from '../components/Matchpositions'
 
 
 export default class Match extends Component {
@@ -13,8 +14,10 @@ export default class Match extends Component {
     super(props);
     this.state = {
       teamsformatch:[],
-      selectedOptionHome: null,
-      selectedOptionAway: null,
+      homeID:'',
+      awayID:'',
+      selectedOptionHome:'',
+      selectedOptionAway: '',
       selectedDay:undefined,
       selectedDayString:'',
 
@@ -54,11 +57,13 @@ export default class Match extends Component {
   }
 
   handleChangeHome = (selectedOptionHome) => {
-    this.setState({ selectedOptionHome });
+    this.setState({ selectedOptionHome,
+    homeID:selectedOptionHome.value });
     console.log(`Hometeam:`, selectedOptionHome);
   }
   handleChangeAway = (selectedOptionAway) => {
-    this.setState({ selectedOptionAway });
+    this.setState({ selectedOptionAway,
+    awayID:selectedOptionAway.value });
     console.log(`Awayteam:`, selectedOptionAway);
   }
 
@@ -72,7 +77,7 @@ export default class Match extends Component {
       <div>
         <Grid>
           <Row>
-            <br/><br/><br/><br/><br/><br/><br/>
+            <br/><br/><br/>
 
             <Col xs={12} sm={6}>
               <p>HOME TEAM</p>
@@ -91,9 +96,26 @@ export default class Match extends Component {
                 options={this.state.teamsformatch}
               />
             </Col>
+            <Col xs={12} sm={6}>
+              {this.state.selectedOptionHome ? (
+                <Matchpositions teamid={this.state.homeID}/>
+              ) : (
+                <p></p>
+              )}
+            </Col>
+            
+            <Col xs={12} sm={6}>
+              {this.state.selectedOptionAway ? (
+                <Matchpositions teamid={this.state.awayID}/>
+              ) : (
+                <p></p>
+              )}
+
+            </Col>
             <br/><br/><br/><br/><br/><br/><br/>
 
-            <Col xs={12} sm={12}>
+            <Col xs={12} sm={6}>
+              <br/><br/>
               <p>Choose game date</p>
               <hr/>
               <DayPicker
@@ -101,7 +123,8 @@ export default class Match extends Component {
                 selectedDays={this.state.selectedDay}
                 disabledDays={{ daysOfWeek: [0] }}
               />
-
+            </Col>
+              <Col xs={12} sm={6}>
               <br/><br/><br/><br/>
 
               <h3 className="greytext">GAMEDATA:</h3>
