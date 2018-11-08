@@ -101,7 +101,7 @@ export default class Person extends Component {
                   <Button className="formbtnDel" color="primary" onClick={this.delPerson} >Delete goaltype</Button>
 
                 </Tab>
-                <Tab eventKey={2} title="New Person">
+                <Tab eventKey={2} title="New Goaltype">
                   <p className="h5 text-center mb-4">NEW GOALTYPE</p>
 
                   <br/><br/><br/><br/><br/><br/><br/><br/>
