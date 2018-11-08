@@ -19,6 +19,8 @@ import EditSeason from './pages/EditSeason';
 import Match from './pages/Match';
 import Result from './pages/Result';
 import Goaltypes from './pages/Goaltypes'
+import Profile from './pages/Profile'
+
 
 
 
@@ -53,6 +55,7 @@ class App extends Component {
           <Route path="/next" component={Next}></Route>
           <Route path="/Teams" component={Teams}></Route>
           <Route path="/User" component={User}></Route>
+          <Route path="/Profile" component={Profile}></Route>
           <Route path="/Admin" component={Admin}></Route>
           <Route path="/Person" component={Person}></Route>
           <Route path="/Team" component={Team}></Route>

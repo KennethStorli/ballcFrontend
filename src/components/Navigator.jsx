@@ -49,7 +49,7 @@ export default class Navigator extends Component {
               </NavItem>
             </Nav>
             <Nav pullRight>
-              <NavItem eventKey={4} href="/User" to="/User">
+              <NavItem eventKey={4} href="/Profile" to="/Profile">
                 Profile
               </NavItem>
               <NavItem eventKey={1} onClick={this.handleShow}>
