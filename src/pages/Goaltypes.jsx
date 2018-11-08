@@ -20,11 +20,15 @@ export default class Person extends Component {
     this.state = {
       goaltypes:[],
       goalname:'',
+      newgoalname:'',
+
       goalID:'',
 
     };
 
     this.onChangeGoalName = this.onChangeGoalName.bind(this)
+    this.onChangeNewGoalName = this.onChangeNewGoalName.bind(this)
+
   }
 
 
@@ -32,6 +36,12 @@ export default class Person extends Component {
     const goalname = event.target.value
     this.setState({
       goalname: goalname
+    })
+  }
+  onChangeNewGoalName(event){
+    const goalname = event.target.value
+    this.setState({
+      newgoalname: goalname
     })
   }
 
@@ -75,18 +85,36 @@ export default class Person extends Component {
               <br/>
             </Col>
             <Col xs={12} sm={6}>
-              <p className="h5 text-center mb-4">EDIT GOALTYPE</p>
+              <Tabs defaultActiveKey={1}>
+                <Tab eventKey={1} title="Edit Goaltype">
+                  <p className="h5 text-center mb-4">EDIT GOALTYPE</p>
 
-              <br/><br/><br/><br/><br/><br/><br/><br/>
+                  <br/><br/><br/><br/><br/><br/><br/><br/>
 
-              <Input
-                name="goalname"
-                value={(this.state.goalname ? this.state.goalname : '')}
-                onChange={this.onChangeGoalName
-                }/>
-              <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-              <Button className="formbtnSave" color="primary" onClick={this.updatePerson} >Save edit</Button>
-              <Button className="formbtnDel" color="primary" onClick={this.delPerson} >Delete goaltype</Button>
+                  <Input
+                    name="goalname"
+                    value={(this.state.goalname ? this.state.goalname : '')}
+                    onChange={this.onChangeGoalName
+                    }/>
+                  <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                  <Button className="formbtnSave" color="primary" onClick={this.updatePerson} >Save edit</Button>
+                  <Button className="formbtnDel" color="primary" onClick={this.delPerson} >Delete goaltype</Button>
+
+                </Tab>
+                <Tab eventKey={2} title="New Person">
+                  <p className="h5 text-center mb-4">NEW GOALTYPE</p>
+
+                  <br/><br/><br/><br/><br/><br/><br/><br/>
+
+                  <Input
+                    name="goalname"
+                    value={(this.state.newgoalname ? this.state.newgoalname : '')}
+                    onChange={this.onChangeNewGoalName
+                    }/>
+                  <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                  <Button className="formbtnSave" color="primary" onClick={this.updatePerson} >New Goaltype</Button>
+                </Tab>
+              </Tabs>
 
             </Col>
           </Row>
