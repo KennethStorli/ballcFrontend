@@ -27,7 +27,6 @@ import Matches from './pages/Matches'
 import axios from 'axios';
 
 
-
 import Navbar from './components/Navigator'
 import NavigatorAdm from './components/NavigatorAdm'
 
@@ -41,7 +40,7 @@ class App extends Component {
   //     show: false,
   //     users:[],
   //   }
-    
+
   //   var username= null;
 
   // }
@@ -70,7 +69,7 @@ class App extends Component {
       this.setState({users: response.data})
     })
     return(
-      
+
     )
     */
   }
@@ -80,8 +79,8 @@ class App extends Component {
         <div>
           <Navbar/>
           <NavigatorAdm/>
-{this.showUser()}
-    {console.log(this.state.users)}
+          {this.showUser()}
+          {console.log(this.state.users)}
 
           <Route exact path="/" component={Home}></Route>
           <Route path="/next" component={Next}></Route>
@@ -105,7 +104,7 @@ class App extends Component {
           <Route path="/Watchlist" component={Watchlist}></Route>
           <Route path="/WatchlistEdit" component={WatchlistEdit}></Route>
           <Route path="/Matches" component={Matches}></Route>
-          
+
         </div>
       </Router>
     );

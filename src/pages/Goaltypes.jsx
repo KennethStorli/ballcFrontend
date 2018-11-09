@@ -5,6 +5,7 @@ import { ListGroup, ListGroupItem} from 'react-bootstrap';
 import { Input, Button } from 'mdbreact';
 import '../components/UpdatePerson.css'
 import './Home.css';
+import {PostData} from '../PostData'
 
 import '../components/Teamlist.css'
 

@@ -1,11 +1,12 @@
-import React, {Component} from 'react';
-import {Grid, Row, Col, ListGroup, ListGroupItem} from 'react-bootstrap'
-import { Input } from 'mdbreact'
-import Goal from '../components/Goal'
+import React, {Component} from 'react'
+import {Grid, Row, Col, ListGroup, ListGroupItem } from 'react-bootstrap'
+import Select from 'react-select';
 
+import Goal from '../components/Goal'
 import { FormattedMessage } from 'react-intl';
 
-import {Button } from 'mdbreact'
+import Result from './Result'
+import {Button, Input } from 'mdbreact'
 import {PostData} from '../PostData';
 
 
@@ -45,9 +46,12 @@ export default class Results extends Component {
     let goalsAway = {};
 
   }
+  createGoalHome = () => {
+  let homescore = this.state.homescore
+  let i = 0
 
   for (i = 0; i < this.state.homescore.value; i++){
-    return(<Goal 
+    return(<Goal
       selectedPlayer=""
       handleChangePlayer={this.handleChangePlayer}
       players=""
@@ -119,7 +123,7 @@ export default class Results extends Component {
     this.playerHome = selectedPlayer;
     console.log(`Option selected:`, this.playerHome);
   }
-  
+
   handleChangeGoalHome = (selectedGoalType) => {
     this.goalTypeHome = selectedGoalType;
     console.log(`Option selected:`, this.goalTypeHome);
@@ -131,7 +135,7 @@ export default class Results extends Component {
     this.playerAway = selectedPlayer;
     console.log(`Option selected:`, this.playerAway);
   }
-  
+
   handleChangeGoalAway = (selectedGoalType) => {
     this.goalTypeAway = selectedGoalType;
     console.log(`Option selected:`, this.goalTypeAway);
@@ -151,7 +155,7 @@ export default class Results extends Component {
     this.state.homegoals.push(this.goalsHome);
     console.log(this.state.homegoals);
 
-    
+
   }
 
   selectgoalAway = () => {
@@ -165,7 +169,7 @@ export default class Results extends Component {
     this.state.awaygoals.push(this.goalsAway);
     console.log(this.state.awaygoals);
 
-    
+
   }
 
   saveResult = () =>{
@@ -177,7 +181,7 @@ export default class Results extends Component {
       hometeam: user.hometeam,
       awayteam: user.awayteam,
       match_id: user.match_id
-       
+
     }
     //PostData('result', data);
 
@@ -200,7 +204,7 @@ export default class Results extends Component {
     const { selectedPlayer } = this.state.players;
     const { selectedGoal } = this.state.goaltypes;
 */
-    
+
     let players = this.state.players
     let goaltypes = this.state.goaltypes
 
@@ -256,34 +260,34 @@ export default class Results extends Component {
 
               <div className="ScoreList">
                 {this.state.emptyarrayHome.map(team =>
-                <div key={team}>
-                
-                <hr/>
-        
-                <div className="newScore">
-                  <p>Select player</p>
-                  <Select
-                    value={this.playerHome}
-                    onChange={this.handleChangePlayerHome}
-                    options={players}
-                  />
-                  <br/>
-                  <p>Select goaltype</p>
-        
-                  <Select
-                    value={this.goalTypeHome}
-                    onChange={this.handleChangeGoalHome}
-                    options={goaltypes}
-                  />
-        
-                  <Button className="formbtnSave" color="primary" onClick={this.selectgoalHome} >Save results</Button>
-        
-                </div>
-              </div>                  
-                  
-                  )}
+                  <div key={team}>
 
-           </div>
+                    <hr/>
+
+                    <div className="newScore">
+                      <p>Select player</p>
+                      <Select
+                        value={this.playerHome}
+                        onChange={this.handleChangePlayerHome}
+                        options={players}
+                      />
+                      <br/>
+                      <p>Select goaltype</p>
+
+                      <Select
+                        value={this.goalTypeHome}
+                        onChange={this.handleChangeGoalHome}
+                        options={goaltypes}
+                      />
+
+                      <Button className="formbtnSave" color="primary" onClick={this.selectgoalHome} >Save results</Button>
+
+                    </div>
+                  </div>
+
+                )}
+
+              </div>
 
             </Col>
             <Col xs={12} sm={4}>
@@ -300,35 +304,35 @@ export default class Results extends Component {
                 onChange={this.filterUpdateAway.bind(this)}/>
               <div className="ScoreList">
                 {this.state.emptyarrayAway.map(team =>
-                   <div key={team}>
-                
-                   <hr/>
-           
-                   <div className="newScore">
-                     <p>Select player</p>
-                     <Select
-                       value={this.playerAway}
-                       onChange={this.handleChangePlayerAway}
-                       options={players}
-                     />
-                     <br/>
-                     <p>Select goaltype</p>
-           
-                     <Select
-                       value={this.goalTypeAway}
-                       onChange={this.handleChangeGoalAway}
-                       options={goaltypes}
-                     />
-           
-                     <Button className="formbtnSave" color="primary" onClick={this.selectgoalAway} >Save results</Button>
-           
-                   </div>
-                 </div>   
+                  <div key={team}>
+
+                    <hr/>
+
+                    <div className="newScore">
+                      <p>Select player</p>
+                      <Select
+                        value={this.playerAway}
+                        onChange={this.handleChangePlayerAway}
+                        options={players}
+                      />
+                      <br/>
+                      <p>Select goaltype</p>
+
+                      <Select
+                        value={this.goalTypeAway}
+                        onChange={this.handleChangeGoalAway}
+                        options={goaltypes}
+                      />
+
+                      <Button className="formbtnSave" color="primary" onClick={this.selectgoalAway} >Save results</Button>
+
+                    </div>
+                  </div>
                   //this.state.awaygoals.push(goal)
 
-                  
-                  )}
-                
+
+                )}
+
               </div>
               <br/>
 
@@ -352,6 +356,6 @@ export default class Results extends Component {
           </Row>
         </Grid>
       </div>
-    );
+    )
   }
 }
