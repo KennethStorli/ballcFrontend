@@ -44,9 +44,11 @@ export default class Home extends Component {
                     <h3>{team.home_result}</h3>
                   </Col>
                   <Col xs={12} sm={4}>
-                    <br/><br/><br/><br/><br/><br/>
+                    <br/><br/><br/><br/>
 
-                    <h3> VS </h3>
+                    <h2>{team.home_score} {String.fromCharCode(160)}{String.fromCharCode(160)}{String.fromCharCode(160)}{String.fromCharCode(160)}
+                      VS
+                      {String.fromCharCode(160)}{String.fromCharCode(160)}{String.fromCharCode(160)}{String.fromCharCode(160)}  {team.away_score} </h2>
                     <br/>
                     <h3>{team.date}</h3>
                   </Col>

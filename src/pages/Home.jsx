@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import {Row, Grid} from 'react-bootstrap';
 import AnonMatches from './Anonmatches'
+import UserMatches from './Usermatches'
+
 import '../components/UpdatePerson.css'
 import './Home.css'
 import './Teams.css'
@@ -42,8 +44,8 @@ export default class Home extends Component {
             <br/>
             <br/>
 
-            <AnonMatches/>
-            {/* <UserMatches/> */}
+            {/* <AnonMatches/> */}
+            <UserMatches/>
           </Row>
         </Grid>
       </div>
