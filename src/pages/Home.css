@@ -32,3 +32,9 @@ h2{
 .greytext{
   color: grey;
 }
+
+
+.content{
+  height: 100%;
+  background-color: #efefef;
+}

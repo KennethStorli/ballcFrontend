@@ -66,7 +66,7 @@ export default class Navigator extends Component {
               <NavItem eventKey={1} onClick={this.handleShow}>
                 Login
               </NavItem>
-              <NavItem eventKey={1} href="/" to="/">
+              <NavItem eventKey={1} href="/Watchlist" to="/Watchlist">
                 <Glyphicon glyph="star" />
               </NavItem>
               <NavItem eventKey={1} href="/Profile" to="/Profile">

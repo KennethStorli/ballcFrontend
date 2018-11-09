@@ -42,9 +42,9 @@ export default class Home extends Component {
                   <Image src={`images/teams/${team.home_team}.jpg`} circle className="teamimages" onError={this.addDefaultSrc} />
                 </Col>
                 <Col xs={12} sm={4}>
-                  <br/>
-                  <p> VS </p>
-                  <p>{team.date}</p>
+                  <br/><br/><br/>
+                  <h3> VS </h3>
+                  <h3>{team.date}</h3>
                 </Col>
                 <Col xs={12} sm={4} key={team.away_team}>
                   <h1 className="teamnames">{team.away_team}</h1>
