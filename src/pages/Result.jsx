@@ -3,6 +3,8 @@ import Select from 'react-select';
 import {Grid, Row, Col} from 'react-bootstrap'
 import { Input } from 'mdbreact'
 import Goal from '../components/Goal'
+import { FormattedMessage } from 'react-intl';
+
 const options = [
   { value: 'chocolate', label: 'Chocolate' },
   { value: 'strawberry', label: 'Strawberry' },
@@ -62,7 +64,12 @@ export default class Result extends Component {
       <div>
         <Col xs={12} sm={6}>
           <h2>{this.state.hometeam} </h2>
-          <p> SCORE </p>
+          <p> 
+          <FormattedMessage
+          id="RESULT.homeScoreTitle"
+          defaultMessage="SCORE"
+          />
+          </p>
           <Input
             name="homescore"
             onChange={this.filterUpdateHome.bind(this)}/>
@@ -75,7 +82,12 @@ export default class Result extends Component {
         </Col>
         <Col xs={12} sm={6}>
           <h2>{this.state.awayteam}</h2>
-          <p> SCORE </p>
+          <p>
+          <FormattedMessage
+          id="RESULT.awayScoreTitle"
+          defaultMessage="SCORE"
+          />
+          </p>
           <Input
             name="awayscore"
             onChange={this.filterUpdateAway.bind(this)}/>

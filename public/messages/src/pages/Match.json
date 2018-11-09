@@ -1,0 +1,22 @@
+[
+  {
+    "id": "MATCH.matchesTitle",
+    "defaultMessage": "MATCHES"
+  },
+  {
+    "id": "MATCH.scoreHomeTitle",
+    "defaultMessage": "SCORE"
+  },
+  {
+    "id": "MATCH.scoreAwayTitle",
+    "defaultMessage": "SCORE"
+  },
+  {
+    "id": "MATCH.saveResultButton",
+    "defaultMessage": "Save results"
+  },
+  {
+    "id": "MATCH.deleteResultButton",
+    "defaultMessage": "Delete results"
+  }
+]

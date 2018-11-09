@@ -4,7 +4,7 @@ import { ListGroup, ListGroupItem, FormControl} from 'react-bootstrap';
 import { Button, Input } from 'mdbreact'
 import '../components/Teamlist.css'
 import { PostData } from '../PostData';
-
+import { FormattedMessage } from 'react-intl';
 
 export default class Roles extends Component {
   constructor(props) {
@@ -120,7 +120,12 @@ export default class Roles extends Component {
                 </div>
               </Col>
               <Col xs={12} sm={6}>
-                <p>Name:</p>
+                <p>
+                <FormattedMessage
+                id="ROLES.name"
+                defaultMessage="Name:"
+                />
+                </p>
                 <p>{(this.state.first_name ? this.state.first_name: '')} {(this.state.last_name ? this.state.last_name: '')}</p>
 
                 <br/>
@@ -129,13 +134,20 @@ export default class Roles extends Component {
                 <br/>
                 <br/>
                 <Checkbox onClick={this.onCoachCheck} defaultChecked={this.state.admin}>
-                  Coach
+                  <FormattedMessage
+                  id="ROLES.coach"
+                  defaultMessage="Coach"
+                  />
+                
                 </Checkbox>
 
                 <br/>
                 <br/>
                 <Checkbox onClick={this.onOwnerCheck} defaultChecked={this.state.admin}>
-                  Owner
+                  <FormattedMessage
+                  id="ROLES.owner"
+                  defaultMessage="Owner"
+                  />
                 </Checkbox>
 
                 <br/>
@@ -145,16 +157,46 @@ export default class Roles extends Component {
                 <div className="chooseTeam">
 
                   <Col xs={12} sm={6}>
-                    <p>Normal Position</p>
+                    <p>
+                    <FormattedMessage
+                    id="ROLES.normPosition"
+                    defaultMessage="Normal Position"
+                    />
+                    </p>
                     <FormControl componentClass="select" onChange={this.selectOption} placeholder="goalkeeper">
-                      <option  value="goalkeeper">Goalkeeper</option>
-                      <option value="defence">Defence</option>
-                      <option value="midfield">Midfield</option>
-                      <option value="forward">Forward</option>
+                      <option  value="goalkeeper">
+                      <FormattedMessage
+                      id="ROLES.posFormGoalkeeper"
+                      defaultMessage="Goalkeeper"
+                      />
+                      </option>
+                      <option value="defence">
+                      <FormattedMessage
+                      id="ROLES.posFormDefence"
+                      defaultMessage="Defence"
+                      />
+                      </option>
+                      <option value="midfield">
+                      <FormattedMessage
+                      id="ROLES.posFormMidfield"
+                      defaultMessage="Midfield"
+                      />
+                      </option>
+                      <option value="forward">
+                      <FormattedMessage
+                      id="ROLES.posFormForward"
+                      defaultMessage="Forward"
+                      />
+                      </option>
                     </FormControl>
                   </Col>
                   <Col xs={12} sm={6}>
-                    <p> Number </p>
+                    <p>
+                    <FormattedMessage
+                    id="ROLES.number"
+                    defaultMessage="Number"
+                    />
+                       </p>
                     <Input
                       name="Number"
                       value={(this.state.number ? this.state.number : '')}
@@ -165,7 +207,12 @@ export default class Roles extends Component {
                   <br/>
                   <br/>
                   <br/>
-                  <p> Team </p>
+                  <p>
+                  <FormattedMessage
+                    id="ROLES.team"
+                    defaultMessage="Team"
+                    />
+                  </p>
                   <Input
                     name="team"
                     value={(this.state.selectTeam ? this.state.selectTeam.teamName : '')}
@@ -198,7 +245,12 @@ export default class Roles extends Component {
                 <br/>
                 <br/>
 
-                <Button onClick={this.addRole}>Save user</Button>
+                <Button onClick={this.addRole}>
+                <FormattedMessage
+                    id="ROLES.saveUserButton"
+                    defaultMessage="Save user"
+                    />
+                </Button>
               </Col>
             </Row>
           </div>

@@ -66,8 +66,7 @@
   },
   "scripts": {
     "start": "node scripts/start.js",
-    "build:langs": "NODE_ENV='production' babel-node scripts/mergeMessages.js",
-    "build": "npm run build:langs && node scripts/build.js",
+    "build": "node scripts/build.js",
     "test": "node scripts/test.js"
   },
   "eslintConfig": {

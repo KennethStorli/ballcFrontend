@@ -2,6 +2,7 @@ import React,  { Component } from 'react';
 import {Link} from 'react-router-dom'
 import { Col, Grid, Row, ListGroup, ListGroupItem} from 'react-bootstrap';
 import { Button, Input } from 'mdbreact'
+import { FormattedMessage } from 'react-intl';
 
 import '../components/Teamlist.css'
 
@@ -31,7 +32,12 @@ export default class CRUDAssociation extends Component {
           <div>
             <Row>
               <Col xs={12} sm={6}>
-                <p className="h5 text-center mb-4">REGISTERED ASSOCIATIONS</p>
+                <p className="h5 text-center mb-4">
+                <FormattedMessage
+                id="CRUDASSOCIATION.registerTitle"
+                defaultMessage="REGISTERED ASSOCIATIONS"
+                />
+                </p>
                 <br/>
                 <div className="Teamlist">
                   <ListGroup>
@@ -62,7 +68,12 @@ export default class CRUDAssociation extends Component {
                 <hr/>
                 <br/>
                 <br/>
-                <p>Association name:</p>
+                <p>
+                <FormattedMessage
+                id="CRUDASSOCIATION.assName"
+                defaultMessage="Association name:"
+                />
+                </p>
                 <Input
                   name="loc"
                   value={(this.state.selectAss ? this.state.association_name : '')}
@@ -74,7 +85,12 @@ export default class CRUDAssociation extends Component {
                 <hr/>
                 <br/>
                 <br/>
-                <p>Description:</p>
+                <p>
+                <FormattedMessage
+                id="CRUDASSOCIATION.description"
+                defaultMessage="Description:"
+                />
+                </p>
                 <Input
                   name="des"
                   value={(this.state.selectAss ? this.state.association_description : '' )}
@@ -90,10 +106,25 @@ export default class CRUDAssociation extends Component {
                 <br/>
 
                 <div className="text-center">
-                  <Button color="primary" onClick={this.createperson} >Create new association</Button>
+                  <Button color="primary" onClick={this.createperson} >
+                  <FormattedMessage
+                  id="CRUDASSOCIATION.newAssButton"
+                  defaultMessage="Create new association"
+                  />
+                </Button>
 
-                  <Button className="formbtnSave" color="primary" onClick={this.updatePerson} >Save edit</Button>
-                  <Button className="formbtnDel" color="primary" onClick={this.delPerson} >Delete association</Button>
+                  <Button className="formbtnSave" color="primary" onClick={this.updatePerson} >
+                  <FormattedMessage
+                  id="CRUDASSOCIATION.saveEditButton"
+                  defaultMessage="Save edit"
+                  />
+                </Button>
+                  <Button className="formbtnDel" color="primary" onClick={this.delPerson} >
+                  <FormattedMessage
+                  id="CRUDASSOCIATION.deleteAssButton"
+                  defaultMessage="Delete association"
+                  />
+                </Button>
 
                 </div>
 

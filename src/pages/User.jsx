@@ -3,7 +3,7 @@ import {Row, Grid, Col } from 'react-bootstrap';
 import { ListGroup, ListGroupItem} from 'react-bootstrap';
 import {Button} from 'mdbreact'
 import '../components/Teamlist.css'
-
+import { FormattedMessage } from 'react-intl';
 
 export default class User extends Component {
   constructor(props) {
@@ -59,16 +59,31 @@ export default class User extends Component {
                 </div>
               </Col>
               <Col xs={12} sm={6}>
-                <p>Username:</p>
+                <p>
+                <FormattedMessage
+                id="USER.username"
+                defaultMessage="Username:"
+                />
+                </p>
                 <p>{(this.state.name ? this.state.name: '')}</p>
 
                 <br/>
                 <hr/>
                 <br/>
-                <p>Email:</p>
+                <p>
+                <FormattedMessage
+                id="USER.email"
+                defaultMessage="Email:"
+                />
+                </p>
                 <p>{(this.state.email ? this.state.email: '')}</p>
 
-                <p>Admin:</p>
+                <p>
+                <FormattedMessage
+                id="USER.admin"
+                defaultMessage="Admin:"
+                />
+                </p>
                 <p>{(this.state.admin ? this.state.admin: '')}</p>
 
                 <br/>
@@ -77,12 +92,22 @@ export default class User extends Component {
                   name="isGoing"
                   type="checkbox"
                   checked={this.state.admin}
-                  onChange={this.onAdminCheck} /> Admin </p>
+                  onChange={this.onAdminCheck} />
+                  <FormattedMessage
+                  id="USER.adminInput"
+                  defaultMessage="Admin"
+                  />
+                 </p>
 
 
                 <br/>
                 <br/>
-                <Button>Save user</Button>
+                <Button>
+                <FormattedMessage
+                id="USER.saveUserButton"
+                defaultMessage="Save user"
+                />
+                </Button>
 
               </Col>
             </Row>

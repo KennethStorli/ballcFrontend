@@ -4,7 +4,7 @@ import { ListGroup, ListGroupItem} from 'react-bootstrap';
 import { Button, Input } from 'mdbreact'
 import  NewAddress from '../components/NewAddress'
 import '../components/Teamlist.css'
-
+import { FormattedMessage } from 'react-intl';
 
 export default class Address extends Component {
   constructor(props) {
@@ -69,12 +69,18 @@ export default class Address extends Component {
     .then(address => this.setState({address}))
   }
     render(){
+
       return(
         <Grid>
           <div>
             <Row>
               <Col xs={12} sm={6}>
-                <p className="h5 text-center mb-4">REGISTERED ADDRESSES</p>
+                <p className="h5 text-center mb-4">
+                <FormattedMessage
+                id="ADDRESS.registerMes"
+                defaultMessage="REGISTERED ADDRESSES"
+                />
+                </p>
                 <br/>
                 <div className="Teamlist">
                   <ListGroup>
@@ -111,7 +117,12 @@ export default class Address extends Component {
                     <br/>
                     <br/>
                     <br/>
-                    <p>Address 1:</p>
+                    <p>
+                    <FormattedMessage
+                    id="ADDRESS.address1"
+                    defaultMessage="Address 1:"
+                    />
+                    </p>
                     <Input
                       name="address_1"
                       value={(this.state.address ? this.state.address_1 : '')}
@@ -120,7 +131,12 @@ export default class Address extends Component {
                     <br/>
                     <br/>
                     <br/>
-                    <p>Address 2:</p>
+                    <p>
+                    <FormattedMessage
+                    id="ADDRESS.address2"
+                    defaultMessage="Address 2:"
+                    />
+                    </p>
                     <Input
                       name="address_2"
                       value={(this.state.address ? this.address_2 : '' )}
@@ -129,7 +145,12 @@ export default class Address extends Component {
                     <br/>
                     <br/>
                     <br/>
-                    <p>Address 3:</p>
+                    <p>
+                    <FormattedMessage
+                    id="ADDRESS.address3"
+                    defaultMessage="Address 3:"
+                    />
+                    </p>
                     <Input
                       name="address_3"
                       value={(this.state.address ? this.state.address_3 : '')}
@@ -138,14 +159,24 @@ export default class Address extends Component {
                     <br/>
                     <br/>
                     <Col sm={6}>
-                      <p>Postal code:</p>
+                      <p>
+                      <FormattedMessage
+                      id="ADDRESS.postalCode"
+                      defaultMessage="Postal code:"
+                      />
+                      </p>
                       <Input
                         name="postal"
                         value={(this.state.address ? this.state.postal_code : '')}
                         onChange={this.onChangePostal}/>
                     </Col>
                     <Col sm={6}>
-                      <p>City:</p>
+                      <p>
+                      <FormattedMessage
+                      id="ADDRESS.city"
+                      defaultMessage="City:"
+                      />
+                      </p>
                       <Input
                         name="city"
                         value={(this.state.address ? this.state.city : '')}
@@ -158,7 +189,12 @@ export default class Address extends Component {
                     <br/>
                     <br/>
                     <br/>
-                    <p>Country:</p>
+                    <p>
+                    <FormattedMessage
+                      id="ADDRESS.country"
+                      defaultMessage="Country:"
+                      />
+                      </p>
                     <Input
                       name="country"
                       value={(this.state.address ? this.state.country : '')}
@@ -170,12 +206,29 @@ export default class Address extends Component {
 
 
                     <div className="text-center">
-                      <Button className="formbtnSave" color="primary" onClick={this.updatePerson} >Save edit</Button>
-                      <Button className="formbtnDel" color="primary" onClick={this.delPerson} >Delete address</Button>
+                      <Button className="formbtnSave" color="primary" onClick={this.updatePerson} >
+                      <FormattedMessage
+                      id="ADDRESS.saveEdit"
+                      defaultMessage="Save edit"
+                      />
+                      </Button>
+                      <Button className="formbtnDel" color="primary" onClick={this.delPerson} >
+                      <FormattedMessage
+                      id="ADDRESS.deleteAddr"
+                      defaultMessage="Delete address"
+                      />
+                      </Button>
 
                     </div>
                   </Tab>
-                  <Tab eventKey={2} title="New Address">
+                  <Tab eventKey={2} title={
+                    <FormattedMessage
+                    id="ADDRESS.tabNewAddress"
+                    defaultMessage="New Address"
+                    />
+                  }
+                  //{intl.formatMessage({id: 'ADDRESS.tabNewAddress', defaultMessage: 'New Address'})}
+                  >
                     <NewAddress/>
                   </Tab>
                 </Tabs>
@@ -187,3 +240,4 @@ export default class Address extends Component {
       )
     }
   }
+

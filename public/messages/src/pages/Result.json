@@ -1,0 +1,10 @@
+[
+  {
+    "id": "RESULT.homeScoreTitle",
+    "defaultMessage": "SCORE"
+  },
+  {
+    "id": "RESULT.awayScoreTitle",
+    "defaultMessage": "SCORE"
+  }
+]

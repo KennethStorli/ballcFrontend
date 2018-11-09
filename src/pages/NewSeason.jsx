@@ -3,6 +3,7 @@ import { Input } from 'mdbreact'
 import { Grid, Row, Col } from 'react-bootstrap'
 import DayPicker from 'react-day-picker';
 import {Button} from 'mdbreact'
+import { FormattedMessage } from 'react-intl';
 
 import 'react-day-picker/lib/style.css';
 
@@ -75,18 +76,33 @@ export default class NewSeason extends Component{
       return (
           <div>
             <Grid>
-              <h1>Create new season</h1>
+              <h1>
+              <FormattedMessage
+              id="NEWSESASON.createNewSeasonTitle"
+              defaultMessage="Create new season"
+              />
+              </h1>
               <div className="buffer"/>
               <Row>
                 <Col xs={12} sm={6}>
-                  <p>Name:</p>
+                  <p>
+                  <FormattedMessage
+                  id="NEWSESASON.name"
+                  defaultMessage="Name:"
+                  />
+                  </p>
                   <Input
                     name="Name"
                     onChange={this.onChangeName.bind(this)}
                   />
                 </Col>
                 <Col xs={12} sm={6}>
-                  <p>Description:</p>
+                  <p>
+                  <FormattedMessage
+                  id="NEWSESASON.description"
+                  defaultMessage="Description:"
+                  />
+                  </p>
                   <Input
                     name="Description"
                     onChange={this.onChangeDescription.bind(this)}
@@ -96,7 +112,12 @@ export default class NewSeason extends Component{
                 <div className="buffer"/>
 
                 <Col xs={12} sm={6}>
-                  <p>Start of season</p>
+                  <p>
+                  <FormattedMessage
+                  id="NEWSESASON.seasonStart"
+                  defaultMessage="Start of season"
+                  />
+                  </p>
                   <hr/>
 
                   <DayPicker
@@ -105,14 +126,29 @@ export default class NewSeason extends Component{
                     disabledDays={{ daysOfWeek: [0] }}
                   />
                   {this.state.selectedDayStart ? (
-                    <p>Startdate: {this.state.selectedDayStart.toLocaleDateString('en-GB')}</p>
+                    <p>
+                    <FormattedMessage
+                    id="NEWSESASON.startDate"
+                    defaultMessage="Startdate:"
+                    />
+                   {this.state.selectedDayStart.toLocaleDateString('en-GB')}</p>
                   ) : (
-                    <p>Please select a day to start the season</p>
+                    <p>
+                    <FormattedMessage
+                    id="NEWSESASON.selectStartLabel"
+                    defaultMessage="Please select a day to start the season"
+                  />
+                  </p>
                   )}
                 </Col>
 
                 <Col xs={12} sm={6}>
-                  <p>End of season</p>
+                  <p>
+                  <FormattedMessage
+                  id="NEWSESASON.seasonEnd"
+                  defaultMessage="End of season"
+                  />
+                  </p>
                   <hr/>
                   <DayPicker
                     onDayClick={this.handleDayClickEnd}
@@ -120,9 +156,19 @@ export default class NewSeason extends Component{
                     disabledDays={{ daysOfWeek: [0] }}
                   />
                   {this.state.selectedDayEnd ? (
-                    <p>Enddate: {this.state.selectedDayEnd.toLocaleDateString('en-GB')}</p>
+                    <p>
+                    <FormattedMessage
+                    id="NEWSESASON.endDate"
+                    defaultMessage="Enddate:"
+                    />
+                   {this.state.selectedDayEnd.toLocaleDateString('en-GB')}</p>
                   ) : (
-                    <p>Please select a day to end the season</p>
+                    <p>
+                    <FormattedMessage
+                    id="NEWSESASON.selectEndLabel"
+                    defaultMessage="Please select a day to end the season"
+                    />
+                  </p>
                   )}
                 </Col>
 
@@ -130,7 +176,12 @@ export default class NewSeason extends Component{
 
               <div className="buffer"/>
               <div className="text-center">
-                <Button className="formbtn" color="primary" onClick={this.delPerson} >Create new season</Button>
+                <Button className="formbtn" color="primary" onClick={this.delPerson} >
+                <FormattedMessage
+                  id="NEWSESASON.createNewSeasonButton"
+                  defaultMessage="Create new season"
+                  />
+                  </Button>
 
               </div>
 

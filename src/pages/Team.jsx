@@ -5,7 +5,7 @@ import { Input, Button } from 'mdbreact';
 import SearchSmall from '../components/SearchSmall'
 import '../components/UpdatePerson.css'
 import './Home.css'
-
+import { FormattedMessage } from 'react-intl';
 
 
 export default class Team extends Component {
@@ -156,11 +156,21 @@ export default class Team extends Component {
 
               <br/>
 
-              <p className="h5 text-center mb-4">EDIT/CREATE TEAMS</p>
+              <p className="h5 text-center mb-4">
+              <FormattedMessage
+              id="TEAM.editCreateTeamTitle"
+              defaultMessage="EDIT/CREATE TEAMS"
+              />
+              </p>
               <form>
                 <div className="grey-text">
                   <br/>
-                  <p>Team name:</p>
+                  <p>
+                  <FormattedMessage
+                  id="TEAM.teamName"
+                  defaultMessage="Team name:"
+                  />
+                  </p>
                   <Input
                       name="Team Name"
                       value={this.state.selectedTeamName ? this.state.selectedTeamName : ''}
@@ -171,7 +181,12 @@ export default class Team extends Component {
                 <br/>
                 <div className="grey-text">
                   <br/>
-                  <p>Association:</p>
+                  <p>
+                  <FormattedMessage
+                  id="TEAM.association"
+                  defaultMessage="Association:"
+                  />
+                  </p>
                   <Input
                       name="Association"
                       value={(this.state.selectedAssociation ? this.state.selectedAssociation : '')}
@@ -183,7 +198,12 @@ export default class Team extends Component {
                 <br/>
                 <div className="grey-text">
                   <br/>
-                  <p>Location:</p>
+                  <p>
+                  <FormattedMessage
+                  id="TEAM.location"
+                  defaultMessage="Location:"
+                  />
+                  </p>
                   <Input
                       name="Location"
                       value={(this.state.selectedLocation ? this.state.selectedLocation : '')}
@@ -195,7 +215,12 @@ export default class Team extends Component {
                 <br/>
                 <div className="grey-text">
                   <br/>
-                  <p>Coach:</p>
+                  <p>
+                  <FormattedMessage
+                  id="TEAM.coach"
+                  defaultMessage="Coach:"
+                  />
+                  </p>
                   <Input
                       name="Coach"
                       value={(this.state.selectedCoach ? this.state.selectedCoach : '')}
@@ -207,7 +232,12 @@ export default class Team extends Component {
                 <br/>
                 <div className="grey-text">
                   <br/>
-                  <p>Owner:</p>
+                  <p>
+                  <FormattedMessage
+                  id="TEAM.owner"
+                  defaultMessage="Owner:"
+                  />
+                  </p>
                   <Input
                       name="Owner"
                       value={(this.state.selectedOwner ? this.state.selectedOwner : '')}
@@ -222,7 +252,12 @@ export default class Team extends Component {
             <Col xs={12} sm={4}>
               <br/>
 
-              <p className="h5 text-center mb-4">REGISTERED ASSOCIATIONS</p>
+              <p className="h5 text-center mb-4">
+              <FormattedMessage
+              id="TEAM.registeredAssTitle"
+              defaultMessage="REGISTERED ASSOCIATIONS"
+              />
+              </p>
               <div className="divlist">
               <ListGroup>
                       <div>
@@ -244,7 +279,12 @@ export default class Team extends Component {
               </div>
               <br/>
 
-              <p className="h5 text-center mb-4">REGISTERED LOCATIONS</p>
+              <p className="h5 text-center mb-4">
+              <FormattedMessage
+              id="TEAM.registeredLocationTitle"
+              defaultMessage="REGISTERED LOCATIONS"
+              />
+              </p>
               <div className="divlist">
                 <ListGroup>
                       <div>
@@ -266,7 +306,12 @@ export default class Team extends Component {
               </div>
               <br/>
 
-              <p className="h5 text-center mb-4">REGISTERED COACHES</p>
+              <p className="h5 text-center mb-4">
+              <FormattedMessage
+              id="TEAM.registeredCoachesTitle"
+              defaultMessage="REGISTERED COACHES"
+              />
+              </p>
               <div className="divlist">
               <ListGroup>
                       <div>
@@ -288,7 +333,12 @@ export default class Team extends Component {
               </div>
               <br/>
 
-              <p className="h5 text-center mb-4">REGISTERED OWNERS</p>
+              <p className="h5 text-center mb-4">
+              <FormattedMessage
+              id="TEAM.registeredOwnerTitle"
+              defaultMessage="REGISTERED OWNERS"
+              />
+              </p>
               <div className="divlist">
               <ListGroup>
                       <div>
@@ -309,9 +359,24 @@ export default class Team extends Component {
                 </ListGroup>
               </div>
               <div className="text-center">
-                <Button className="formbtnSave" color="primary" onClick={this.signup}>Save </Button>
-                <Button className="formbtnSave" color="primary" onClick={this.signup}>Create </Button>
-                <Button className="formbtnDel" color="primary" onClick={this.signup}>Delete </Button>
+                <Button className="formbtnSave" color="primary" onClick={this.signup}>
+                <FormattedMessage
+                id="TEAM.saveButton"
+                defaultMessage="Save"
+                />
+                </Button>
+                <Button className="formbtnSave" color="primary" onClick={this.signup}>
+                <FormattedMessage
+                id="TEAM.createButton"
+                defaultMessage="Create"
+                />
+                </Button>
+                <Button className="formbtnDel" color="primary" onClick={this.signup}>
+                <FormattedMessage
+                id="TEAM.deleteButton"
+                defaultMessage="Delete"
+                />
+                </Button>
               </div>
 
             </Col>

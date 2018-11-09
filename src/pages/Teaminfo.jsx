@@ -5,6 +5,7 @@ import Location from './Location';
 import Coach from './Coach';
 import Playerinfo from './Playerinfo'
 import './Teams.css'
+import { FormattedMessage } from 'react-intl';
 
 import { Row, Grid, Col, ListGroup, ListGroupItem   } from 'react-bootstrap'
 

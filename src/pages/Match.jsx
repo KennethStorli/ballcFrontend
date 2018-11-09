@@ -5,6 +5,8 @@ import { Input } from 'mdbreact'
 import Goal from '../components/Goal'
 import Result from './Result'
 import {Button } from 'mdbreact'
+import { FormattedMessage } from 'react-intl';
+
 export default class Match extends Component {
   constructor(props) {
     super(props);
@@ -84,7 +86,12 @@ export default class Match extends Component {
         <Grid>
           <Row>
             <Col xs={12} sm={4}>
-              <h2>MATCHES</h2>
+              <h2>
+              <FormattedMessage
+              id="MATCH.matchesTitle"
+              defaultMessage="MATCHES"
+              />
+              </h2>
               <br/>
               <div className="TeamlistMatch">
                 <ListGroup>
@@ -110,7 +117,12 @@ export default class Match extends Component {
             <Col xs={12} sm={4}>
               {this.getTeamName(this.state.hometeam) ? (
                 <h2>{this.getTeamName(this.state.hometeam)}</h2>) : (<h2>Home Team</h2>)}
-              <p> SCORE </p>
+              <p>
+              <FormattedMessage
+              id="MATCH.scoreHomeTitle"
+              defaultMessage="SCORE"
+              />
+              </p>
               <Input
                 name="homescore"
                 onChange={this.filterUpdateHome.bind(this)}/>
@@ -124,7 +136,12 @@ export default class Match extends Component {
             <Col xs={12} sm={4}>
               {this.getTeamName(this.state.awayteam) ? (
                 <h2>{this.getTeamName(this.state.awayteam)}</h2>) : (<h2>Away Team</h2>)}
-              <p> SCORE </p>
+              <p>
+              <FormattedMessage
+              id="MATCH.scoreAwayTitle"
+              defaultMessage="SCORE"
+              />
+              </p>
               <Input
                 name="awayscore"
                 onChange={this.filterUpdateAway.bind(this)}/>
@@ -134,8 +151,18 @@ export default class Match extends Component {
               </div>
               <br/>
 
-              <Button className="formbtnSave" color="primary" onClick={this.delPerson} >Save results</Button>
-              <Button className="formbtnDel" color="primary" onClick={this.delPerson} >Delete results</Button>
+              <Button className="formbtnSave" color="primary" onClick={this.delPerson} >
+              <FormattedMessage
+              id="MATCH.saveResultButton"
+              defaultMessage="Save results"
+              />
+              </Button>
+              <Button className="formbtnDel" color="primary" onClick={this.delPerson} >
+              <FormattedMessage
+              id="MATCH.deleteResultButton"
+              defaultMessage="Delete results"
+              />
+              </Button>
 
 
             </Col>

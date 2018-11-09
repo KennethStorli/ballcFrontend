@@ -1,0 +1,22 @@
+[
+  {
+    "id": "USER.username",
+    "defaultMessage": "Username:"
+  },
+  {
+    "id": "USER.email",
+    "defaultMessage": "Email:"
+  },
+  {
+    "id": "USER.admin",
+    "defaultMessage": "Admin:"
+  },
+  {
+    "id": "USER.adminInput",
+    "defaultMessage": "Admin"
+  },
+  {
+    "id": "USER.saveUserButton",
+    "defaultMessage": "Save user"
+  }
+]
