@@ -4,13 +4,20 @@ import { ListGroup, ListGroupItem} from 'react-bootstrap';
 import { Button, Input } from 'mdbreact'
 import  NewAddress from '../components/NewAddress'
 import '../components/Teamlist.css'
+
 import { FormattedMessage } from 'react-intl';
+
+import {PostData} from '../PostData';
+
+
 
 export default class Address extends Component {
   constructor(props) {
     super(props);
     this.state = {
       address:[],
+      location:'',
+      address_id:'',
       address_1:'',
       address_2:'',
       address_3:'',
@@ -18,6 +25,16 @@ export default class Address extends Component {
       city:'',
       country:'',
     };
+
+    this.onChangeA1 = this.onChangeA1.bind(this);
+    this.onChangeA2 = this.onChangeA2.bind(this);
+    this.onChangeA3 = this.onChangeA3.bind(this);
+
+    this.onChangePostal = this.onChangePostal.bind(this);
+    this.onChangeCity = this.onChangeCity.bind(this);
+    this.onChangeCountry = this.onChangeCountry.bind(this);
+
+
 
   }
 
@@ -68,6 +85,36 @@ export default class Address extends Component {
     .then(result => result.json())
     .then(address => this.setState({address}))
   }
+
+  updateAddress = () =>{
+    let user = Object.assign({}, this.state);    //creating copy of object
+
+    let data = {
+      address_id: user.address_id,
+      address_line_1: user.address_1,
+      address_line_2: user.address_2,
+      address_line_3: user.address_3,
+      postal_code: user.postal_code,
+      city: user.city,
+      country: user.country
+    }
+    PostData('/updateaddress', data);
+  }
+
+  delAddress = () =>{
+    let user = Object.assign({}, this.state);    //creating copy of object
+
+    let data = {
+      address_id: user.address_id,
+      address_line_1: user.address_1,
+      address_line_2: user.address_2,
+      address_line_3: user.address_3,
+      postal_code: user.postal_code,
+      city: user.city,
+      country: user.country
+    }
+    PostData('/deladdress', data);
+  }
     render(){
 
       return(
@@ -91,6 +138,7 @@ export default class Address extends Component {
                           onClick={
                             e => {
                               this.setState({
+                                location:address.location,
                                 address_id: address.address_id,
                                 address_1: address.address_line_1,
                                 address_2: address.address_line_2,
@@ -206,18 +254,20 @@ export default class Address extends Component {
 
 
                     <div className="text-center">
-                      <Button className="formbtnSave" color="primary" onClick={this.updatePerson} >
+
+                      <Button className="formbtnSave" color="primary" onClick={this.updateAddress} >
                       <FormattedMessage
                       id="ADDRESS.saveEdit"
                       defaultMessage="Save edit"
                       />
                       </Button>
-                      <Button className="formbtnDel" color="primary" onClick={this.delPerson} >
+                      <Button className="formbtnDel" color="primary" onClick={this.delAddress} >
                       <FormattedMessage
                       id="ADDRESS.deleteAddr"
                       defaultMessage="Delete address"
                       />
                       </Button>
+
 
                     </div>
                   </Tab>

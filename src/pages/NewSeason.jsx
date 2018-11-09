@@ -5,6 +5,9 @@ import DayPicker from 'react-day-picker';
 import {Button} from 'mdbreact'
 import { FormattedMessage } from 'react-intl';
 
+import {PostData} from '../PostData';
+
+
 import 'react-day-picker/lib/style.css';
 
 import './Teams.css'
@@ -70,6 +73,19 @@ export default class NewSeason extends Component{
       selectedDayEndString: day.toLocaleDateString('en-GB')
      });
 
+    }
+
+    addSeason = () =>{
+      let user = Object.assign({}, this.state);    //creating copy of object
+
+      var data = {
+        start_date: user.selectedDayStartString,
+        end_date: user.selectedDayEndString,
+        name: user.seasonName,
+        description: user.seasonDescription
+      }
+
+      PostData('/addseason', data)
     }
     render() {
 
@@ -176,7 +192,8 @@ export default class NewSeason extends Component{
 
               <div className="buffer"/>
               <div className="text-center">
-                <Button className="formbtn" color="primary" onClick={this.delPerson} >
+
+                <Button className="formbtn" color="primary" onClick={this.addSeason} >
                 <FormattedMessage
                   id="NEWSESASON.createNewSeasonButton"
                   defaultMessage="Create new season"

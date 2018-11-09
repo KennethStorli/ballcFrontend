@@ -22,13 +22,9 @@ import Goaltypes from './pages/Goaltypes'
 import Profile from './pages/Profile';
 import Watchlist from './pages/Watchlist'
 import WatchlistEdit from './pages/WatchlistEdit'
+import Matches from './pages/Matches'
 
-
-import Seasons from './pages/Seasons';
-
-import Season1 from './pages/Season1';
-import Season2 from './pages/Season2';
-import Season3 from './pages/Season3';
+import axios from 'axios';
 
 
 
@@ -38,12 +34,54 @@ import NavigatorAdm from './components/NavigatorAdm'
 
 
 class App extends Component {
+
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     show: false,
+  //     users:[],
+  //   }
+    
+  //   var username= null;
+
+  // }
+
+  // componentDidMount() {
+  //   fetch(`http://localhost:8080/checkadmin`)
+  //   .then(result => result.json())
+  //   .then(users => this.setState({users}))
+
+  // }
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      show: false,
+     users:'',
+    };
+  }
+
+
+  showUser(){
+    /*
+    var user = null;
+    axios.get('http://localhost:8080/checkadmin')
+    .then(response => {
+      this.setState({users: response.data})
+    })
+    return(
+      
+    )
+    */
+  }
   render() {
     return (
       <Router>
         <div>
           <Navbar/>
           <NavigatorAdm/>
+{this.showUser()}
+    {console.log(this.state.users)}
 
           <Route exact path="/" component={Home}></Route>
           <Route path="/next" component={Next}></Route>
@@ -66,19 +104,8 @@ class App extends Component {
           <Route path="/Goaltypes" component={Goaltypes}></Route>
           <Route path="/Watchlist" component={Watchlist}></Route>
           <Route path="/WatchlistEdit" component={WatchlistEdit}></Route>
-
-          <Route path="/Season1" component={Season1}></Route>
-          <Route path="/Season2" component={Season2}></Route>
-          <Route path="/Season3" component={Season3}></Route>
-
-
-
-
-
-
-
-
-
+          <Route path="/Matches" component={Matches}></Route>
+          
         </div>
       </Router>
     );
