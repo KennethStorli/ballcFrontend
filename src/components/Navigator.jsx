@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
+import { Navbar, Nav, NavItem, NavDropdown, MenuItem, Glyphicon } from 'react-bootstrap';
 import { Modal, Tabs, Tab } from 'react-bootstrap';
 import Login from  './Login';
 import SignUp from './SignUp'
 import FAQs from './FAQ'
-import Content from './Content'
 
 
 import './Navigator.css'
@@ -52,6 +51,7 @@ export default class Navigator extends Component {
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav>
+
               <NavDropdown eventKey={2} title="Seasons" id="basic-nav-dropdown">
                 <MenuItem eventKey={2.1} href="/Season3" to="/Season3">Season 3</MenuItem>
                 <MenuItem divider />
@@ -66,14 +66,18 @@ export default class Navigator extends Component {
               <NavItem eventKey={1} onClick={this.handleShow}>
                 Login
               </NavItem>
-              <NavDropdown eventKey={2} title="Settings" id="basic-nav-dropdown">
-                <MenuItem eventKey={2.1} href="/Profile" to="/Profile">Profile</MenuItem>
-                <MenuItem divider />
-                <MenuItem eventKey={2.2} href="#" to="#">Logout</MenuItem>
-              </NavDropdown>
+              <NavItem eventKey={1} href="/" to="/">
+                <Glyphicon glyph="star" />
+              </NavItem>
+              <NavItem eventKey={1} href="/Profile" to="/Profile">
+                <Glyphicon glyph="user" />
+              </NavItem>
 
+              <NavItem eventKey={1} href="/Profile" to="/Profile">
+                <Glyphicon glyph="cog" />
+              </NavItem>
               <NavItem eventKey={1} onClick={this.handleShowHelp}>
-                Help
+                <Glyphicon glyph="question-sign" />
               </NavItem>
             </Nav>
           </Navbar.Collapse>

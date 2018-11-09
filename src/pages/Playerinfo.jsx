@@ -19,11 +19,7 @@ export default class Coach extends Component{
     }
 
     render() {
-      let filteredPlayers = this.state.players.filter(
-        (players) => {
-          return this.state.allplayers.indexOf(this.state.players) !== -1
-        }
-      )
+
 
       return (
           <div>

@@ -1,6 +1,5 @@
 import React,  { Component } from 'react';
 import {Row, Grid, Col } from 'react-bootstrap';
-import { ListGroup, ListGroupItem} from 'react-bootstrap';
 import {Button, Input} from 'mdbreact'
 import '../components/Teamlist.css'
 
@@ -67,7 +66,7 @@ export default class Profile extends Component {
                 <br/>
                 <p>Email:</p>
                 <br/>
-                
+
                 <Input
                   name="firstname"
                   value={(this.state.email ? this.state.email: '')}

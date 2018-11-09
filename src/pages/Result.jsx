@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
-import Select from 'react-select';
 import {Grid, Row, Col, ListGroup, ListGroupItem} from 'react-bootstrap'
 import { Input } from 'mdbreact'
 import Goal from '../components/Goal'
-import Result from './Result'
 import {Button } from 'mdbreact'
 
 
@@ -24,15 +22,6 @@ export default class Results extends Component {
     };
 
   }
-  createGoalHome = () => {
-  let homescore = this.state.homescore
-  let i = 0
-
-  for (i = 0; i < this.state.homescore.value; i++){
-    return(<Goal/>)
-  }
-}
-
 
   filterUpdateHome(event){
     var emptyarray = []
