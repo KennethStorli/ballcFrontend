@@ -18,6 +18,13 @@
   overflow-x:hidden;
 }
 
+.MatchPosList {
+  flex: 1;
+  height: 400px;
+  overflow-y: auto;
+  overflow-x:hidden;
+}
+
 .divlist {
   flex: 1;
   height: 124px;

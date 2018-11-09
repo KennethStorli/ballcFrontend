@@ -5,7 +5,7 @@ import {Button, Input} from 'mdbreact'
 import '../components/Teamlist.css'
 
 
-export default class User extends Component {
+export default class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -47,33 +47,15 @@ export default class User extends Component {
     render(){
       return(
         <Grid>
-          <div>
-            <Row>
-              <Col xs={12} sm={6}>
-                <div className="Teamlist">
-                  <ListGroup>
-                    <div>
-                      {this.state.users.map(name =>
-                        <ListGroupItem
-                          className="listingplayer"
-                          onClick={
-                            e => {
-                              this.setState({
-                                email: name.email,
-                                admin: name.admin,
-                                name: name.username,
-                              });
-                            }
-                          }
-                          key={name.id}>
-                          {name.username}
-                        </ListGroupItem>)}
-                    </div>
-                  </ListGroup>
-                </div>
-              </Col>
-              <Col xs={12} sm={6}>
+          <Row>
+            <Col xs={12} sm={4}></Col>
+            <Col xs={12} sm={4}>
+
+              <div>
+
                 <p>Username:</p>
+                <br/>
+
                 <Input
                   name="firstname"
                   value={(this.state.name ? this.state.name: '')}
@@ -84,30 +66,25 @@ export default class User extends Component {
                 <hr/>
                 <br/>
                 <p>Email:</p>
+                <br/>
+                
                 <Input
                   name="firstname"
                   value={(this.state.email ? this.state.email: '')}
                   onChange={this.onChangeEmail.bind(this)
                   }/>
-
-
                 <br/>
                 <br/>
-                <p><input
-                  name="isGoing"
-                  type="checkbox"
-                  checked={this.state.admin}
-                  onChange={this.onAdminCheck} /> Admin </p>
-
-
                 <br/>
                 <br/>
-                <Button>Save user</Button>
-                <Button className="formbtnDel" color="primary" onClick={this.delPerson} >Delete user</Button>
+                <Button>Save profile</Button>
 
-              </Col>
-            </Row>
-          </div>
+
+              </div>
+            </Col>
+            <Col xs={12} sm={4}></Col>
+
+          </Row>
         </Grid>
 
       )

@@ -5,22 +5,26 @@ import { Input } from 'mdbreact'
 import Goal from '../components/Goal'
 import Result from './Result'
 import {Button } from 'mdbreact'
+import DayPicker from 'react-day-picker';
+import Matchpositions from '../components/Matchpositions'
+
+
 export default class Match extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      teams:[],
-      matches:[],
-      hometeam: '',
-      awayteam: '',
-      homescoreHome: 0,
-      homescoreAway: 0,
-      emptyarrayHome:[],
-      emptyarrayAway:[],
-
+      teamsformatch:[],
+      seasons:[],
+      homeID:'',
+      awayID:'',
+      selectedOptionHome:'',
+      selectedOptionAway: '',
+      selectedOptionSeason:'',
+      selectedDay:undefined,
+      selectedDayString:'',
 
     };
-
+  this.handleDayClick = this.handleDayClick.bind(this);
   }
   createGoalHome = () => {
   let homescore = this.state.homescore
@@ -32,112 +36,129 @@ export default class Match extends Component {
 }
 
 
-  filterUpdateHome(event){
-    var emptyarray = []
-    for(var i = 0; i < event.target.value; i++){
-      emptyarray.push(i)
-    }
-    this.setState({
-      homescoreHome: event.target.value,
-      emptyarrayHome: emptyarray,
-    })
 
-  }
-  filterUpdateAway(event){
-    var emptyarray = []
-    for(var i = 0; i < event.target.value; i++){
-      emptyarray.push(i)
-    }
-    this.setState({
-      homescoreAway: event.target.value,
-      emptyarrayAway: emptyarray,
-    })
+  handleDayClick(day, { selected, disabled }) {
 
-  }
+   if (disabled) {
+     return;
+   }
+   if (selected) {
+     this.setState({ selectedDay: undefined });
+     return;
+   }
+   this.setState({
+     selectedDay: day,
+     selectedDayString: day.toLocaleDateString('en-GB')
+   });
+ }
 
   componentDidMount() {
-    fetch(`https://ballc-backend-api.herokuapp.com/matches`)
+    fetch(`https://ballc-frontend-be.herokuapp.com/teamsformatch`)
     .then(result => result.json())
-    .then(matches => this.setState({matches}))
+    .then(teamsformatch => this.setState({teamsformatch}))
 
-    fetch(`https://ballc-backend-api.herokuapp.com/teams`)
+    fetch(`https://ballc-frontend-be.herokuapp.com/seasons`)
     .then(result => result.json())
-    .then(teams => this.setState({teams}))
+    .then(seasons => this.setState({seasons}))
   }
 
-  getTeamName(id){
-    var teamname= ''
-    this.state.teams.forEach(team =>
-      {
-        if(team.team_id === id){
-          teamname= team.teamName
-        }
-      }
-    )
-    return teamname
+  handleChangeHome = (selectedOptionHome) => {
+    this.setState({ selectedOptionHome,
+    homeID:selectedOptionHome.value });
+    console.log(`Hometeam:`, selectedOptionHome);
   }
+  handleChangeAway = (selectedOptionAway) => {
+    this.setState({ selectedOptionAway,
+    awayID:selectedOptionAway.value });
+    console.log(`Awayteam:`, selectedOptionAway);
+  }
+  handleChangeSeason = (selectedOptionSeason) => {
+    this.setState({ selectedOptionSeason});
+  }
+
 
   render() {
+    const { selectedOptionHome } = this.state.teamsformatch;
+    const { selectedOptionAway } = this.state.teamsformatch;
+    const { selectedOptionSeason } = this.state.seasons;
+
+
 
     return (
       <div>
         <Grid>
           <Row>
+            <br/>
+            <Col xs={12} sm={4}></Col>
             <Col xs={12} sm={4}>
-              <h2>MATCHES</h2>
-              <br/>
-              <div className="TeamlistMatch">
-                <ListGroup>
-                  <div>
-                    {this.state.matches.map(name =>
-                      <ListGroupItem
-                        className="listingplayer"
-                        onClick={
-                          e => {
-                            this.setState({
-                              hometeam: name.home_team,
-                              awayteam: name.away_team,
-                            });
-                          }
-                        }
-                        key={name.match_id}>
-                        {this.getTeamName(name.home_team)} vs {this.getTeamName(name.away_team)} on {name.match_date}
-                      </ListGroupItem>)}
-                  </div>
-                </ListGroup>
-              </div>
+              <p>SEASON</p>
+              <Select
+                value={selectedOptionSeason}
+                onChange={this.handleChangeSeason}
+                options={this.state.seasons}
+              />
             </Col>
-            <Col xs={12} sm={4}>
-              {this.getTeamName(this.state.hometeam) ? (
-                <h2>{this.getTeamName(this.state.hometeam)}</h2>) : (<h2>Home Team</h2>)}
-              <p> SCORE </p>
-              <Input
-                name="homescore"
-                onChange={this.filterUpdateHome.bind(this)}/>
+            <br/><br/><br/>
+            <Col xs={12} sm={6}>
+              <p>HOME TEAM</p>
+              <Select
+                value={selectedOptionHome}
+                onChange={this.handleChangeHome}
+                options={this.state.teamsformatch}
+              />
+            </Col>
+            <Col xs={12} sm={6}>
+              <p>AWAY TEAM</p>
 
-              <div className="ScoreList">
-                {this.state.emptyarrayHome.map(team =>
-                  <Goal key={team}/>)}
-              </div>
+              <Select
+                value={selectedOptionAway}
+                onChange={this.handleChangeAway}
+                options={this.state.teamsformatch}
+              />
+            </Col>
+            <Col xs={12} sm={6}>
+              {this.state.selectedOptionHome ? (
+                <Matchpositions teamid={this.state.homeID}/>
+              ) : (
+                <p></p>
+              )}
+            </Col>
+
+            <Col xs={12} sm={6}>
+              {this.state.selectedOptionAway ? (
+                <Matchpositions teamid={this.state.awayID}/>
+              ) : (
+                <p></p>
+              )}
 
             </Col>
-            <Col xs={12} sm={4}>
-              {this.getTeamName(this.state.awayteam) ? (
-                <h2>{this.getTeamName(this.state.awayteam)}</h2>) : (<h2>Away Team</h2>)}
-              <p> SCORE </p>
-              <Input
-                name="awayscore"
-                onChange={this.filterUpdateAway.bind(this)}/>
-              <div className="ScoreList">
-                {this.state.emptyarrayAway.map(team =>
-                  <Goal key={team}/>)}
-              </div>
-              <br/>
+            <br/><br/><br/><br/><br/><br/><br/>
+
+            <Col xs={12} sm={6}>
+              <br/><br/>
+              <p>Choose game date</p>
+              <hr/>
+              <DayPicker
+                onDayClick={this.handleDayClick}
+                selectedDays={this.state.selectedDay}
+                disabledDays={{ daysOfWeek: [0] }}
+              />
+            </Col>
+              <Col xs={12} sm={6}>
+              <br/><br/><br/><br/>
+
+              <h3 className="greytext">GAMEDATA:</h3>
+              {this.state.selectedOptionHome && this.state.selectedOptionAway ? (
+                <p>{this.state.selectedOptionHome.label} VS {this.state.selectedOptionAway.label}</p> ):(<p>Select teams to see gamedata</p>)}
+
+              {this.state.selectedDay ? (
+                <p>Gamedate: {this.state.selectedDay.toLocaleDateString('en-GB')}</p>
+              ) : (
+                <p></p>
+              )}
 
               <Button className="formbtnSave" color="primary" onClick={this.delPerson} >Save results</Button>
               <Button className="formbtnDel" color="primary" onClick={this.delPerson} >Delete results</Button>
-
-
             </Col>
           </Row>
         </Grid>
