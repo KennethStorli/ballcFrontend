@@ -3,9 +3,12 @@ import {Grid, Row, Col, ListGroup, ListGroupItem } from 'react-bootstrap'
 import Select from 'react-select';
 
 import Goal from '../components/Goal'
+import { FormattedMessage } from 'react-intl';
+
 import Result from './Result'
 import {Button, Input } from 'mdbreact'
 import {PostData} from '../PostData';
+
 
 
 export default class Results extends Component {
@@ -213,7 +216,12 @@ export default class Results extends Component {
         <Grid>
           <Row>
             <Col xs={12} sm={4}>
-              <h2>MATCHES</h2>
+              <h2>
+              <FormattedMessage
+              id="RESULT.matchesTitle"
+              defaultMessage="MATCHES"
+              />
+              </h2>
               <br/>
               <div className="TeamlistMatch">
                 <ListGroup>
@@ -240,7 +248,12 @@ export default class Results extends Component {
             <Col xs={12} sm={4}>
               {this.getTeamName(this.state.hometeam) ? (
                 <h2>{this.getTeamName(this.state.hometeam)}</h2>) : (<h2>Home Team</h2>)}
-              <p> SCORE </p>
+              <p> 
+              <FormattedMessage
+              id="RESULT.homeScoreTitle"
+              defaultMessage="SCORE"
+              />
+              </p>
               <Input
                 name="homescore"
                 onChange={this.filterUpdateHome.bind(this)}/>
@@ -280,7 +293,12 @@ export default class Results extends Component {
             <Col xs={12} sm={4}>
               {this.getTeamName(this.state.awayteam) ? (
                 <h2>{this.getTeamName(this.state.awayteam)}</h2>) : (<h2>Away Team</h2>)}
-              <p> SCORE </p>
+              <p>
+              <FormattedMessage
+              id="RESULT.awayScoreTitle"
+              defaultMessage="SCORE"
+              />
+              </p>
               <Input
                 name="awayscore"
                 onChange={this.filterUpdateAway.bind(this)}/>
@@ -318,8 +336,20 @@ export default class Results extends Component {
               </div>
               <br/>
 
-              <Button className="formbtnSave" color="primary" onClick={this.saveResult} >Save results</Button>
-              <Button className="formbtnDel" color="primary" onClick={this.delResult} >Delete results</Button>
+
+              <Button className="formbtnSave" color="primary" onClick={this.saveResult} >
+              <FormattedMessage
+              id="RESULT.saveButton"
+              defaultMessage="Save results"
+              />
+              </Button>
+              <Button className="formbtnDel" color="primary" onClick={this.delResult} >
+              <FormattedMessage
+              id="RESULT.delButton"
+              defaultMessage="Delete results"
+              />
+              </Button>
+
 
 
             </Col>
