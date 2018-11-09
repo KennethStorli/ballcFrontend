@@ -229,7 +229,7 @@ delTeam = () =>{
                               });
                             }
                           }
-                        }
+                        
                         key={team.team_id}>
                         {team.teamName}
                       </ListGroupItem>)}

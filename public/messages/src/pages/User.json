@@ -8,15 +8,15 @@
     "defaultMessage": "Email:"
   },
   {
-    "id": "USER.admin",
-    "defaultMessage": "Admin:"
-  },
-  {
     "id": "USER.adminInput",
     "defaultMessage": "Admin"
   },
   {
     "id": "USER.saveUserButton",
     "defaultMessage": "Save user"
+  },
+  {
+    "id": "USER.deleteUserButton",
+    "defaultMessage": "Delete user"
   }
 ]
