@@ -19,7 +19,9 @@ export default class Team extends Component {
       coaches:[],
       owners:[],
       persons:[],
-      ownerNames:[],
+     // ownerNames:[],
+      availableOwners:[],
+      availableCoaches:[],
       selectedAssociation:'',
       selectedCoach:'',
       selectedLocation:'',
@@ -51,6 +53,7 @@ export default class Team extends Component {
     fetch(`http://ballc-frontend-be.herokuapp.com/persons`)
     .then(result => result.json())
     .then(persons => this.setState({persons}))
+
   }
 
   onChangeName(event){
@@ -116,6 +119,79 @@ export default class Team extends Component {
       }
     })
     return personName;
+  }
+
+  setAvailableOwners() {
+    var tempAvailableOwnerIds = []
+    var tempOccupiedOwnerIds = []
+    var availableOwners = []
+    var index;
+
+    this.state.owners.forEach(owner => {
+      tempAvailableOwnerIds.push(owner.owner_id)
+    })
+    this.state.teams.forEach(team => {
+      tempOccupiedOwnerIds.push(team.owner)
+    })
+    
+    for (var i = 0; i < tempOccupiedOwnerIds.length; i++) {
+      index = tempAvailableOwnerIds.indexOf(tempOccupiedOwnerIds[i]);
+      if(index > -1) {
+        tempAvailableOwnerIds.splice(index, 1);
+      }
+    }
+    tempAvailableOwnerIds.forEach(owner => {
+      availableOwners.push(this.getOwnerById(owner))
+    })
+    this.state.availableOwners = availableOwners.slice()
+  }
+
+  getOwnerById(id) {
+    var tempOwner;
+    this.state.owners.forEach(owner => {
+      if(id === owner.owner_id) {
+        tempOwner = owner;
+        
+      }
+    })
+    return tempOwner;
+  }
+
+  setAvailableCoaches() {
+    var tempAvailableCoachIds = []
+    var tempOccupiedCoachIds = []
+    var availableCoaches = []
+    var index;
+
+    this.state.coaches.forEach(coach => {
+      tempAvailableCoachIds.push(coach.coach_id)
+    })
+    this.state.teams.forEach(team => {
+      tempOccupiedCoachIds.push(team.coach)
+    })
+    
+    for (var i = 0; i < tempOccupiedCoachIds.length; i++) {
+      index = tempAvailableCoachIds.indexOf(tempOccupiedCoachIds[i]);
+      if(index > -1) {
+        tempAvailableCoachIds.splice(index, 1);
+      }
+    }
+    tempAvailableCoachIds.forEach(coach => {
+      availableCoaches.push(this.getCoachById(coach))
+    })
+    console.log(availableCoaches)
+    this.state.availableCoaches = availableCoaches.slice()
+  }
+
+  getCoachById(id) {
+    var tempCoach;
+    this.state.coaches.forEach(coach => {
+      if(id === coach.coach_id) {
+        tempCoach = coach;
+        
+      }
+    })
+    return tempCoach;
   }
 
   render() {
@@ -270,7 +346,8 @@ export default class Team extends Component {
               <div className="divlist">
               <ListGroup>
                       <div>
-                        {this.state.coaches.map(coach =>
+                        {this.setAvailableCoaches()}
+                        {this.state.availableCoaches.map(coach =>
                           <ListGroupItem
                             className="listingplayer"
                             onClick={
@@ -288,11 +365,12 @@ export default class Team extends Component {
               </div>
               <br/>
 
-              <p className="h5 text-center mb-4">REGISTERED OWNERS</p>
+              <p className="h5 text-center mb-4">AVAILABLE OWNERS</p>
               <div className="divlist">
               <ListGroup>
                       <div>
-                        {this.state.owners.map(owner =>
+                        {this.setAvailableOwners()}
+                        {this.state.availableOwners.map(owner =>
                           <ListGroupItem
                             className="listingplayer"
                             onClick={
@@ -304,7 +382,8 @@ export default class Team extends Component {
                             }
                             key={owner.owner_id}>
                             {this.getPersonName(owner.person)}
-                          </ListGroupItem>)}
+                          </ListGroupItem>)
+                        }
                       </div>
                 </ListGroup>
               </div>

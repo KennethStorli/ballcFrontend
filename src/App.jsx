@@ -38,8 +38,6 @@ import Season3 from './pages/Season3';
 import Navbar from './components/Navigator'
 import NavigatorAdm from './components/NavigatorAdm'
 
-
-
 class App extends Component {
   render() {
     return (
@@ -65,9 +63,6 @@ class App extends Component {
           <Route path="/EditSeason" component={EditSeason}></Route>
           <Route path="/Match" component={Match}></Route>
           <Route path="/Result" component={Result}></Route>
-
-
-
 
 
 
