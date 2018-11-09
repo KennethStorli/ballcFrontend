@@ -1,7 +1,7 @@
 import React,  { Component } from 'react';
 import {Row, Grid, Col } from 'react-bootstrap';
 import { ListGroup, ListGroupItem} from 'react-bootstrap';
-import {Button} from 'mdbreact'
+import {Button, Input} from 'mdbreact'
 import '../components/Teamlist.css'
 import { FormattedMessage } from 'react-intl';
 
@@ -23,6 +23,20 @@ export default class User extends Component {
 
   onAdminCheck(e){
     this.setState({admin: !this.state.admin});
+  }
+
+  onChangeUsername(event){
+    const username = event.target.value
+    this.setState({
+      name: username
+    })
+  }
+
+  onChangeEmail(event){
+    const email = event.target.value
+    this.setState({
+      email: email
+    })
   }
 
   componentDidMount() {
@@ -47,12 +61,12 @@ export default class User extends Component {
                               this.setState({
                                 email: name.email,
                                 admin: name.admin,
-                                name: name.name,
+                                name: name.username,
                               });
                             }
                           }
                           key={name.id}>
-                          {name.name}
+                          {name.username}
                         </ListGroupItem>)}
                     </div>
                   </ListGroup>
@@ -65,7 +79,11 @@ export default class User extends Component {
                 defaultMessage="Username:"
                 />
                 </p>
-                <p>{(this.state.name ? this.state.name: '')}</p>
+                <Input
+                  name="firstname"
+                  value={(this.state.name ? this.state.name: '')}
+                  onChange={this.onChangeUsername.bind(this)
+                  }/>
 
                 <br/>
                 <hr/>
@@ -76,15 +94,11 @@ export default class User extends Component {
                 defaultMessage="Email:"
                 />
                 </p>
-                <p>{(this.state.email ? this.state.email: '')}</p>
-
-                <p>
-                <FormattedMessage
-                id="USER.admin"
-                defaultMessage="Admin:"
-                />
-                </p>
-                <p>{(this.state.admin ? this.state.admin: '')}</p>
+                <Input
+                  name="firstname"
+                  value={(this.state.email ? this.state.email: '')}
+                  onChange={this.onChangeEmail.bind(this)
+                  }/>
 
                 <br/>
                 <br/>
@@ -106,6 +120,12 @@ export default class User extends Component {
                 <FormattedMessage
                 id="USER.saveUserButton"
                 defaultMessage="Save user"
+                />
+                </Button>
+                <Button className="formbtnDel" color="primary" onClick={this.delPerson} >
+                <FormattedMessage
+                id="USER.deleteUserButton"
+                defaultMessage="Delete user"
                 />
                 </Button>
 

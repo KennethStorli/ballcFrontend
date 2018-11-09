@@ -2,8 +2,8 @@ import React, { Component} from 'react';
 import { Input } from 'mdbreact'
 import { Grid, Row, Col, ListGroup, ListGroupItem } from 'react-bootstrap'
 import { Button } from 'mdbreact'
-import DayPicker from 'react-day-picker';
 import { FormattedMessage } from 'react-intl';
+
 
 import 'react-day-picker/lib/style.css';
 
@@ -55,7 +55,7 @@ export default class EditSeason extends Component{
           <div>
             <Grid>
               <br/>              <br/>
-              
+
               <Row>
                 <Col xs={12} sm={6}>
                   <p className="h5 text-center mb-4">

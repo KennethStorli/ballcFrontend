@@ -1,22 +1,22 @@
 import React, {Component} from 'react';
-import Select from 'react-select';
-import {Grid, Row, Col} from 'react-bootstrap'
+import {Grid, Row, Col, ListGroup, ListGroupItem} from 'react-bootstrap'
 import { Input } from 'mdbreact'
 import Goal from '../components/Goal'
+
 import { FormattedMessage } from 'react-intl';
 
-const options = [
-  { value: 'chocolate', label: 'Chocolate' },
-  { value: 'strawberry', label: 'Strawberry' },
-  { value: 'vanilla', label: 'Vanilla' }
-];
+import {Button } from 'mdbreact'
 
-export default class Result extends Component {
+
+
+export default class Results extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hometeam: this.props.hometeam,
-      awayteam: this.props.awayteam,
+      teams:[],
+      matches:[],
+      hometeam: '',
+      awayteam: '',
       homescoreHome: 0,
       homescoreAway: 0,
       emptyarrayHome:[],
@@ -26,15 +26,6 @@ export default class Result extends Component {
     };
 
   }
-  createGoalHome = () => {
-  let homescore = this.state.homescore
-  let i = 0
-
-  for (i = 0; i < this.state.homescore.value; i++){
-    return(<Goal/>)
-  }
-}
-
 
   filterUpdateHome(event){
     var emptyarray = []
@@ -58,44 +49,119 @@ export default class Result extends Component {
     })
 
   }
+
+  componentDidMount() {
+    fetch(`https://ballc-backend-api.herokuapp.com/matches`)
+    .then(result => result.json())
+    .then(matches => this.setState({matches}))
+
+    fetch(`https://ballc-backend-api.herokuapp.com/teams`)
+    .then(result => result.json())
+    .then(teams => this.setState({teams}))
+  }
+
+  getTeamName(id){
+    var teamname= ''
+    this.state.teams.forEach(team =>
+      {
+        if(team.team_id === id){
+          teamname= team.teamName
+        }
+      }
+    )
+    return teamname
+  }
+
   render() {
 
     return (
       <div>
-        <Col xs={12} sm={6}>
-          <h2>{this.state.hometeam} </h2>
-          <p> 
-          <FormattedMessage
-          id="RESULT.homeScoreTitle"
-          defaultMessage="SCORE"
-          />
-          </p>
-          <Input
-            name="homescore"
-            onChange={this.filterUpdateHome.bind(this)}/>
-          <br/>
-          <br/>
-          {this.state.emptyarrayHome.map(team =>
-            <Goal key={team}/>)}
+        <Grid>
+          <Row>
+            <Col xs={12} sm={4}>
+              <h2>
+              <FormattedMessage
+              id="RESULT.matchesTitle"
+              defaultMessage="MATCHES"
+              />
+              </h2>
+              <br/>
+              <div className="TeamlistMatch">
+                <ListGroup>
+                  <div>
+                    {this.state.matches.map(name =>
+                      <ListGroupItem
+                        className="listingplayer"
+                        onClick={
+                          e => {
+                            this.setState({
+                              hometeam: name.home_team,
+                              awayteam: name.away_team,
+                            });
+                          }
+                        }
+                        key={name.match_id}>
+                        {this.getTeamName(name.home_team)} vs {this.getTeamName(name.away_team)} on {name.match_date}
+                      </ListGroupItem>)}
+                  </div>
+                </ListGroup>
+              </div>
+            </Col>
+            <Col xs={12} sm={4}>
+              {this.getTeamName(this.state.hometeam) ? (
+                <h2>{this.getTeamName(this.state.hometeam)}</h2>) : (<h2>Home Team</h2>)}
+              <p> 
+              <FormattedMessage
+              id="RESULT.homeScoreTitle"
+              defaultMessage="SCORE"
+              />
+              </p>
+              <Input
+                name="homescore"
+                onChange={this.filterUpdateHome.bind(this)}/>
+
+              <div className="ScoreList">
+                {this.state.emptyarrayHome.map(team =>
+                  <Goal key={team}/>)}
+              </div>
+
+            </Col>
+            <Col xs={12} sm={4}>
+              {this.getTeamName(this.state.awayteam) ? (
+                <h2>{this.getTeamName(this.state.awayteam)}</h2>) : (<h2>Away Team</h2>)}
+              <p>
+              <FormattedMessage
+              id="RESULT.awayScoreTitle"
+              defaultMessage="SCORE"
+              />
+              </p>
+              <Input
+                name="awayscore"
+                onChange={this.filterUpdateAway.bind(this)}/>
+              <div className="ScoreList">
+                {this.state.emptyarrayAway.map(team =>
+                  <Goal key={team}/>)}
+              </div>
+              <br/>
 
 
-        </Col>
-        <Col xs={12} sm={6}>
-          <h2>{this.state.awayteam}</h2>
-          <p>
-          <FormattedMessage
-          id="RESULT.awayScoreTitle"
-          defaultMessage="SCORE"
-          />
-          </p>
-          <Input
-            name="awayscore"
-            onChange={this.filterUpdateAway.bind(this)}/>
-          <br/>
-          <br/>
-          {this.state.emptyarrayAway.map(team =>
-            <Goal key={team}/>)}
-        </Col>
+              <Button className="formbtnSave" color="primary" onClick={this.delPerson} >  
+              <FormattedMessage
+              id="RESULT.saveButton"
+              defaultMessage="Save results"
+              />
+              </Button>
+              <Button className="formbtnDel" color="primary" onClick={this.delPerson} >
+              <FormattedMessage
+              id="RESULT.delButton"
+              defaultMessage="Delete results"
+              />
+              </Button>
+
+
+            </Col>
+          </Row>
+        </Grid>
       </div>
     );
   }

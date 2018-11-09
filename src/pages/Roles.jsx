@@ -72,12 +72,12 @@ export default class Roles extends Component {
       team_id:user.selectTeam.team_id
     }
 
-    if(this.state.number != ''){
+    if(this.state.number !== ''){
       this.setState({player: true});
       var data3 = {
         number: user.number,
         player: user.player,
-        selected: user.selected, 
+        selected: user.selected,
         team: user.team_id
       }
       var data2 = {...data, ...data3 }
@@ -87,7 +87,7 @@ export default class Roles extends Component {
       PostData('addrole', data);
     }
 
-    
+
   }
     render(){
       return(

@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
-import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
+import { Navbar, Nav, NavItem, NavDropdown, MenuItem, Glyphicon } from 'react-bootstrap';
 import { Modal, Tabs, Tab } from 'react-bootstrap';
 import Login from  './Login';
 import SignUp from './SignUp'
+import FAQs from './FAQ'
+
 
 import './Navigator.css'
 
@@ -10,11 +12,14 @@ export default class Navigator extends Component {
   constructor(props, context) {
     super(props, context);
 
+        this.handleShowHelp = this.handleShowHelp.bind(this);
+        this.handleCloseHelp = this.handleCloseHelp.bind(this);
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
 
     this.state = {
-      show: false
+      show: false,
+      showHelp: false
     };
   }
 
@@ -24,6 +29,14 @@ export default class Navigator extends Component {
 
   handleShow() {
     this.setState({ show: true });
+  }
+
+  handleCloseHelp() {
+    this.setState({ showHelp: false });
+  }
+
+  handleShowHelp() {
+    this.setState({ showHelp: true });
   }
   render(){
     return(
@@ -38,6 +51,7 @@ export default class Navigator extends Component {
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav>
+
               <NavDropdown eventKey={2} title="Seasons" id="basic-nav-dropdown">
                 <MenuItem eventKey={2.1} href="/Season3" to="/Season3">Season 3</MenuItem>
                 <MenuItem divider />
@@ -49,19 +63,22 @@ export default class Navigator extends Component {
               </NavItem>
             </Nav>
             <Nav pullRight>
-              <NavItem eventKey={4} href="/User" to="/User">
-                Profile
-              </NavItem>
               <NavItem eventKey={1} onClick={this.handleShow}>
                 Login
               </NavItem>
-              <NavDropdown eventKey={5} title="Admin"   id="basic-nav-dropdown">
-                <MenuItem eventKey={5.2} href="/Person" to="/Person">Person</MenuItem>
-                <MenuItem eventKey={5.3} href="/Team" to="/Team">Team</MenuItem>
-                <MenuItem eventKey={5.3} href="/Team" to="/Team">Season</MenuItem>
-                <MenuItem eventKey={5.3} href="/Team" to="/Team">Match</MenuItem>
+              <NavItem eventKey={1} href="/Watchlist" to="/Watchlist">
+                <Glyphicon glyph="star" />
+              </NavItem>
+              <NavItem eventKey={1} href="/Profile" to="/Profile">
+                <Glyphicon glyph="user" />
+              </NavItem>
 
-              </NavDropdown>
+              <NavItem eventKey={1} href="/Profile" to="/Profile">
+                <Glyphicon glyph="cog" />
+              </NavItem>
+              <NavItem eventKey={1} onClick={this.handleShowHelp}>
+                <Glyphicon glyph="question-sign" />
+              </NavItem>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
@@ -78,6 +95,18 @@ export default class Navigator extends Component {
                 <SignUp />
               </Tab>
             </Tabs>
+          </Modal.Body>
+          <Modal.Footer>
+            <p>Thank you for using our site!</p>
+          </Modal.Footer>
+        </Modal>
+
+        <Modal show={this.state.showHelp} onHide={this.handleCloseHelp}>
+          <Modal.Header closeButton>
+            <Modal.Title>Need some help?</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <FAQs />
           </Modal.Body>
           <Modal.Footer>
             <p>Thank you for using our site!</p>

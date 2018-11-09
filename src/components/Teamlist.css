@@ -4,6 +4,13 @@
   overflow-y: scroll;
   background-color: #efefef;
 }
+.TeamlistMed {
+  flex: 1;
+  height: 600px;
+  overflow-y: scroll;
+  background-color: #efefef;
+}
+
 
 .TeamlistMatch {
   flex: 1;
@@ -14,6 +21,13 @@
 .ScoreList {
   flex: 1;
   height: 580px;
+  overflow-y: auto;
+  overflow-x:hidden;
+}
+
+.MatchPosList {
+  flex: 1;
+  height: 400px;
   overflow-y: auto;
   overflow-x:hidden;
 }

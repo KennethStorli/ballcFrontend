@@ -3,11 +3,12 @@ import Association from './Association';
 import Owner from './Owner';
 import Location from './Location';
 import Coach from './Coach';
-import Playerinfo from './Playerinfo'
 import './Teams.css'
+
 import { FormattedMessage } from 'react-intl';
 
-import { Row, Grid, Col, ListGroup, ListGroupItem   } from 'react-bootstrap'
+import { Row, Grid, Col} from 'react-bootstrap'
+
 
 export default class Teaminfo extends Component{
     constructor(props) {
@@ -36,11 +37,6 @@ export default class Teaminfo extends Component{
 
 
     render() {
-      let filteredPlayers = this.state.players.filter(
-        (players) => {
-          return this.state.team
-        }
-      )
 
       return (
         <div>
