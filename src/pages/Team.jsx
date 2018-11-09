@@ -154,7 +154,7 @@ export default class Team extends Component {
       selectedOwner: ownerinput
     })
   }
-  
+
 
 
 
@@ -220,21 +220,21 @@ delTeam = () =>{
                                 location_id: team.location,
                                 coach_id: team.coach,
                                 owner_id: team.owner,
-                                selectedAssociation: this.getTeamAssociation(team.association),
-                                selectedLocation: this.getTeamLocation(team.location),
-                                selectedCoach: this.getTeamCoach(team.coach),
-                                selectedOwner: this.getTeamOwner(team.owner)
-                              });
-                            }
+                              selectedAssociation: this.getTeamAssociation(team.association),
+                              selectedLocation: this.getTeamLocation(team.location),
+                              selectedCoach: this.getTeamCoach(team.coach),
+                              selectedOwner: this.getTeamOwner(team.owner)
+                            });
                           }
                         }
+                        
                         key={team.team_id}>
                         {team.teamName}
                       </ListGroupItem>)}
                   </div>
                 </ListGroup>
               </div>
-              
+
             </Col>
             <Col xs={12} sm={4}>
 
@@ -412,4 +412,3 @@ delTeam = () =>{
     )
   }
 }
-
