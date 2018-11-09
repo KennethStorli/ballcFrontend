@@ -1,10 +1,22 @@
 [
   {
+    "id": "RESULT.matchesTitle",
+    "defaultMessage": "MATCHES"
+  },
+  {
     "id": "RESULT.homeScoreTitle",
     "defaultMessage": "SCORE"
   },
   {
     "id": "RESULT.awayScoreTitle",
     "defaultMessage": "SCORE"
+  },
+  {
+    "id": "RESULT.saveButton",
+    "defaultMessage": "Save results"
+  },
+  {
+    "id": "RESULT.delButton",
+    "defaultMessage": "Delete results"
   }
 ]
