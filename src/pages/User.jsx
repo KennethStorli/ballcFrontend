@@ -57,6 +57,21 @@ export default class User extends Component {
     .then(result => result.json())
     .then(users => this.setState({users}))
   }
+
+  updateUser = () =>{
+    let user = Object.assign({}, this.state);    //creating copy of object
+
+    var data = {
+
+      email:user.email,
+      admin: user.admin,
+      password:user.password,
+      id:user.id,
+      username:user.name,
+    }
+
+    PostData('updateuser', data)
+  }
   
     render(){
       return(
@@ -119,8 +134,8 @@ export default class User extends Component {
 
                 <br/>
                 <br/>
-                <Button>Save user</Button>
-                <Button className="formbtnDel" color="primary" onClick={this.checkAdmin} >Delete user</Button>
+                <Button onClick={this.checkAdmin}>Save user</Button>
+                <Button className="formbtnDel" color="primary" >Delete user</Button>
 
               </Col>
             </Row>

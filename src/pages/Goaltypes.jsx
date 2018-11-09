@@ -52,6 +52,16 @@ export default class Person extends Component {
 
   }
 
+  addGoalType = () =>{
+    let user = Object.assign({}, this.state);    //creating copy of object
+
+    var data = {
+
+      type: user.newgoalname
+    }
+
+    PostData('addgoaltype', data)
+  }
     render() {
 
     return(
@@ -112,7 +122,7 @@ export default class Person extends Component {
                     onChange={this.onChangeNewGoalName
                     }/>
                   <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-                  <Button className="formbtnSave" color="primary" onClick={this.updatePerson} >New Goaltype</Button>
+                  <Button className="formbtnSave" color="primary" onClick={this.addGoalType} >New Goaltype</Button>
                 </Tab>
               </Tabs>
 

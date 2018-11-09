@@ -8,6 +8,7 @@ import {Button } from 'mdbreact'
 import DayPicker from 'react-day-picker';
 import Matchpositions from '../components/Matchpositions'
 import {PostData} from '../PostData';
+import axios from 'axios';
 
 
 export default class Match extends Component {
@@ -16,6 +17,8 @@ export default class Match extends Component {
     this.state = {
       teamsformatch:[],
       seasons:[],
+      home: [],
+      away: [],
       homeID:'',
       awayID:'',
       selectedOptionHome:'',
@@ -23,6 +26,8 @@ export default class Match extends Component {
       selectedOptionSeason:'',
       selectedDay:undefined,
       selectedDayString:'',
+      positionsHome: [],
+      positionsAway: []
 
     };
   this.handleDayClick = this.handleDayClick.bind(this);
@@ -64,6 +69,16 @@ export default class Match extends Component {
     .then(seasons => this.setState({seasons}))
   }
 
+    componentWillReceiveProps(nextprop){
+      fetch(`https://ballc-frontend-be.herokuapp.com/playersteam/${nextprop.homeID}`)
+      .then(result => result.json())
+      .then(home => this.setState({home}))
+
+      fetch(`https://ballc-frontend-be.herokuapp.com/playersteam/${nextprop.awayID}`)
+      .then(result => result.json())
+      .then(away => this.setState({away}))
+    }
+
   handleChangeHome = (selectedOptionHome) => {
     this.setState({ selectedOptionHome,
     homeID:selectedOptionHome.value });
@@ -78,16 +93,29 @@ export default class Match extends Component {
     this.setState({ selectedOptionSeason});
   }
 
+  getDataHome = (data) =>{
+    console.log(data);
+    this.setState({positionsHome: data});
+  }
+
+  getDataAway = (data) =>{
+    console.log(data);
+    this.setState({positionsAway: data});
+  }
+
   addMatch = () =>{
     let user = Object.assign({}, this.state);    //creating copy of object
 
     var data = {
-      start_date: user.selectedDayStartString,
-      end_date: user.selectedDayEndString,
-      name: user.seasonName,
-      description: user.seasonDescription
-    }
+      match_date: user.selectedDayString,
+      season: user.selectedOptionSeason,
+      location: '',
+      home_team: user.selectedOptionHome,
+      away_team: user.selectedOptionAway,
+      positionsHome: user.positionsHome,
+      positionsAway: user.positionsAway
 
+    }
     PostData('/addmatch', data)
   }
 
@@ -95,7 +123,6 @@ export default class Match extends Component {
     const { selectedOptionHome } = this.state.teamsformatch;
     const { selectedOptionAway } = this.state.teamsformatch;
     const { selectedOptionSeason } = this.state.seasons;
-
 
 
     return (
@@ -132,7 +159,7 @@ export default class Match extends Component {
             </Col>
             <Col xs={12} sm={6}>
               {this.state.selectedOptionHome ? (
-                <Matchpositions teamid={this.state.homeID}/>
+                <Matchpositions teamid={this.state.homeID} newdata = {this.getDataHome} />
               ) : (
                 <p></p>
               )}
@@ -140,7 +167,7 @@ export default class Match extends Component {
 
             <Col xs={12} sm={6}>
               {this.state.selectedOptionAway ? (
-                <Matchpositions teamid={this.state.awayID}/>
+                <Matchpositions teamid={this.state.awayID} newdata = {this.getDataAway} />
               ) : (
                 <p></p>
               )}
