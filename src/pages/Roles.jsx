@@ -37,6 +37,8 @@ export default class Roles extends Component {
 
     this.onCoachCheck = this.onCoachCheck.bind(this)
     this.onOwnerCheck = this.onOwnerCheck.bind(this)
+    this.onPlayerCheck = this.onPlayerCheck.bind(this)
+
   }
   onChangeNumber(event){
     const number = event.target.value
@@ -68,7 +70,7 @@ export default class Roles extends Component {
     .then(players => this.setState({players}))
   }
 
-  getTeamOwner(id) {
+  getOwner(id) {
     this.state.owners.forEach(owner => {
       if(owner.person === id) {
             this.setState({owner: true})
@@ -108,7 +110,7 @@ export default class Roles extends Component {
                           teamname: teams.teamName,
                         })
 
-                  } 
+                  }
             })
           }
         })
@@ -133,8 +135,8 @@ export default class Roles extends Component {
     this.setState({owner: !this.state.owner});
   }
 
-  onOwnerCheck(e){
-    this.setState({player: !this.state.owner});
+  onPlayerCheck(e){
+    this.setState({player: !this.state.player});
   }
 
   selectOption = (event) =>{
@@ -197,7 +199,7 @@ export default class Roles extends Component {
                                 player:false,
 
                               });
-                              this.getTeamOwner(name.person_id)
+                              this.getOwner(name.person_id)
                               this.getPlayer(name.person_id)
                               this.getCoach(name.person_id)
 
