@@ -22,11 +22,7 @@ import Goaltypes from './pages/Goaltypes'
 import Profile from './pages/Profile';
 import Watchlist from './pages/Watchlist'
 import WatchlistEdit from './pages/WatchlistEdit'
-
-import Seasons from './pages/Seasons';
-import Season1 from './pages/Season1';
-import Season2 from './pages/Season2';
-import Season3 from './pages/Season3';
+import Matches from './pages/Matches'
 
 
 
@@ -64,19 +60,8 @@ class App extends Component {
           <Route path="/Goaltypes" component={Goaltypes}></Route>
           <Route path="/Watchlist" component={Watchlist}></Route>
           <Route path="/WatchlistEdit" component={WatchlistEdit}></Route>
-
-          <Route path="/Season1" component={Season1}></Route>
-          <Route path="/Season2" component={Season2}></Route>
-          <Route path="/Season3" component={Season3}></Route>
-
-
-
-
-
-
-
-
-
+          <Route path="/Matches" component={Matches}></Route>
+          
         </div>
       </Router>
     );
