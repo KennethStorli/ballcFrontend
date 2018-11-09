@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import {Row, Grid, Col, Image, ListGroup, ListGroupItem} from 'react-bootstrap';
 import {Button} from 'mdbreact'
 import AnonMatches from './Anonmatches'
@@ -39,6 +40,9 @@ export default class Home extends Component {
       <div>
         <Grid>
           <h1>Watchlist</h1>
+          <Link to="/WatchlistEdit">
+            <Button>Edit watchlist</Button>
+          </Link>
           <Row>
             <Col xs={12} sm={6}>
               <h2>Players</h2>
@@ -66,6 +70,8 @@ export default class Home extends Component {
               </Col>
             </Col>
           </Row>
+
+
         </Grid>
       </div>
     )

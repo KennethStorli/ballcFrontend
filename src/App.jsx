@@ -21,24 +21,14 @@ import Result from './pages/Result';
 import Goaltypes from './pages/Goaltypes'
 import Profile from './pages/Profile';
 import Watchlist from './pages/Watchlist'
+import WatchlistEdit from './pages/WatchlistEdit'
 
-
-
-
-
-
-
-
-
-/*import Seasons from './pages/Seasons';
+import Seasons from './pages/Seasons';
 import Season1 from './pages/Season1';
 import Season2 from './pages/Season2';
 import Season3 from './pages/Season3';
-<Route path="/Seasons" component={Seasons}></Route>
-<Route path="/Season1" component={Season1}></Route>
-<Route path="/Season2" component={Season2}></Route>
-<Route path="/Season3" component={Season3}></Route>
-*/
+
+
 
 import Navbar from './components/Navigator'
 import NavigatorAdm from './components/NavigatorAdm'
@@ -73,6 +63,11 @@ class App extends Component {
           <Route path="/Result" component={Result}></Route>
           <Route path="/Goaltypes" component={Goaltypes}></Route>
           <Route path="/Watchlist" component={Watchlist}></Route>
+          <Route path="/WatchlistEdit" component={WatchlistEdit}></Route>
+
+          <Route path="/Season1" component={Season1}></Route>
+          <Route path="/Season2" component={Season2}></Route>
+          <Route path="/Season3" component={Season3}></Route>
 
 
 
