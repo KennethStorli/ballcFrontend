@@ -36,7 +36,9 @@ export default class Teams extends Component {
 
   }
 
-
+  addDefaultSrc(ev){
+    ev.target.src = `images/teams/default.jpg`
+  }
 
     render() {
 
@@ -74,7 +76,8 @@ export default class Teams extends Component {
                   }) }}>
                   <div
                   className="allTeams">
-                    <Image src={`images/teams/${team.teamName}.jpg`} circle className="teamimages" />
+                    {/* <Image src={`images/teams/${team.teamName}.jpg`} circle className="teamimages" /> */}
+                    <Image src={`images/teams/${team.teamName}.jpg`} circle className="teamimages" onError={this.addDefaultSrc} />
                     <h1 className="teamnames">{team.teamName}</h1>
                   </div>
                 </Link>

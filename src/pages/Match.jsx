@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
 import Select from 'react-select';
-import {Grid, Row, Col, ListGroup, ListGroupItem} from 'react-bootstrap'
-import { Input } from 'mdbreact'
-import Goal from '../components/Goal'
-import Result from './Result'
+import {Grid, Row, Col} from 'react-bootstrap'
 import {Button } from 'mdbreact'
 import DayPicker from 'react-day-picker';
 import Matchpositions from '../components/Matchpositions'
@@ -26,15 +23,6 @@ export default class Match extends Component {
     };
   this.handleDayClick = this.handleDayClick.bind(this);
   }
-  createGoalHome = () => {
-  let homescore = this.state.homescore
-  let i = 0
-
-  for (i = 0; i < this.state.homescore.value; i++){
-    return(<Goal/>)
-  }
-}
-
 
 
   handleDayClick(day, { selected, disabled }) {
@@ -57,7 +45,7 @@ export default class Match extends Component {
     .then(result => result.json())
     .then(teamsformatch => this.setState({teamsformatch}))
 
-    fetch(`https://ballc-frontend-be.herokuapp.com/seasons`)
+    fetch(`https://ballc-frontend-be.herokuapp.com/seasonslist`)
     .then(result => result.json())
     .then(seasons => this.setState({seasons}))
   }

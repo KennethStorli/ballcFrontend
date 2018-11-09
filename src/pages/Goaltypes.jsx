@@ -3,11 +3,8 @@ import {Row, Grid, Col} from 'react-bootstrap';
 import { Tabs, Tab } from 'react-bootstrap';
 import { ListGroup, ListGroupItem} from 'react-bootstrap';
 import { Input, Button } from 'mdbreact';
-import CreatePerson from '../components/CreatePerson';
-import Search from '../components/Search'
 import '../components/UpdatePerson.css'
 import './Home.css';
-import {PostData} from '../PostData';
 
 import '../components/Teamlist.css'
 

@@ -27,7 +27,7 @@ export default class Navigator extends Component {
         <Navbar collapseOnSelect>
           <Navbar.Header>
             <Navbar.Brand>
-              <a href="/Admin">Admin</a>
+              <a>Admin</a>
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>

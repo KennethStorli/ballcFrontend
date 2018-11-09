@@ -49,7 +49,7 @@ export default class Team extends Component {
     fetch(`http://ballc-frontend-be.herokuapp.com/owners`)
     .then(result => result.json())
     .then(owners => this.setState({owners}))
-    
+
     fetch(`http://ballc-frontend-be.herokuapp.com/persons`)
     .then(result => result.json())
     .then(persons => this.setState({persons}))
@@ -200,33 +200,31 @@ export default class Team extends Component {
         <Grid>
           <Row>
             <Col xs={12} sm={4}>
-            <div className="Teamlist">
-                  <ListGroup>
-                    <div>
-                      {this.state.teams.map(team =>
-                        <ListGroupItem
-                          className="listingplayer"
-                          onClick={
-                            e => {
-                              this.setState({
+              <div className="Teamlist">
+                <ListGroup>
+                  <div>
+                    {this.state.teams.map(team =>
+                      <ListGroupItem
+                        className="listingplayer"
+                        onClick={
+                          e => {
+                            this.setState({
                                 selectTeam: team,
                                 selectedTeamName: team.teamName,
-                                selectedAssociation: this.getTeamAssociation(team.association),
-                                selectedLocation: this.getTeamLocation(team.location),
-                                selectedCoach: this.getTeamCoach(team.coach),
-                                selectedOwner: this.getTeamOwner(team.owner)
-                              });
-                            }
+                              selectedAssociation: this.getTeamAssociation(team.association),
+                              selectedLocation: this.getTeamLocation(team.location),
+                              selectedCoach: this.getTeamCoach(team.coach),
+                              selectedOwner: this.getTeamOwner(team.owner)
+                            });
                           }
-                          key={team.team_id}>
-                          {team.teamName}
-                        </ListGroupItem>)}
-                    </div>
-                  </ListGroup>
-            </div>
-              <SearchSmall
-              />
-
+                        }
+                        key={team.team_id}>
+                        {team.teamName}
+                      </ListGroupItem>)}
+                  </div>
+                </ListGroup>
+              </div>
+              
             </Col>
             <Col xs={12} sm={4}>
 
