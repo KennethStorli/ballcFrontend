@@ -59,47 +59,55 @@ export default class Home extends Component {
       <div>
         <Grid>
           <h1>Edit watchlist</h1>
+          <p>Use the dropdown to add to your favourites</p>
+          <p>and the list to remove</p>
           <Row>
 
             <Col xs={12} sm={6}>
               <h3>Players</h3>
-              <div className="TeamlistMed">
 
-                <ListGroup>
-                  <ListGroupItem>
-                    1
-                  </ListGroupItem>
-                  <ListGroupItem>
-                    1
-                  </ListGroupItem>
-                  <ListGroupItem>
-                    1
-                  </ListGroupItem>
-                  <ListGroupItem>
-                    1
-                  </ListGroupItem>
-                  <ListGroupItem>
-                    1
-                  </ListGroupItem>
-                  <ListGroupItem>
-                    1
-                  </ListGroupItem>
-                </ListGroup>
-
-              </div>
-              <br/>
 
               <Select
                 value={selectedOptionPlayers}
                 onChange={this.handleChangePlayers}
                 options={this.state.players}
               />
+              <div className="TeamlistMed">
+
+                <ListGroup>
+                  <ListGroupItem>
+                    1
+                  </ListGroupItem>
+                  <ListGroupItem>
+                    1
+                  </ListGroupItem>
+                  <ListGroupItem>
+                    1
+                  </ListGroupItem>
+                  <ListGroupItem>
+                    1
+                  </ListGroupItem>
+                  <ListGroupItem>
+                    1
+                  </ListGroupItem>
+                  <ListGroupItem>
+                    1
+                  </ListGroupItem>
+                </ListGroup>
+
+              </div>
+              <br/>
+
 
             </Col>
 
             <Col xs={12} sm={6}>
               <h3>Teams</h3>
-
+              <Select
+                value={selectedOptionTeams}
+                onChange={this.handleChangeTeams}
+                options={this.state.teamsformatch}
+              />
               <div className="TeamlistMed">
 
                 <ListGroup>
@@ -120,12 +128,8 @@ export default class Home extends Component {
 
               </div>
               <br/>
-              <Select
-                value={selectedOptionTeams}
-                onChange={this.handleChangeTeams}
-                options={this.state.teamsformatch}
-              />
-              
+
+
 
               </Col>
             </Row>
