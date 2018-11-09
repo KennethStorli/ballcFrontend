@@ -1,5 +1,5 @@
 export function PostData(type, userData) {
-    let BaseURL = 'https://ballc-frontend-be.herokuapp.com/';
+    let BaseURL = 'http://localhost:8080/';
 
     return new Promise((resolve, reject) =>{
         fetch(BaseURL+type, {

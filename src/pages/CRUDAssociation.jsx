@@ -1,6 +1,7 @@
 import React,  { Component } from 'react';
 import { Col, Grid, Row, ListGroup, ListGroupItem} from 'react-bootstrap';
 import { Button, Input } from 'mdbreact'
+import {PostData} from '../PostData';
 
 import '../components/Teamlist.css'
 
@@ -16,7 +17,8 @@ export default class CRUDAssociation extends Component {
       association_description:'',
 
     };
-
+    this.onChangeA1 = this.onChangeA1.bind(this);
+    this.onChangeA2 = this.onChangeA2.bind(this);
   }
 
   componentDidMount() {
@@ -24,6 +26,57 @@ export default class CRUDAssociation extends Component {
     .then(result => result.json())
     .then(associations => this.setState({associations}))
   }
+
+
+ onChangeA1(event){
+  const address1input = event.target.value
+  this.setState({
+    association_name: address1input
+  })
+}
+
+onChangeA2(event){
+  const address2input = event.target.value
+  this.setState({
+    association_description: address2input
+  })
+}
+
+createassociation = () =>{
+  let user = Object.assign({}, this.state);    //creating copy of object
+
+  let data = {
+    name: user.association_name,
+    description: user.association_description
+
+  }
+  PostData('/addassociation', data);
+}
+
+updateAssociation = () =>{
+  let user = Object.assign({}, this.state);    //creating copy of object
+
+  let data = {
+    association_id: user.association_id,
+    name: user.association_name,
+    description: user.association_description
+
+  }
+  PostData('/updateassociation', data);
+}
+
+delAssociation = () =>{
+  let user = Object.assign({}, this.state);    //creating copy of object
+
+  let data = {
+    association_id: user.association_id,
+    name: user.association_name,
+    description: user.association_description
+
+  }
+  PostData('/delassociation', data);
+}
+
     render(){
       return(
         <Grid>
@@ -89,10 +142,10 @@ export default class CRUDAssociation extends Component {
                 <br/>
 
                 <div className="text-center">
-                  <Button color="primary" onClick={this.createperson} >Create new association</Button>
+                  <Button color="primary" onClick={this.createassociation} >Create new association</Button>
 
-                  <Button className="formbtnSave" color="primary" onClick={this.updatePerson} >Save edit</Button>
-                  <Button className="formbtnDel" color="primary" onClick={this.delPerson} >Delete association</Button>
+                  <Button className="formbtnSave" color="primary" onClick={this.updateAssociation} >Save edit</Button>
+                  <Button className="formbtnDel" color="primary" onClick={this.delAssociation} >Delete association</Button>
 
                 </div>
 

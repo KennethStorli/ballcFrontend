@@ -24,7 +24,7 @@ class Login extends React.Component  {
     if(this.state.password === this.state.confpassword){
       if(this.state.username && this.state.password && this.state.email){
         console.log("Login function");
-        PostData('signup', this.state)
+        PostData('signup', this.state);
       }
       else {
         alert("Please fill out all the fields!")
