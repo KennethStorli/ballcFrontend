@@ -17,7 +17,9 @@ export default class Home extends Component {
     this.state = {
 
       teams:[],
-      seasons:[],
+      players:[],
+      teamsformatch:[],
+      selectedOptionPlayers:[],
       teamID:'',
       filterText:'',
     };
@@ -29,21 +31,29 @@ export default class Home extends Component {
     .then(result => result.json())
     .then(teams => this.setState({teams}))
 
-    fetch(`https://ballc-frontend-be.herokuapp.com/seasonslist`)
+    fetch(`https://ballc-frontend-be.herokuapp.com/playersformatch`)
     .then(result => result.json())
-    .then(seasons => this.setState({seasons}))
+    .then(players => this.setState({players}))
+
+    fetch(`https://ballc-frontend-be.herokuapp.com/teamsformatch`)
+    .then(result => result.json())
+    .then(teamsformatch => this.setState({teamsformatch}))
 
   }
   addDefaultSrc(ev){
     ev.target.src = `images/teams/default.jpg`
   }
-  handleChangeSeason = (selectedOptionSeason) => {
-    this.setState({ selectedOptionSeason});
+  handleChangePlayers = (selectedOptionPlayers) => {
+    this.setState({ selectedOptionPlayers});
+  }
+  handleChangeTeams = (selectedOptionTeams) => {
+    this.setState({ selectedOptionTeams});
   }
 
     render() {
 
-      const { selectedOptionSeason } = this.state.seasons;
+      const { selectedOptionPlayers } = this.state.players;
+      const { selectedOptionTeams } = this.state.teamsformatch;
 
     return(
       <div>
@@ -80,12 +90,10 @@ export default class Home extends Component {
               <br/>
 
               <Select
-                value={selectedOptionSeason}
-                onChange={this.handleChangeSeason}
-                options={this.state.seasons}
+                value={selectedOptionPlayers}
+                onChange={this.handleChangePlayers}
+                options={this.state.players}
               />
-              <Input/>
-              <Button>Add player</Button>
 
             </Col>
 
@@ -113,12 +121,11 @@ export default class Home extends Component {
               </div>
               <br/>
               <Select
-                value={selectedOptionSeason}
-                onChange={this.handleChangeSeason}
-                options={this.state.seasons}
+                value={selectedOptionTeams}
+                onChange={this.handleChangeTeams}
+                options={this.state.teamsformatch}
               />
-              <Input/>
-              <Button>Add team</Button>
+              
 
               </Col>
             </Row>
