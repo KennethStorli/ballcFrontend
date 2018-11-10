@@ -24,6 +24,10 @@
     "defaultMessage": "Select teams to see gamedata"
   },
   {
+    "id": "MATCH.gameDate",
+    "defaultMessage": "Gamedate:"
+  },
+  {
     "id": "MATCH.saveResultButton",
     "defaultMessage": "Save results"
   },
