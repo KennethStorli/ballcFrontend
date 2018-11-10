@@ -100,7 +100,6 @@ export default class Match extends Component {
     var data = {
       match_date: user.selectedDayString,
       season: user.selectedOptionSeason,
-      location: '',
       home_team: user.selectedOptionHome,
       away_team: user.selectedOptionAway,
       positionsHome: user.positionsHome,
