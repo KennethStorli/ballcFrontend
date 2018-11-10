@@ -4,9 +4,8 @@ import { Modal, Tabs, Tab } from 'react-bootstrap';
 import Login from  './Login';
 import SignUp from './SignUp'
 import FAQs from './FAQ'
-
-
-import './Navigator.css'
+import './Navigator.css';
+import axios from 'axios';
 
 export default class Navigator extends Component {
   constructor(props, context) {
@@ -19,14 +18,54 @@ export default class Navigator extends Component {
 
     this.state = {
       show: false,
-      showHelp: false
+      showHelp: false,
+      logged: false,
+      userData: []
+
     };
+  }
+
+  componentDidMount(){
+    var userData = localStorage.getItem("userData");
+    var checking  = JSON.parse(userData);
+    if (checking == null){
+      this.setState({logged : true})
+    }else{
+      this.setState({logged : false})
+
+    }
+
+    console.log(this.state.logged);
+    //console.log(this.state.logged);
+
+  }
+
+  checkuser(){
+    /*
+    var test = false;
+    if (this.state.userData.username != ""){
+      test = true;
+    }
+*/
+    return false;
   }
 
   handleClose() {
     this.setState({ show: false });
   }
 
+  logingout(){
+
+    axios.get('http://localhost:8080/check')
+    .then(function(response){
+      console.log(response.data);
+    })
+
+    localStorage.setItem("userData", null);
+    window.location.reload(); 
+
+  }
+  
   handleShow() {
     this.setState({ show: true });
   }
@@ -39,33 +78,38 @@ export default class Navigator extends Component {
     this.setState({ showHelp: true });
   }
   render(){
+
     return(
       <div>
 
         <Navbar inverse collapseOnSelect>
           <Navbar.Header>
             <Navbar.Brand>
-              <a href="/">BallC</a>
+              <a href="/">Foul</a>
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav>
 
-              <NavDropdown eventKey={2} title="Seasons" id="basic-nav-dropdown">
-                <MenuItem eventKey={2.1} href="/Season3" to="/Season3">Season 3</MenuItem>
-                <MenuItem divider />
-                <MenuItem eventKey={2.2} href="/Season2" to="/Season2">Season 2</MenuItem>
-                <MenuItem eventKey={2.3} href="/Season1" to="/Season1">Season 1</MenuItem>
-              </NavDropdown>
+              <NavItem eventKey={3} href="/Matches" to="/Matches">
+                Matches
+              </NavItem>
               <NavItem eventKey={3} href="/Teams" to="/Teams">
                 Teams
               </NavItem>
             </Nav>
             <Nav pullRight>
-              <NavItem eventKey={1} onClick={this.handleShow}>
-                Login
+
+              <NavItem eventKey={4} href="/User" to="/User">
+                Profile
+                <p>{this.state.username}</p>
               </NavItem>
+              <NavItem>
+              
+              </NavItem>
+              { this.state.logged ? <NavItem eventKey={1} onClick={this.handleShow}>login</NavItem> : <NavItem eventKey={1} onClick={this.logingout}>logout</NavItem>}
+              
               <NavItem eventKey={1} href="/Watchlist" to="/Watchlist">
                 <Glyphicon glyph="star" />
               </NavItem>

@@ -5,12 +5,19 @@ import { Button, Input } from 'mdbreact'
 import  NewAddress from '../components/NewAddress'
 import '../components/Teamlist.css'
 
+import { FormattedMessage } from 'react-intl';
+
+import {PostData} from '../PostData';
+
+
 
 export default class Address extends Component {
   constructor(props) {
     super(props);
     this.state = {
       address:[],
+      location:'',
+      address_id:'',
       address_1:'',
       address_2:'',
       address_3:'',
@@ -18,6 +25,16 @@ export default class Address extends Component {
       city:'',
       country:'',
     };
+
+    this.onChangeA1 = this.onChangeA1.bind(this);
+    this.onChangeA2 = this.onChangeA2.bind(this);
+    this.onChangeA3 = this.onChangeA3.bind(this);
+
+    this.onChangePostal = this.onChangePostal.bind(this);
+    this.onChangeCity = this.onChangeCity.bind(this);
+    this.onChangeCountry = this.onChangeCountry.bind(this);
+
+
 
   }
 
@@ -68,13 +85,49 @@ export default class Address extends Component {
     .then(result => result.json())
     .then(address => this.setState({address}))
   }
+
+  updateAddress = () =>{
+    let user = Object.assign({}, this.state);    //creating copy of object
+
+    let data = {
+      address_id: user.address_id,
+      address_line_1: user.address_1,
+      address_line_2: user.address_2,
+      address_line_3: user.address_3,
+      postal_code: user.postal_code,
+      city: user.city,
+      country: user.country
+    }
+    PostData('/updateaddress', data);
+  }
+
+  delAddress = () =>{
+    let user = Object.assign({}, this.state);    //creating copy of object
+
+    let data = {
+      address_id: user.address_id,
+      address_line_1: user.address_1,
+      address_line_2: user.address_2,
+      address_line_3: user.address_3,
+      postal_code: user.postal_code,
+      city: user.city,
+      country: user.country
+    }
+    PostData('/deladdress', data);
+  }
     render(){
+
       return(
         <Grid>
           <div>
             <Row>
               <Col xs={12} sm={6}>
-                <p className="h5 text-center mb-4">REGISTERED ADDRESSES</p>
+                <p className="h5 text-center mb-4">
+                <FormattedMessage
+                id="ADDRESS.registerMes"
+                defaultMessage="REGISTERED ADDRESSES"
+                />
+                </p>
                 <br/>
                 <div className="Teamlist">
                   <ListGroup>
@@ -85,6 +138,7 @@ export default class Address extends Component {
                           onClick={
                             e => {
                               this.setState({
+                                location:address.location,
                                 address_id: address.address_id,
                                 address_1: address.address_line_1,
                                 address_2: address.address_line_2,
@@ -111,7 +165,12 @@ export default class Address extends Component {
                     <br/>
                     <br/>
                     <br/>
-                    <p>Address 1:</p>
+                    <p>
+                    <FormattedMessage
+                    id="ADDRESS.address1"
+                    defaultMessage="Address 1:"
+                    />
+                    </p>
                     <Input
                       name="address_1"
                       value={(this.state.address ? this.state.address_1 : '')}
@@ -120,7 +179,12 @@ export default class Address extends Component {
                     <br/>
                     <br/>
                     <br/>
-                    <p>Address 2:</p>
+                    <p>
+                    <FormattedMessage
+                    id="ADDRESS.address2"
+                    defaultMessage="Address 2:"
+                    />
+                    </p>
                     <Input
                       name="address_2"
                       value={(this.state.address ? this.address_2 : '' )}
@@ -129,7 +193,12 @@ export default class Address extends Component {
                     <br/>
                     <br/>
                     <br/>
-                    <p>Address 3:</p>
+                    <p>
+                    <FormattedMessage
+                    id="ADDRESS.address3"
+                    defaultMessage="Address 3:"
+                    />
+                    </p>
                     <Input
                       name="address_3"
                       value={(this.state.address ? this.state.address_3 : '')}
@@ -138,14 +207,24 @@ export default class Address extends Component {
                     <br/>
                     <br/>
                     <Col sm={6}>
-                      <p>Postal code:</p>
+                      <p>
+                      <FormattedMessage
+                      id="ADDRESS.postalCode"
+                      defaultMessage="Postal code:"
+                      />
+                      </p>
                       <Input
                         name="postal"
                         value={(this.state.address ? this.state.postal_code : '')}
                         onChange={this.onChangePostal}/>
                     </Col>
                     <Col sm={6}>
-                      <p>City:</p>
+                      <p>
+                      <FormattedMessage
+                      id="ADDRESS.city"
+                      defaultMessage="City:"
+                      />
+                      </p>
                       <Input
                         name="city"
                         value={(this.state.address ? this.state.city : '')}
@@ -158,7 +237,12 @@ export default class Address extends Component {
                     <br/>
                     <br/>
                     <br/>
-                    <p>Country:</p>
+                    <p>
+                    <FormattedMessage
+                      id="ADDRESS.country"
+                      defaultMessage="Country:"
+                      />
+                      </p>
                     <Input
                       name="country"
                       value={(this.state.address ? this.state.country : '')}
@@ -170,12 +254,31 @@ export default class Address extends Component {
 
 
                     <div className="text-center">
-                      <Button className="formbtnSave" color="primary" onClick={this.updatePerson} >Save edit</Button>
-                      <Button className="formbtnDel" color="primary" onClick={this.delPerson} >Delete address</Button>
+
+                      <Button className="formbtnSave" color="primary" onClick={this.updateAddress} >
+                      <FormattedMessage
+                      id="ADDRESS.saveEdit"
+                      defaultMessage="Save edit"
+                      />
+                      </Button>
+                      <Button className="formbtnDel" color="primary" onClick={this.delAddress} >
+                      <FormattedMessage
+                      id="ADDRESS.deleteAddr"
+                      defaultMessage="Delete address"
+                      />
+                      </Button>
+
 
                     </div>
                   </Tab>
-                  <Tab eventKey={2} title="New Address">
+                  <Tab eventKey={2} title={
+                    <FormattedMessage
+                    id="ADDRESS.tabNewAddress"
+                    defaultMessage="New Address"
+                    />
+                  }
+
+                  >
                     <NewAddress/>
                   </Tab>
                 </Tabs>
@@ -187,3 +290,4 @@ export default class Address extends Component {
       )
     }
   }
+

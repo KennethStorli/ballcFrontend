@@ -1,0 +1,14 @@
+[
+  {
+    "id": "PROFILE.username",
+    "defaultMessage": "Username:"
+  },
+  {
+    "id": "PROFILE.email",
+    "defaultMessage": "Email:"
+  },
+  {
+    "id": "PROFILE.saveProfileButton",
+    "defaultMessage": "Save profile"
+  }
+]

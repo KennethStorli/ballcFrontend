@@ -2,8 +2,13 @@ import React, {Component} from 'react';
 import Select from 'react-select';
 import {Grid, Row, Col} from 'react-bootstrap'
 import {Button } from 'mdbreact'
+import { FormattedMessage } from 'react-intl';
+
 import DayPicker from 'react-day-picker';
 import Matchpositions from '../components/Matchpositions'
+import {PostData} from '../PostData';
+import axios from 'axios';
+
 
 
 export default class Match extends Component {
@@ -12,6 +17,8 @@ export default class Match extends Component {
     this.state = {
       teamsformatch:[],
       seasons:[],
+      home: [],
+      away: [],
       homeID:'',
       awayID:'',
       selectedOptionHome:'',
@@ -19,10 +26,13 @@ export default class Match extends Component {
       selectedOptionSeason:'',
       selectedDay:undefined,
       selectedDayString:'',
+      positionsHome: [],
+      positionsAway: []
 
     };
   this.handleDayClick = this.handleDayClick.bind(this);
   }
+
 
 
   handleDayClick(day, { selected, disabled }) {
@@ -50,6 +60,16 @@ export default class Match extends Component {
     .then(seasons => this.setState({seasons}))
   }
 
+    componentWillReceiveProps(nextprop){
+      fetch(`https://ballc-frontend-be.herokuapp.com/playersteam/${nextprop.homeID}`)
+      .then(result => result.json())
+      .then(home => this.setState({home}))
+
+      fetch(`https://ballc-frontend-be.herokuapp.com/playersteam/${nextprop.awayID}`)
+      .then(result => result.json())
+      .then(away => this.setState({away}))
+    }
+
   handleChangeHome = (selectedOptionHome) => {
     this.setState({ selectedOptionHome,
     homeID:selectedOptionHome.value });
@@ -64,12 +84,35 @@ export default class Match extends Component {
     this.setState({ selectedOptionSeason});
   }
 
+  getDataHome = (data) =>{
+    console.log(data);
+    this.setState({positionsHome: data});
+  }
+
+  getDataAway = (data) =>{
+    console.log(data);
+    this.setState({positionsAway: data});
+  }
+
+  addMatch = () =>{
+    let user = Object.assign({}, this.state);    //creating copy of object
+
+    var data = {
+      match_date: user.selectedDayString,
+      season: user.selectedOptionSeason,
+      home_team: user.selectedOptionHome,
+      away_team: user.selectedOptionAway,
+      positionsHome: user.positionsHome,
+      positionsAway: user.positionsAway
+
+    }
+    PostData('/addmatch', data)
+  }
 
   render() {
     const { selectedOptionHome } = this.state.teamsformatch;
     const { selectedOptionAway } = this.state.teamsformatch;
     const { selectedOptionSeason } = this.state.seasons;
-
 
 
     return (
@@ -79,7 +122,12 @@ export default class Match extends Component {
             <br/>
             <Col xs={12} sm={4}></Col>
             <Col xs={12} sm={4}>
-              <p>SEASON</p>
+              <p>
+              <FormattedMessage
+              id="MATCH.seasonTitle"
+              defaultMessage="SEASON"
+              />
+              </p>
               <Select
                 value={selectedOptionSeason}
                 onChange={this.handleChangeSeason}
@@ -88,7 +136,12 @@ export default class Match extends Component {
             </Col>
             <br/><br/><br/>
             <Col xs={12} sm={6}>
-              <p>HOME TEAM</p>
+              <p>
+              <FormattedMessage
+              id="MATCH.homeTeamTitle"
+              defaultMessage="HOME TEAM"
+              />
+              </p>
               <Select
                 value={selectedOptionHome}
                 onChange={this.handleChangeHome}
@@ -96,7 +149,12 @@ export default class Match extends Component {
               />
             </Col>
             <Col xs={12} sm={6}>
-              <p>AWAY TEAM</p>
+              <p>
+              <FormattedMessage
+              id="MATCH.awayTeamTitle"
+              defaultMessage="AWAY TEAM"
+              />
+              </p>
 
               <Select
                 value={selectedOptionAway}
@@ -106,7 +164,7 @@ export default class Match extends Component {
             </Col>
             <Col xs={12} sm={6}>
               {this.state.selectedOptionHome ? (
-                <Matchpositions teamid={this.state.homeID}/>
+                <Matchpositions teamid={this.state.homeID} newdata = {this.getDataHome} />
               ) : (
                 <p></p>
               )}
@@ -114,7 +172,7 @@ export default class Match extends Component {
 
             <Col xs={12} sm={6}>
               {this.state.selectedOptionAway ? (
-                <Matchpositions teamid={this.state.awayID}/>
+                <Matchpositions teamid={this.state.awayID} newdata = {this.getDataAway} />
               ) : (
                 <p></p>
               )}
@@ -124,7 +182,12 @@ export default class Match extends Component {
 
             <Col xs={12} sm={6}>
               <br/><br/>
-              <p>Choose game date</p>
+              <p>
+              <FormattedMessage
+              id="MATCH.choseGameDate"
+              defaultMessage="Choose game date"
+              />
+              </p>
               <hr/>
               <DayPicker
                 onDayClick={this.handleDayClick}
@@ -135,18 +198,46 @@ export default class Match extends Component {
               <Col xs={12} sm={6}>
               <br/><br/><br/><br/>
 
-              <h3 className="greytext">GAMEDATA:</h3>
+              <h3 className="greytext">
+              <FormattedMessage
+              id="MATCH.gameData"
+              defaultMessage="GAMEDATA:"
+              />
+              </h3>
               {this.state.selectedOptionHome && this.state.selectedOptionAway ? (
-                <p>{this.state.selectedOptionHome.label} VS {this.state.selectedOptionAway.label}</p> ):(<p>Select teams to see gamedata</p>)}
+                <p>{this.state.selectedOptionHome.label} VS {this.state.selectedOptionAway.label}</p> ):(
+                <p>
+                <FormattedMessage
+                id="MATCH.selectMessage"
+                defaultMessage="Select teams to see gamedata"
+                />
+                </p>)}
 
               {this.state.selectedDay ? (
-                <p>Gamedate: {this.state.selectedDay.toLocaleDateString('en-GB')}</p>
+                <p>
+                <FormattedMessage
+                id="MATCH.gameDate"
+                defaultMessage="Gamedate:"
+                />
+                 {this.state.selectedDay.toLocaleDateString('en-GB')}</p>
               ) : (
                 <p></p>
               )}
 
-              <Button className="formbtnSave" color="primary" onClick={this.delPerson} >Save results</Button>
-              <Button className="formbtnDel" color="primary" onClick={this.delPerson} >Delete results</Button>
+
+              <Button className="formbtnSave" color="primary" onClick={this.addMatch} >
+              <FormattedMessage
+              id="MATCH.saveResultButton"
+              defaultMessage="Save results"
+              />
+              </Button>
+              <Button className="formbtnDel" color="primary" onClick={this.delResult} >
+              <FormattedMessage
+              id="MATCH.deleteResultButton"
+              defaultMessage="Delete results"
+              />
+              </Button>
+
             </Col>
           </Row>
         </Grid>

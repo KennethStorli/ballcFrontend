@@ -1,0 +1,22 @@
+[
+  {
+    "id": "WATCHLISTEDIT.editWatchlistTitle",
+    "defaultMessage": "Edit watchlist"
+  },
+  {
+    "id": "WATCHLISTEDIT.instructionMessage",
+    "defaultMessage": "Use the dropdown to add to your favourites"
+  },
+  {
+    "id": "WATCHLISTEDIT.instructionMessageTwo",
+    "defaultMessage": "and the list to remove"
+  },
+  {
+    "id": "WATCHLISTEDIT.playerHeader",
+    "defaultMessage": "Players"
+  },
+  {
+    "id": "WATCHLISTEDIT.teamsHeader",
+    "defaultMessage": "Teams"
+  }
+]

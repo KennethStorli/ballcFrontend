@@ -1,7 +1,7 @@
 import React, { Component} from 'react';
 import {Col} from 'react-bootstrap'
 import './Teams.css'
-
+import { FormattedMessage } from 'react-intl';
 
 
 export default class Location extends Component{
@@ -25,7 +25,12 @@ export default class Location extends Component{
       return (
           <div>
             <Col xs={12} sm={3}>
-              <h1>Location</h1>
+              <h1>
+              <FormattedMessage
+                id="LOCATION.locationTitle"
+                defaultMessage="Location"
+              />
+              </h1>
               <hr/>
               <div className="infoName">
                 <h2>{this.state.locations.name}</h2>

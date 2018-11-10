@@ -1,0 +1,22 @@
+[
+  {
+    "id": "USER.username",
+    "defaultMessage": "Username:"
+  },
+  {
+    "id": "USER.email",
+    "defaultMessage": "Email:"
+  },
+  {
+    "id": "USER.adminInput",
+    "defaultMessage": "Admin"
+  },
+  {
+    "id": "USER.saveUserButton",
+    "defaultMessage": "Save user"
+  },
+  {
+    "id": "USER.deleteUserButton",
+    "defaultMessage": "Delete user"
+  }
+]

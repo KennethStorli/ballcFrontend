@@ -1,0 +1,46 @@
+[
+  {
+    "id": "ROLES.name",
+    "defaultMessage": "Name:"
+  },
+  {
+    "id": "ROLES.coach",
+    "defaultMessage": "Coach"
+  },
+  {
+    "id": "ROLES.owner",
+    "defaultMessage": "Owner"
+  },
+  {
+    "id": "ROLES.normPosition",
+    "defaultMessage": "Normal Position"
+  },
+  {
+    "id": "ROLES.posFormGoalkeeper",
+    "defaultMessage": "Goalkeeper"
+  },
+  {
+    "id": "ROLES.posFormDefence",
+    "defaultMessage": "Defence"
+  },
+  {
+    "id": "ROLES.posFormMidfield",
+    "defaultMessage": "Midfield"
+  },
+  {
+    "id": "ROLES.posFormForward",
+    "defaultMessage": "Forward"
+  },
+  {
+    "id": "ROLES.number",
+    "defaultMessage": "Number"
+  },
+  {
+    "id": "ROLES.team",
+    "defaultMessage": "Team"
+  },
+  {
+    "id": "ROLES.saveUserButton",
+    "defaultMessage": "Save user"
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "CRUDASSOCIATION.registerTitle",
+    "defaultMessage": "REGISTERED ASSOCIATIONS"
+  },
+  {
+    "id": "CRUDASSOCIATION.assName",
+    "defaultMessage": "Association name:"
+  },
+  {
+    "id": "CRUDASSOCIATION.description",
+    "defaultMessage": "Description:"
+  },
+  {
+    "id": "CRUDASSOCIATION.newAssButton",
+    "defaultMessage": "Create new association"
+  },
+  {
+    "id": "CRUDASSOCIATION.saveEditButton",
+    "defaultMessage": "Save edit"
+  },
+  {
+    "id": "CRUDASSOCIATION.deleteAssButton",
+    "defaultMessage": "Delete association"
+  }
+]

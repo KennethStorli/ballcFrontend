@@ -3,7 +3,7 @@ import {Row, Grid, Col, Image } from 'react-bootstrap';
 import '../components/UpdatePerson.css'
 import './Home.css'
 import './Teams.css'
-
+import { FormattedMessage } from 'react-intl';
 
 
 
@@ -46,7 +46,12 @@ export default class Home extends Component {
                   <Col xs={12} sm={4}>
                     <br/><br/><br/><br/><br/><br/>
 
-                    <h3> VS </h3>
+                    <h3> 
+                    <FormattedMessage
+                    id="ANONMATCHES.vs"
+                    defaultMessage="VS"
+                    />
+                    </h3>
                     <br/>
                     <h3>{team.date}</h3>
                   </Col>

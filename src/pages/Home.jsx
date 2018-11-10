@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { FormattedMessage } from 'react-intl';
 import {Row, Grid} from 'react-bootstrap';
 import AnonMatches from './Anonmatches'
 import UserMatches from './Usermatches'
@@ -18,6 +19,7 @@ export default class Home extends Component {
       teams:[],
       teamID:'',
       filterText:'',
+      showUser:false
     };
 
   }
@@ -26,6 +28,14 @@ export default class Home extends Component {
     fetch(`https://ballc-frontend-be.herokuapp.com/teams`)
     .then(result => result.json())
     .then(teams => this.setState({teams}))
+
+    var userData = localStorage.getItem("userData");
+    var userString = JSON.parse(userData);
+    if(userString == null){
+      console.log("NOT LOGGED IN");
+    }else{
+      this.setState({showUser: true});
+    }
 
   }
 
@@ -37,16 +47,24 @@ export default class Home extends Component {
     return(
       <div>
         <Grid>
-          <h1>Latest matches</h1>
+
+          <h1>
+          <FormattedMessage
+          id="HOME.latestTitle"
+          defaultMessage="Latest matches"
+          />
+          </h1>
           <Row>
             <br/>
             <br/>
             <br/>
             <br/>
 
-            {/* <AnonMatches/> */}
-            <UserMatches/>
+            { this.state.showUser ?  <UserMatches/> : <AnonMatches/>}
+            
+            
           </Row>
+
         </Grid>
       </div>
     )

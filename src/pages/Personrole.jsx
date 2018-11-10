@@ -1,5 +1,5 @@
 import React, { Component} from 'react';
-
+import { FormattedMessage } from 'react-intl';
 
 export default class Owner extends Component{
   constructor(props) {

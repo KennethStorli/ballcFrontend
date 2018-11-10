@@ -1,0 +1,38 @@
+[
+  {
+    "id": "MATCH.seasonTitle",
+    "defaultMessage": "SEASON"
+  },
+  {
+    "id": "MATCH.homeTeamTitle",
+    "defaultMessage": "HOME TEAM"
+  },
+  {
+    "id": "MATCH.awayTeamTitle",
+    "defaultMessage": "AWAY TEAM"
+  },
+  {
+    "id": "MATCH.choseGameDate",
+    "defaultMessage": "Choose game date"
+  },
+  {
+    "id": "MATCH.gameData",
+    "defaultMessage": "GAMEDATA:"
+  },
+  {
+    "id": "MATCH.selectMessage",
+    "defaultMessage": "Select teams to see gamedata"
+  },
+  {
+    "id": "MATCH.gameDate",
+    "defaultMessage": "Gamedate:"
+  },
+  {
+    "id": "MATCH.saveResultButton",
+    "defaultMessage": "Save results"
+  },
+  {
+    "id": "MATCH.deleteResultButton",
+    "defaultMessage": "Delete results"
+  }
+]

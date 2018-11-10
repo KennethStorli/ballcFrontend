@@ -5,6 +5,9 @@ import { Input, Button } from 'mdbreact';
 import SearchSmall from '../components/SearchSmall'
 import '../components/UpdatePerson.css'
 import './Home.css'
+import { FormattedMessage } from 'react-intl';
+
+import {PostData} from '../PostData';
 
 
 
@@ -19,15 +22,24 @@ export default class Team extends Component {
       coaches:[],
       owners:[],
       persons:[],
-     // ownerNames:[],
-      availableOwners:[],
-      availableCoaches:[],
+      ownerNames:[],
       selectedAssociation:'',
       selectedCoach:'',
       selectedLocation:'',
       selectedOwner:'',
-      selectedTeamName:''
+      selectedTeamName:'',
+      association_id :'',
+      location_id: '',
+      coach_id : '',
+      owner_id: '',
+      team_id:''
     };
+
+    this.onChangeName = this.onChangeName.bind(this);
+    this.onChangeAssociation = this.onChangeAssociation.bind(this)
+    this.onChangeLocation = this.onChangeLocation.bind(this);
+    this.onChangeCoach = this.onChangeCoach.bind(this);
+    this.onChangeOwner = this.onChangeOwner.bind(this);
   }
   componentDidMount() {
     fetch(`http://ballc-frontend-be.herokuapp.com/teams`)
@@ -53,7 +65,6 @@ export default class Team extends Component {
     fetch(`http://ballc-frontend-be.herokuapp.com/persons`)
     .then(result => result.json())
     .then(persons => this.setState({persons}))
-
   }
 
   onChangeName(event){
@@ -121,80 +132,75 @@ export default class Team extends Component {
     return personName;
   }
 
-  setAvailableOwners() {
-    var tempAvailableOwnerIds = []
-    var tempOccupiedOwnerIds = []
-    var availableOwners = []
-    var index;
-
-    this.state.owners.forEach(owner => {
-      tempAvailableOwnerIds.push(owner.owner_id)
+  onChangeAssociation(event){
+      const associationinput = event.target.value
+      this.setState({
+        selectedAssociation: associationinput
+      })
+  }
+  onChangeLocation(event){
+    const locationinput = event.target.value
+    this.setState({
+      selectedLocation: locationinput
     })
-    this.state.teams.forEach(team => {
-      tempOccupiedOwnerIds.push(team.owner)
+  }
+  onChangeCoach(event){
+    const coachinput = event.target.value
+    this.setState({
+      selectedCoach: coachinput
     })
-    
-    for (var i = 0; i < tempOccupiedOwnerIds.length; i++) {
-      index = tempAvailableOwnerIds.indexOf(tempOccupiedOwnerIds[i]);
-      if(index > -1) {
-        tempAvailableOwnerIds.splice(index, 1);
-      }
-    }
-    tempAvailableOwnerIds.forEach(owner => {
-      availableOwners.push(this.getOwnerById(owner))
+  }
+  onChangeOwner(event){
+    const ownerinput = event.target.value
+    this.setState({
+      selectedOwner: ownerinput
     })
-    this.state.availableOwners = availableOwners.slice()
   }
 
-  getOwnerById(id) {
-    var tempOwner;
-    this.state.owners.forEach(owner => {
-      if(id === owner.owner_id) {
-        tempOwner = owner;
-        
-      }
-    })
-    return tempOwner;
+
+
+
+addTeam = () =>{
+  let user = Object.assign({}, this.state);    //creating copy of object
+
+  var data = {
+    teamName : user.selectedTeamName,
+    association : user.association_id,
+    location : user.location_id,
+    coach : user.coach_id,
+    owner : user.owner_id
   }
 
-  setAvailableCoaches() {
-    var tempAvailableCoachIds = []
-    var tempOccupiedCoachIds = []
-    var availableCoaches = []
-    var index;
+  PostData('addteam', data);
+}
 
-    this.state.coaches.forEach(coach => {
-      tempAvailableCoachIds.push(coach.coach_id)
-    })
-    this.state.teams.forEach(team => {
-      tempOccupiedCoachIds.push(team.coach)
-    })
-    
-    for (var i = 0; i < tempOccupiedCoachIds.length; i++) {
-      index = tempAvailableCoachIds.indexOf(tempOccupiedCoachIds[i]);
-      if(index > -1) {
-        tempAvailableCoachIds.splice(index, 1);
-      }
-    }
-    tempAvailableCoachIds.forEach(coach => {
-      availableCoaches.push(this.getCoachById(coach))
-    })
-    console.log(availableCoaches)
-    this.state.availableCoaches = availableCoaches.slice()
+updateTeam = () =>{
+  let user = Object.assign({}, this.state);    //creating copy of object
+
+  var data = {
+    teamName : user.selectedTeamName,
+    association : user.association_id,
+    location : user.location_id,
+    coach : user.coach_id,
+    owner : user.owner_id,
+    team_id: user.team_id
   }
 
-  getCoachById(id) {
-    var tempCoach;
-    this.state.coaches.forEach(coach => {
-      if(id === coach.coach_id) {
-        tempCoach = coach;
-        
-      }
-    })
-    return tempCoach;
+  PostData('updateteam', data);
+}
+
+delTeam = () =>{
+  let user = Object.assign({}, this.state);    //creating copy of object
+
+  var data = {
+    team_id: user.team_id
   }
 
-  render() {
+  PostData('delteam', data);
+}
+
+
+  render(){
     return(
       <div>
         <Grid>
@@ -211,30 +217,47 @@ export default class Team extends Component {
                             this.setState({
                                 selectTeam: team,
                                 selectedTeamName: team.teamName,
+                                team_id: team.team_id,
+                                association_id: team.association,
+                                location_id: team.location,
+                                coach_id: team.coach,
+                                owner_id: team.owner,
                               selectedAssociation: this.getTeamAssociation(team.association),
                               selectedLocation: this.getTeamLocation(team.location),
                               selectedCoach: this.getTeamCoach(team.coach),
                               selectedOwner: this.getTeamOwner(team.owner)
                             });
                           }
+
                         }
+                        
                         key={team.team_id}>
                         {team.teamName}
                       </ListGroupItem>)}
                   </div>
                 </ListGroup>
               </div>
-              
+
             </Col>
             <Col xs={12} sm={4}>
 
               <br/>
 
-              <p className="h5 text-center mb-4">EDIT/CREATE TEAMS</p>
+              <p className="h5 text-center mb-4">
+              <FormattedMessage
+              id="TEAM.editCreateTeamTitle"
+              defaultMessage="EDIT/CREATE TEAMS"
+              />
+              </p>
               <form>
                 <div className="grey-text">
                   <br/>
-                  <p>Team name:</p>
+                  <p>
+                  <FormattedMessage
+                  id="TEAM.teamName"
+                  defaultMessage="Team name:"
+                  />
+                  </p>
                   <Input
                       name="Team Name"
                       value={this.state.selectedTeamName ? this.state.selectedTeamName : ''}
@@ -245,11 +268,16 @@ export default class Team extends Component {
                 <br/>
                 <div className="grey-text">
                   <br/>
-                  <p>Association:</p>
+                  <p>
+                  <FormattedMessage
+                  id="TEAM.association"
+                  defaultMessage="Association:"
+                  />
+                  </p>
                   <Input
                       name="Association"
                       value={(this.state.selectedAssociation ? this.state.selectedAssociation : '')}
-                      onChange={this.onChangeNumber
+                      onChange={this.onChangeAssociation
                       }/>
                 </div>
                 <br/>
@@ -257,11 +285,16 @@ export default class Team extends Component {
                 <br/>
                 <div className="grey-text">
                   <br/>
-                  <p>Location:</p>
+                  <p>
+                  <FormattedMessage
+                  id="TEAM.location"
+                  defaultMessage="Location:"
+                  />
+                  </p>
                   <Input
                       name="Location"
                       value={(this.state.selectedLocation ? this.state.selectedLocation : '')}
-                      onChange={this.onChangeNumber
+                      onChange={this.onChangeLocation
                       }/>
                 </div>
                 <br/>
@@ -269,11 +302,16 @@ export default class Team extends Component {
                 <br/>
                 <div className="grey-text">
                   <br/>
-                  <p>Coach:</p>
+                  <p>
+                  <FormattedMessage
+                  id="TEAM.coach"
+                  defaultMessage="Coach:"
+                  />
+                  </p>
                   <Input
                       name="Coach"
                       value={(this.state.selectedCoach ? this.state.selectedCoach : '')}
-                      onChange={this.onChangeNumber
+                      onChange={this.onChangeCoach
                       }/>
                 </div>
                 <br/>
@@ -281,11 +319,16 @@ export default class Team extends Component {
                 <br/>
                 <div className="grey-text">
                   <br/>
-                  <p>Owner:</p>
+                  <p>
+                  <FormattedMessage
+                  id="TEAM.owner"
+                  defaultMessage="Owner:"
+                  />
+                  </p>
                   <Input
                       name="Owner"
                       value={(this.state.selectedOwner ? this.state.selectedOwner : '')}
-                      onChange={this.onChangeNumber
+                      onChange={this.onChangeOwner
                       }/>
                 </div>
 
@@ -296,7 +339,12 @@ export default class Team extends Component {
             <Col xs={12} sm={4}>
               <br/>
 
-              <p className="h5 text-center mb-4">REGISTERED ASSOCIATIONS</p>
+              <p className="h5 text-center mb-4">
+              <FormattedMessage
+              id="TEAM.registeredAssTitle"
+              defaultMessage="REGISTERED ASSOCIATIONS"
+              />
+              </p>
               <div className="divlist">
               <ListGroup>
                       <div>
@@ -306,7 +354,8 @@ export default class Team extends Component {
                             onClick={
                               e => {
                                 this.setState({
-                                  selectedAssociation:association.name
+                                  selectedAssociation:association.name,
+                                  association_id : association.association_id
                                 });
                               }
                             }
@@ -318,17 +367,23 @@ export default class Team extends Component {
               </div>
               <br/>
 
-              <p className="h5 text-center mb-4">REGISTERED LOCATIONS</p>
+              <p className="h5 text-center mb-4">
+              <FormattedMessage
+              id="TEAM.registeredLocationTitle"
+              defaultMessage="REGISTERED LOCATIONS"
+              />
+              </p>
               <div className="divlist">
                 <ListGroup>
-                      <div>
+                    <div>
                         {this.state.locations.map(location =>
                           <ListGroupItem
                             className="listingplayer"
                             onClick={
                               e => {
                                 this.setState({
-                                  selectedLocation:location.name
+                                  selectedLocation:location.name,
+                                  location_id: location.location_id
                                 });
                               }
                             }
@@ -340,18 +395,23 @@ export default class Team extends Component {
               </div>
               <br/>
 
-              <p className="h5 text-center mb-4">REGISTERED COACHES</p>
+              <p className="h5 text-center mb-4">
+              <FormattedMessage
+              id="TEAM.registeredCoachesTitle"
+              defaultMessage="REGISTERED COACHES"
+              />
+              </p>
               <div className="divlist">
               <ListGroup>
                       <div>
-                        {this.setAvailableCoaches()}
-                        {this.state.availableCoaches.map(coach =>
+                        {this.state.coaches.map(coach =>
                           <ListGroupItem
                             className="listingplayer"
                             onClick={
                               e => {
                                 this.setState({
-                                  selectedCoach:this.getPersonName(coach.person)
+                                  selectedCoach:this.getPersonName(coach.person),
+                                  coach_id : coach.coach_id
                                 });
                               }
                             }
@@ -363,32 +423,52 @@ export default class Team extends Component {
               </div>
               <br/>
 
-              <p className="h5 text-center mb-4">AVAILABLE OWNERS</p>
+              <p className="h5 text-center mb-4">
+              <FormattedMessage
+              id="TEAM.registeredOwnerTitle"
+              defaultMessage="REGISTERED OWNERS"
+              />
+              </p>
               <div className="divlist">
               <ListGroup>
                       <div>
-                        {this.setAvailableOwners()}
-                        {this.state.availableOwners.map(owner =>
+                        {this.state.owners.map(owner =>
                           <ListGroupItem
                             className="listingplayer"
                             onClick={
                               e => {
                                 this.setState({
-                                  selectedOwner:this.getPersonName(owner.person)
+                                  selectedOwner:this.getPersonName(owner.person),
+                                  owner_id: owner.owner_id
                                 });
                               }
                             }
                             key={owner.owner_id}>
                             {this.getPersonName(owner.person)}
-                          </ListGroupItem>)
-                        }
+                          </ListGroupItem>)}
                       </div>
                 </ListGroup>
               </div>
               <div className="text-center">
-                <Button className="formbtnSave" color="primary" onClick={this.signup}>Save </Button>
-                <Button className="formbtnSave" color="primary" onClick={this.signup}>Create </Button>
-                <Button className="formbtnDel" color="primary" onClick={this.signup}>Delete </Button>
+
+                <Button className="formbtnSave" color="primary" onClick={this.updateTeam}>
+                <FormattedMessage
+                id="TEAM.saveButton"
+                defaultMessage="Save"
+                />
+                 </Button>
+                <Button className="formbtnSave" color="primary" onClick={this.addTeam}>
+                <FormattedMessage
+                id="TEAM.createButton"
+                defaultMessage="Create"
+                />
+                 </Button>
+                <Button className="formbtnDel" color="primary" onClick={this.delTeam}>
+                <FormattedMessage
+                id="TEAM.deleteButton"
+                defaultMessage="Delete"
+                />
+                 </Button>
               </div>
 
             </Col>

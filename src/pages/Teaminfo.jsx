@@ -4,7 +4,11 @@ import Owner from './Owner';
 import Location from './Location';
 import Coach from './Coach';
 import './Teams.css'
+
+import { FormattedMessage } from 'react-intl';
+
 import { Row, Grid, Col} from 'react-bootstrap'
+
 
 export default class Teaminfo extends Component{
     constructor(props) {
@@ -49,7 +53,12 @@ export default class Teaminfo extends Component{
               <br/>
 
               <hr/>
-              <h1 className="playerinfo">Players</h1>
+              <h1 className="playerinfo">
+              <FormattedMessage
+              id="TEAMINFO.playerTitle"
+              defaultMessage="Players"
+              />
+              </h1>
               <br/>
               <br/>
 

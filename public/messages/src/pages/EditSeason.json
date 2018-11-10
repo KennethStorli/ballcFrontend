@@ -1,0 +1,30 @@
+[
+  {
+    "id": "EDITSEASON.registerTitle",
+    "defaultMessage": "REGISTERED SEASONS"
+  },
+  {
+    "id": "EDITSEASON.name",
+    "defaultMessage": "Name:"
+  },
+  {
+    "id": "EDITSEASON.description",
+    "defaultMessage": "Description:"
+  },
+  {
+    "id": "EDITSEASON.startMessage",
+    "defaultMessage": "Start of season"
+  },
+  {
+    "id": "EDITSEASON.endMessage",
+    "defaultMessage": "End of season"
+  },
+  {
+    "id": "EDITSEASON.saveEditButton",
+    "defaultMessage": "Save Edit"
+  },
+  {
+    "id": "EDITSEASON.deleteSeasonButton",
+    "defaultMessage": "Delete Season"
+  }
+]

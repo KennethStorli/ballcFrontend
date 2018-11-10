@@ -5,7 +5,8 @@ import { ListGroup, ListGroupItem} from 'react-bootstrap';
 import { Input, Button } from 'mdbreact';
 import '../components/UpdatePerson.css'
 import './Home.css';
-
+import {PostData} from '../PostData'
+import { FormattedMessage } from 'react-intl';
 import '../components/Teamlist.css'
 
 import './Home.css'
@@ -49,6 +50,16 @@ export default class Person extends Component {
 
   }
 
+  addGoalType = () =>{
+    let user = Object.assign({}, this.state);    //creating copy of object
+
+    var data = {
+
+      type: user.newgoalname
+    }
+
+    PostData('addgoaltype', data)
+  }
     render() {
 
     return(
@@ -56,7 +67,12 @@ export default class Person extends Component {
         <Grid>
           <Row>
             <Col xs={12} sm={6}>
-              <p className="h5 text-center mb-4">REGISTERED GOALTYPES</p>
+              <p className="h5 text-center mb-4">
+              <FormattedMessage
+              id="GOALTYPES.registerMes"
+              defaultMessage="REGISTERED GOALTYPES"
+              />
+              </p>
               <br/>
               <div className="Teamlist">
                 <ListGroup>
@@ -83,8 +99,18 @@ export default class Person extends Component {
             </Col>
             <Col xs={12} sm={6}>
               <Tabs defaultActiveKey={1}>
-                <Tab eventKey={1} title="Edit Goaltype">
-                  <p className="h5 text-center mb-4">EDIT GOALTYPE</p>
+                <Tab eventKey={1} title={
+                  <FormattedMessage
+                  id="GOALTYPES.editGoalTypesTab"
+                  defaultMessage="Edit Goaltype"
+                  />
+                }>
+                  <p className="h5 text-center mb-4">
+                  <FormattedMessage
+                  id="GOALTYPES.editGoalTypes"
+                  defaultMessage="EDIT GOALTYPE"
+                  />
+                  </p>
 
                   <br/><br/><br/><br/><br/><br/><br/><br/>
 
@@ -94,12 +120,32 @@ export default class Person extends Component {
                     onChange={this.onChangeGoalName
                     }/>
                   <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-                  <Button className="formbtnSave" color="primary" onClick={this.updatePerson} >Save edit</Button>
-                  <Button className="formbtnDel" color="primary" onClick={this.delPerson} >Delete goaltype</Button>
+                  <Button className="formbtnSave" color="primary" onClick={this.updatePerson} >
+                  <FormattedMessage
+                  id="GOALTYPES.saveEditButton"
+                  defaultMessage="Save edit"
+                  />
+                  </Button>
+                  <Button className="formbtnDel" color="primary" onClick={this.delPerson} >
+                  <FormattedMessage
+                  id="GOALTYPES.deleteButton"
+                  defaultMessage="Delete goaltype"
+                  />
+                  </Button>
 
                 </Tab>
-                <Tab eventKey={2} title="New Goaltype">
-                  <p className="h5 text-center mb-4">NEW GOALTYPE</p>
+                <Tab eventKey={2} title={
+                  <FormattedMessage
+                  id="GOALTYPES.newGoalTypesTab"
+                  defaultMessage="New Goaltype"
+                  />
+                }>
+                  <p className="h5 text-center mb-4">
+                  <FormattedMessage
+                  id="GOALTYPES.newGoalTypes"
+                  defaultMessage="NEW GOALTYPE"
+                  />
+                  </p>
 
                   <br/><br/><br/><br/><br/><br/><br/><br/>
 
@@ -109,7 +155,12 @@ export default class Person extends Component {
                     onChange={this.onChangeNewGoalName
                     }/>
                   <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-                  <Button className="formbtnSave" color="primary" onClick={this.updatePerson} >New Goaltype</Button>
+                  <Button className="formbtnSave" color="primary" onClick={this.addGoalType} >
+                  <FormattedMessage
+                  id="GOALTYPES.newGoalButton"
+                  defaultMessage="New Goaltype"
+                  />
+                  </Button>
                 </Tab>
               </Tabs>
 

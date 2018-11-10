@@ -1,7 +1,7 @@
 import React, { Component} from 'react';
 import {Col, ListGroup, ListGroupItem} from 'react-bootstrap'
 import './Teams.css'
-
+import { FormattedMessage } from 'react-intl';
 
 
 export default class Coach extends Component{

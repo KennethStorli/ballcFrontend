@@ -2,6 +2,8 @@ import React, { Component} from 'react';
 import { Input } from 'mdbreact'
 import { Grid, Row, Col, ListGroup, ListGroupItem } from 'react-bootstrap'
 import { Button } from 'mdbreact'
+import { FormattedMessage } from 'react-intl';
+
 
 import 'react-day-picker/lib/style.css';
 
@@ -56,7 +58,12 @@ export default class EditSeason extends Component{
 
               <Row>
                 <Col xs={12} sm={6}>
-                  <p className="h5 text-center mb-4">REGISTERED SEASONS</p>
+                  <p className="h5 text-center mb-4">
+                    <FormattedMessage
+                    id="EDITSEASON.registerTitle"
+                    defaultMessage="REGISTERED SEASONS"
+                    />
+                    </p>
                   <br/>
                   <div className="Teamlist">
                     <ListGroup>
@@ -85,7 +92,12 @@ export default class EditSeason extends Component{
                 <Col xs={12} sm={6}>
 
                   <Col xs={12} sm={6}>
-                    <p>Name:</p>
+                    <p>
+                    <FormattedMessage
+                    id="EDITSEASON.name"
+                    defaultMessage="Name:"
+                    />
+                    </p>
                     <Input
                       name="Name"
                       value={(this.state.selectedSeason ? this.state.seasonName : '')}
@@ -93,7 +105,12 @@ export default class EditSeason extends Component{
                     />
                   </Col>
                   <Col xs={12} sm={6}>
-                    <p>Description:</p>
+                    <p>
+                    <FormattedMessage
+                    id="EDITSEASON.description"
+                    defaultMessage="Description:"
+                    />
+                    </p>
                     <Input
                       name="Description"
                       value={(this.state.selectedSeason ? this.state.seasonDescription : '')}
@@ -104,7 +121,12 @@ export default class EditSeason extends Component{
                   <div className="buffer"/>
 
                   <Col xs={12} sm={6}>
-                    <p>Start of season</p>
+                    <p>
+                    <FormattedMessage
+                    id="EDITSEASON.startMessage"
+                    defaultMessage="Start of season"
+                    />
+                    </p>
                     <hr/>
                     <Input
                       name="Description"
@@ -113,7 +135,12 @@ export default class EditSeason extends Component{
                   </Col>
 
                   <Col xs={12} sm={6}>
-                    <p>End of season</p>
+                    <p>
+                    <FormattedMessage
+                    id="EDITSEASON.endMessage"
+                    defaultMessage="End of season"
+                    />
+                    </p>
                     <hr/>
                     <Input
                       name="Description"
@@ -126,8 +153,18 @@ export default class EditSeason extends Component{
                   <div className="buffer"/>
 
                   <div className="text-center">
-                    <Button className="formbtnSave" color="primary" onClick={this.updatePerson} >Save edit</Button>
-                    <Button className="formbtnDel" color="primary" onClick={this.delPerson} >Delete Season</Button>
+                    <Button className="formbtnSave" color="primary" onClick={this.updatePerson} >
+                    <FormattedMessage
+                    id="EDITSEASON.saveEditButton"
+                    defaultMessage="Save Edit"
+                    />
+                    </Button>
+                    <Button className="formbtnDel" color="primary" onClick={this.delPerson} >
+                    <FormattedMessage
+                    id="EDITSEASON.deleteSeasonButton"
+                    defaultMessage="Delete Season"
+                    />
+                    </Button>
 
                   </div>
 

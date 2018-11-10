@@ -1,0 +1,42 @@
+[
+  {
+    "id": "CRUDLOCATION.registerTitle",
+    "defaultMessage": "REGISTERED LOCATIONS"
+  },
+  {
+    "id": "CRUDLOCATION.editAddressTab",
+    "defaultMessage": "Edit Address"
+  },
+  {
+    "id": "CRUDLOCATION.locationName",
+    "defaultMessage": "Location name:"
+  },
+  {
+    "id": "CRUDLOCATION.description",
+    "defaultMessage": "Description:"
+  },
+  {
+    "id": "CRUDLOCATION.currentAddress",
+    "defaultMessage": "Current address:"
+  },
+  {
+    "id": "CRUDLOCATION.selectNewAddress",
+    "defaultMessage": "Select new address:"
+  },
+  {
+    "id": "CRUDLOCATION.createNewAddress",
+    "defaultMessage": "Create new address"
+  },
+  {
+    "id": "CRUDLOCATION.saveEdit",
+    "defaultMessage": "Save edit"
+  },
+  {
+    "id": "CRUDLOCATION.deleteLocation",
+    "defaultMessage": "Delete location"
+  },
+  {
+    "id": "CRUDLOCATION.newAddressTab",
+    "defaultMessage": "New Address"
+  }
+]

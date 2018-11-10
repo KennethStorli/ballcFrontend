@@ -2,7 +2,7 @@ import React, { Component} from 'react';
 import {Col} from 'react-bootstrap'
 import PersonInfo from './PersonInfo'
 import './Teams.css'
-
+import { FormattedMessage } from 'react-intl';
 
 
 
@@ -25,7 +25,12 @@ export default class Owner extends Component{
   render(){
     return(
       <Col xs={12} sm={3}>
-        <h1>Owner</h1>
+        <h1>
+        <FormattedMessage
+        id="OWNER.message"
+        defaultMessage="Owner"
+        />
+        </h1>
         <hr/>
 
         <PersonInfo person={this.state.owners.person}/>

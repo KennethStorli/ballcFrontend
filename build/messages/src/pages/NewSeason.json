@@ -1,0 +1,42 @@
+[
+  {
+    "id": "NEWSESASON.createNewSeasonTitle",
+    "defaultMessage": "Create new season"
+  },
+  {
+    "id": "NEWSESASON.name",
+    "defaultMessage": "Name:"
+  },
+  {
+    "id": "NEWSESASON.description",
+    "defaultMessage": "Description:"
+  },
+  {
+    "id": "NEWSESASON.seasonStart",
+    "defaultMessage": "Start of season"
+  },
+  {
+    "id": "NEWSESASON.startDate",
+    "defaultMessage": "Startdate:"
+  },
+  {
+    "id": "NEWSESASON.selectStartLabel",
+    "defaultMessage": "Please select a day to start the season"
+  },
+  {
+    "id": "NEWSESASON.seasonEnd",
+    "defaultMessage": "End of season"
+  },
+  {
+    "id": "NEWSESASON.endDate",
+    "defaultMessage": "Enddate:"
+  },
+  {
+    "id": "NEWSESASON.selectEndLabel",
+    "defaultMessage": "Please select a day to end the season"
+  },
+  {
+    "id": "NEWSESASON.createNewSeasonButton",
+    "defaultMessage": "Create new season"
+  }
+]
