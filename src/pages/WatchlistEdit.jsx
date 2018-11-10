@@ -15,15 +15,19 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      numberOfFavPlayers:0,
+      numberOfFavTeams:0,
       players:[],
       teamsformatch:[],
       selectedOptionPlayers:[],
+      favPlayers:[],
+      favPlayerIds:[],
+      favTeams:[],
       teamID:'',
       filterText:'',
     };
 
-  }
+  }Matches
 
   componentDidMount() {
 
@@ -41,12 +45,18 @@ export default class Home extends Component {
   addDefaultSrc(ev){
     ev.target.src = `images/teams/default.jpg`
   }
+
   handleChangePlayers = (selectedOptionPlayers) => {
-    this.setState({ selectedOptionPlayers});
-    var favPlayers = [selectedOptionPlayers]
+    this.setState({ 
+      favPlayers: [...this.state.favPlayers, selectedOptionPlayers]
+    });
+    console.log(this.state.favPlayerIds)
   }
+
   handleChangeTeams = (selectedOptionTeams) => {
-    this.setState({ selectedOptionTeams});
+    this.setState({ 
+      favTeams: [...this.state.favTeams, selectedOptionTeams]
+    });
   }
 
     render() {
@@ -94,24 +104,22 @@ export default class Home extends Component {
               <div className="TeamlistMed">
 
                 <ListGroup>
-                  <ListGroupItem>
-                    1
-                  </ListGroupItem>
-                  <ListGroupItem>
-                    1
-                  </ListGroupItem>
-                  <ListGroupItem>
-                    1
-                  </ListGroupItem>
-                  <ListGroupItem>
-                    1
-                  </ListGroupItem>
-                  <ListGroupItem>
-                    1
-                  </ListGroupItem>
-                  <ListGroupItem>
-                    1
-                  </ListGroupItem>
+                      <div>
+                        {this.state.favPlayers.map(favPlayer =>
+                          <ListGroupItem
+                            className="listingplayer"
+                            onClick={
+                              e => {
+                                /*this.setState({
+                                  selectedAssociation:association.name,
+                                  association_id : association.association_id
+                                });*/
+                              }
+                            }
+                            key={favPlayer.value}>
+                            {favPlayer.label}
+                          </ListGroupItem>)}
+                      </div>
                 </ListGroup>
 
               </div>
@@ -135,19 +143,22 @@ export default class Home extends Component {
               <div className="TeamlistMed">
 
                 <ListGroup>
-                  <ListGroupItem>
-                    1
-                  </ListGroupItem>
-                  <ListGroupItem>
-                    1
-                  </ListGroupItem>
-                  <ListGroupItem>
-                    1
-                  </ListGroupItem>
-                  <ListGroupItem>
-                    1
-                  </ListGroupItem>
-
+                      <div>
+                        {this.state.favTeams.map(favTeam =>
+                          <ListGroupItem
+                            className="listingplayer"
+                            onClick={
+                              e => {
+                                /*this.setState({
+                                  selectedAssociation:association.name,
+                                  association_id : association.association_id
+                                });*/
+                              }
+                            }
+                            key={favTeam.value}>
+                            {favTeam.label}
+                          </ListGroupItem>)}
+                      </div>
                 </ListGroup>
 
               </div>

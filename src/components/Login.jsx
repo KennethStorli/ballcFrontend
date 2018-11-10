@@ -47,7 +47,7 @@ class Login extends React.Component  {
   
 
   sendingData(){
-    axios.get('http://localhost:8080/check')
+    axios.get('http://ballc-frontend-be.herokuapp.com/check')
     .then(function(response){
 
       
