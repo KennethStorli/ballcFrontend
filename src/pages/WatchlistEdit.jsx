@@ -8,7 +8,7 @@ import '../components/UpdatePerson.css'
 import './Home.css'
 import './Teams.css'
 
-
+import { FormattedMessage } from 'react-intl';
 
 
 export default class Home extends Component {
@@ -58,13 +58,33 @@ export default class Home extends Component {
     return(
       <div>
         <Grid>
-          <h1>Edit watchlist</h1>
-          <p>Use the dropdown to add to your favourites</p>
-          <p>and the list to remove</p>
+          <h1>
+          <FormattedMessage
+          id="WATCHLISTEDIT.editWatchlistTitle"
+          defaultMessage="Edit watchlist"
+          />
+          </h1>
+          <p>
+          <FormattedMessage
+          id="WATCHLISTEDIT.instructionMessage"
+          defaultMessage="Use the dropdown to add to your favourites"
+          />
+          </p>
+          <p>
+          <FormattedMessage
+          id="WATCHLISTEDIT.instructionMessageTwo"
+          defaultMessage="and the list to remove"
+          />
+          </p>
           <Row>
 
             <Col xs={12} sm={6}>
-              <h3>Players</h3>
+              <h3>
+              <FormattedMessage
+              id="WATCHLISTEDIT.playerHeader"
+              defaultMessage="Players"
+              />
+              </h3>
 
 
               <Select
@@ -102,7 +122,12 @@ export default class Home extends Component {
             </Col>
 
             <Col xs={12} sm={6}>
-              <h3>Teams</h3>
+              <h3>
+              <FormattedMessage
+              id="WATCHLISTEDIT.teamsHeader"
+              defaultMessage="Teams"
+              />
+              </h3>
               <Select
                 value={selectedOptionTeams}
                 onChange={this.handleChangeTeams}

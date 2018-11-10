@@ -215,7 +215,12 @@ export default class Match extends Component {
                 </p>)}
 
               {this.state.selectedDay ? (
-                <p>Gamedate: {this.state.selectedDay.toLocaleDateString('en-GB')}</p>
+                <p>
+                <FormattedMessage
+                id="MATCH.gameDate"
+                defaultMessage="Gamedate:"
+                />
+                 {this.state.selectedDay.toLocaleDateString('en-GB')}</p>
               ) : (
                 <p></p>
               )}

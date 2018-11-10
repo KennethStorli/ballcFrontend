@@ -53,7 +53,12 @@ export default class Teaminfo extends Component{
               <br/>
 
               <hr/>
-              <h1 className="playerinfo">Players</h1>
+              <h1 className="playerinfo">
+              <FormattedMessage
+              id="TEAMINFO.playerTitle"
+              defaultMessage="Players"
+              />
+              </h1>
               <br/>
               <br/>
 

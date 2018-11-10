@@ -2,7 +2,7 @@ import React,  { Component } from 'react';
 import {Row, Grid, Col } from 'react-bootstrap';
 import {Button, Input} from 'mdbreact'
 import '../components/Teamlist.css'
-
+import { FormattedMessage } from 'react-intl';
 
 export default class Profile extends Component {
   constructor(props) {
@@ -52,7 +52,12 @@ export default class Profile extends Component {
 
               <div>
 
-                <p>Username:</p>
+                <p>
+                <FormattedMessage
+                id="PROFILE.username"
+                defaultMessage="Username:"
+                />
+                </p>
                 <br/>
 
                 <Input
@@ -64,7 +69,12 @@ export default class Profile extends Component {
                 <br/>
                 <hr/>
                 <br/>
-                <p>Email:</p>
+                <p>
+                <FormattedMessage
+                id="PROFILE.email"
+                defaultMessage="Email:"
+                />
+                </p>
                 <br/>
 
                 <Input
@@ -76,7 +86,12 @@ export default class Profile extends Component {
                 <br/>
                 <br/>
                 <br/>
-                <Button>Save profile</Button>
+                <Button>
+                <FormattedMessage
+                id="PROFILE.saveProfileButton"
+                defaultMessage="Save profile"
+                />
+                </Button>
 
 
               </div>

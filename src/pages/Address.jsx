@@ -277,7 +277,7 @@ export default class Address extends Component {
                     defaultMessage="New Address"
                     />
                   }
-                  //{intl.formatMessage({id: 'ADDRESS.tabNewAddress', defaultMessage: 'New Address'})}
+
                   >
                     <NewAddress/>
                   </Tab>

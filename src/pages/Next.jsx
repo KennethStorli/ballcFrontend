@@ -9,7 +9,6 @@ export default class Next extends Component {
       id="NEXT.message"
       defaultMessage="NEXT PAGE"
       />
-        NEXT PAGE
       </div>
     )
   }
