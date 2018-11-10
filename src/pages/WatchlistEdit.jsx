@@ -16,7 +16,6 @@ export default class Home extends Component {
     super(props);
     this.state = {
 
-      teams:[],
       players:[],
       teamsformatch:[],
       selectedOptionPlayers:[],
@@ -27,9 +26,6 @@ export default class Home extends Component {
   }
 
   componentDidMount() {
-    fetch(`https://ballc-frontend-be.herokuapp.com/teams`)
-    .then(result => result.json())
-    .then(teams => this.setState({teams}))
 
     fetch(`https://ballc-frontend-be.herokuapp.com/playersformatch`)
     .then(result => result.json())
@@ -40,6 +36,8 @@ export default class Home extends Component {
     .then(teamsformatch => this.setState({teamsformatch}))
 
   }
+
+
   addDefaultSrc(ev){
     ev.target.src = `images/teams/default.jpg`
   }
