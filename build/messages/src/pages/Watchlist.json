@@ -1,0 +1,34 @@
+[
+  {
+    "id": "WATCHLIST.watchlistTitle",
+    "defaultMessage": "Watchlist"
+  },
+  {
+    "id": "WATCHLIST.editWatchlistButton",
+    "defaultMessage": "Edit watchlist"
+  },
+  {
+    "id": "WATCHLIST.playerHeader",
+    "defaultMessage": "Players"
+  },
+  {
+    "id": "WATCHLIST.teamHeader",
+    "defaultMessage": "Teams"
+  },
+  {
+    "id": "WATCHLIST.statisticsHeader",
+    "defaultMessage": "STATISTICS"
+  },
+  {
+    "id": "WATCHLIST.statisticsWin",
+    "defaultMessage": "WIN:"
+  },
+  {
+    "id": "WATCHLIST.statisticsLoss",
+    "defaultMessage": "LOSS:"
+  },
+  {
+    "id": "WATCHLIST.statisticsDraw",
+    "defaultMessage": "DRAW:"
+  }
+]
