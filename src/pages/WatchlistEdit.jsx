@@ -41,7 +41,6 @@ export default class Home extends Component {
 
   }
 
-
   addDefaultSrc(ev){
     ev.target.src = `images/teams/default.jpg`
   }
@@ -50,13 +49,51 @@ export default class Home extends Component {
     this.setState({ 
       favPlayers: [...this.state.favPlayers, selectedOptionPlayers]
     });
-    console.log(this.state.favPlayerIds)
+    this.removePlayer(selectedOptionPlayers)
+    console.log(this.state.favPlayers)
+  }
+
+  removePlayer(player) {
+    var array = [...this.state.players];
+    var index = array.indexOf(player)
+    if (index !== -1) {
+      array.splice(index, 1);
+      this.setState({players: array});
+    }
+  }
+
+  removeFavPlayer(player) {
+    var array = [...this.state.favPlayers];
+    var index = array.indexOf(player)
+    if (index !== -1) {
+      array.splice(index, 1);
+      this.setState({favPlayers: array});
+    }
   }
 
   handleChangeTeams = (selectedOptionTeams) => {
     this.setState({ 
       favTeams: [...this.state.favTeams, selectedOptionTeams]
     });
+    this.removeTeam(selectedOptionTeams)
+  }
+
+  removeTeam(team) {
+    var array = [...this.state.teamsformatch];
+    var index = array.indexOf(team)
+    if (index !== -1) {
+      array.splice(index, 1);
+      this.setState({teamsformatch: array});
+    }
+  }
+
+  removeFavTeam(team) {
+    var array = [...this.state.favTeams];
+    var index = array.indexOf(team)
+    if (index !== -1) {
+      array.splice(index, 1);
+      this.setState({favTeams: array});
+    }
   }
 
     render() {
@@ -110,10 +147,10 @@ export default class Home extends Component {
                             className="listingplayer"
                             onClick={
                               e => {
-                                /*this.setState({
-                                  selectedAssociation:association.name,
-                                  association_id : association.association_id
-                                });*/
+                                this.setState({
+                                  players:[...this.state.players, favPlayer]
+                                });
+                                this.removeFavPlayer(favPlayer)
                               }
                             }
                             key={favPlayer.value}>
@@ -149,10 +186,10 @@ export default class Home extends Component {
                             className="listingplayer"
                             onClick={
                               e => {
-                                /*this.setState({
-                                  selectedAssociation:association.name,
-                                  association_id : association.association_id
-                                });*/
+                                this.setState({
+                                  teamsformatch:[...this.state.teamsformatch, favTeam]
+                                });
+                                this.removeFavTeam(favTeam)
                               }
                             }
                             key={favTeam.value}>
