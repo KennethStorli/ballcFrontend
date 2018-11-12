@@ -16,7 +16,7 @@ export default class PersonInput extends React.Component {
       name: this.state.name
     };
 
-    axios.post('https://ea-case-ballc.herokuapp.com/test', { user })
+    axios.post('http://ballc-frontend-be.herokuapp.com/persons', { user })
     .then(res => {
       console.log(res);
       console.log(res.data);
