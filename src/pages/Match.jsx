@@ -106,7 +106,7 @@ export default class Match extends Component {
       positionsAway: user.positionsAway
 
     }
-    PostData('/addmatch', data)
+    PostData('addmatch', data)
   }
 
   render() {
