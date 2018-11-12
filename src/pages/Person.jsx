@@ -8,7 +8,6 @@ import Search from '../components/Search'
 import '../components/UpdatePerson.css'
 import './Home.css';
 import {PostData} from '../PostData';
-import { FormattedMessage } from 'react-intl';
 
 import '../components/Teamlist.css'
 
@@ -275,12 +274,7 @@ export default class Person extends Component {
         <Grid>
           <Row>
             <Col xs={12} sm={6}>
-              <p className="h5 text-center mb-4">
-              <FormattedMessage
-              id="PERSON.registeredTitle"
-              defaultMessage="REGISTERED PEOPLE"
-              />
-              </p>
+              <p className="h5 text-center mb-4">REGISTERED PEOPLE</p>
               <br/>
               <div className="Teamlist">
                 <ListGroup>
@@ -331,34 +325,19 @@ export default class Person extends Component {
             </Col>
             <Col xs={12} sm={6}>
               <Tabs defaultActiveKey={this.state.key} id="uncontrolled-tab-example">
-                <Tab eventKey={1} title={
-                  <FormattedMessage
-                  id="PERSON.editPersonTab"
-                  defaultMessage="Edit Person"
-                  />
-                }>
+                <Tab eventKey={1} title="Edit Person">
                   <form>
                     <div className="grey-text">
                       <br/>
 
-                      <p>
-                      <FormattedMessage
-                      id="PERSON.firstName"
-                      defaultMessage="First name:"
-                      />
-                      </p>
+                      <p>First name:</p>
                       <Input
                         name="firstname"
                         value={(this.state.personToEdit ? this.state.firstname : '')}
                         onChange={this.onChangeFName
                         }/>
 
-                      <p>
-                      <FormattedMessage
-                      id="PERSON.lastName"
-                      defaultMessage="Last name:"
-                      />
-                      </p>
+                      <p>Last name:</p>
                       <Input
                         name="last_name"
                         value={(this.state.personToEdit ? this.state.lastname : '')}
@@ -366,69 +345,41 @@ export default class Person extends Component {
                         }/>
 
 
-                      <p>
-                      <FormattedMessage
-                      id="PERSON.address1"
-                      defaultMessage="Address 1:"
-                      />
-                      </p>
+                      <p>Address 1:</p>
                       <Input
                         name="address_1"
                         value={(this.state.address ? this.state.address_1 : '')}
                         onChange={this.onChangeA1}
                       validate/>
 
-                      <p><FormattedMessage
-                      id="PERSON.address2"
-                      defaultMessage="Address 2:"
-                      /></p>
+                      <p>Address 2:</p>
                       <Input
                         name="address_2"
                         value={(this.state.address ? this.address_2 : '' )}
                         onChange={this.onChangeA2}
                       validate/>
 
-                      <p>
-                      <FormattedMessage
-                      id="PERSON.address3"
-                      defaultMessage="Address 3:"
-                      />
-                      </p>
+                      <p>Address 3:</p>
                       <Input
                         name="address_3"
                         value={(this.state.address ? this.state.address_3 : '')}
                         onChange={this.onChangeA3}/>
                       <Col sm={6}>
-                        <p>
-                        <FormattedMessage
-                        id="PERSON.postalCode"
-                        defaultMessage="Postal code:"
-                        />
-                        </p>
+                        <p>Postal code:</p>
                         <Input
                           name="postal"
                           value={(this.state.address ? this.state.postal_code : '')}
                           onChange={this.onChangePostal}/>
                       </Col>
                       <Col sm={6}>
-                        <p>
-                        <FormattedMessage
-                        id="PERSON.city"
-                        defaultMessage="City:"
-                        />
-                        </p>
+                        <p>City:</p>
                         <Input
                           name="city"
                           value={(this.state.address ? this.state.city : '')}
                           onChange={this.onChangeCity}/>
                       </Col>
 
-                      <p>
-                      <FormattedMessage
-                      id="PERSON.country"
-                      defaultMessage="Country:"
-                      />
-                      </p>
+                      <p>Country:</p>
                       <Input
                         name="country"
                         value={(this.state.address ? this.state.country : '')}
@@ -437,12 +388,7 @@ export default class Person extends Component {
 
                       <br/>
 
-                      <p>
-                      <FormattedMessage
-                      id="PERSON.availableContactMessage"
-                      defaultMessage="Available contacts:  (Click to edit)"
-                      />
-                      </p>
+                      <p>Available contacts:  (Click to edit)</p>
 
                       <div className="ContactList">
                         <ListGroup>
@@ -468,12 +414,7 @@ export default class Person extends Component {
 
 
                       <Col sm={6}>
-                        <p>
-                        <FormattedMessage
-                        id="PERSON.type"
-                        defaultMessage="Type:"
-                        />
-                        </p>
+                        <p> Type:</p>
                         <Input
                           name="phone"
                           value={(this.state.contactToChange ? this.state.contact_type : '')}
@@ -483,43 +424,18 @@ export default class Person extends Component {
 
                       </Col>
                       <Col sm={6}>
-                        <p>
-                        <FormattedMessage
-                        id="PERSON.contact"
-                        defaultMessage="Contact:"
-                        />
-                        </p>
+                        <p> Contact:</p>
                         <Input
                           name="phone"
                           value={(this.state.contactToChange ? this.state.contact_detail : '')}
                           onChange={this.onChangeContactDetail}/>
                       </Col>
                       <div className="text-center">
-                        <Button className="formbtnSave" color="primary" onClick={this.addContact} >
-                        <FormattedMessage
-                        id="PERSON.addButton"
-                        defaultMessage="Add"
-                        />
-                        </Button>
-                        <Button className="formbtnSave" color="primary" onClick={this.updateContact} >
-                        <FormattedMessage
-                        id="PERSON.saveButton"
-                        defaultMessage="Save"
-                        />
-                        </Button>
-                        <Button className="formbtnDel" color="primary" onClick={this.delContact} >
-                        <FormattedMessage
-                        id="PERSON.delButton"
-                        defaultMessage="Del"
-                        />
-                        </Button>
+                        <Button className="formbtnSave" color="primary" onClick={this.addContact} >Add</Button>
+                        <Button className="formbtnSave" color="primary" onClick={this.updateContact} >Save</Button>
+                        <Button className="formbtnDel" color="primary" onClick={this.delContact} >Del</Button>
                       </div>
-                      <p>
-                      <FormattedMessage
-                        id="PERSON.dateOfBirth"
-                        defaultMessage="Date of Birth"
-                        />
-                      </p>
+                      <p>Date of Birth</p>
                       <Input
                         name="username"
                         type="date"
@@ -529,28 +445,13 @@ export default class Person extends Component {
                     </div>
 
                     <div className="text-center">
-                      <Button className="formbtnSave" color="primary" onClick={this.updatePerson} >
-                      <FormattedMessage
-                        id="PERSON.saveEditButton"
-                        defaultMessage="Save edit"
-                        />
-                        </Button>
-                      <Button className="formbtnDel" color="primary" onClick={this.delPerson} >
-                      <FormattedMessage
-                        id="PERSON.deletePersonButton"
-                        defaultMessage="Delete person"
-                        />
-                        </Button>
+                      <Button className="formbtnSave" color="primary" onClick={this.updatePerson} >Save edit</Button>
+                      <Button className="formbtnDel" color="primary" onClick={this.delPerson} >Delete person</Button>
 
                     </div>
                   </form>
                 </Tab>
-                <Tab eventKey={2} title={
-                  <FormattedMessage
-                  id="PERSON.newPersonTab"
-                  defaultMessage="New Person"
-                  />
-                }>
+                <Tab eventKey={2} title="New Person">
                   <CreatePerson />
                 </Tab>
               </Tabs>

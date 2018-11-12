@@ -5,7 +5,7 @@ import SearchSmall from '../components/SearchSmall'
 import '../components/UpdatePerson.css'
 import './Home.css'
 import './Teams.css'
-import { FormattedMessage } from 'react-intl';
+
 
 
 

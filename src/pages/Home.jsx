@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { FormattedMessage } from 'react-intl';
 import {Row, Grid} from 'react-bootstrap';
 import AnonMatches from './Anonmatches'
 import UserMatches from './Usermatches'
@@ -47,6 +46,9 @@ export default class Home extends Component {
     return(
       <div>
         <Grid>
+<<<<<<< HEAD
+          <h1>Latest matches</h1>
+=======
 
           <h1>
           <FormattedMessage
@@ -54,6 +56,7 @@ export default class Home extends Component {
           defaultMessage="Latest matches"
           />
           </h1>
+>>>>>>> master
           <Row>
             <br/>
             <br/>
@@ -64,7 +67,6 @@ export default class Home extends Component {
             
             
           </Row>
-
         </Grid>
       </div>
     )

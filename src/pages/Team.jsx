@@ -5,8 +5,6 @@ import { Input, Button } from 'mdbreact';
 import SearchSmall from '../components/SearchSmall'
 import '../components/UpdatePerson.css'
 import './Home.css'
-import { FormattedMessage } from 'react-intl';
-
 import {PostData} from '../PostData';
 
 
@@ -228,7 +226,6 @@ delTeam = () =>{
                               selectedOwner: this.getTeamOwner(team.owner)
                             });
                           }
-
                         }
                         
                         key={team.team_id}>
@@ -243,21 +240,11 @@ delTeam = () =>{
 
               <br/>
 
-              <p className="h5 text-center mb-4">
-              <FormattedMessage
-              id="TEAM.editCreateTeamTitle"
-              defaultMessage="EDIT/CREATE TEAMS"
-              />
-              </p>
+              <p className="h5 text-center mb-4">EDIT/CREATE TEAMS</p>
               <form>
                 <div className="grey-text">
                   <br/>
-                  <p>
-                  <FormattedMessage
-                  id="TEAM.teamName"
-                  defaultMessage="Team name:"
-                  />
-                  </p>
+                  <p>Team name:</p>
                   <Input
                       name="Team Name"
                       value={this.state.selectedTeamName ? this.state.selectedTeamName : ''}
@@ -268,12 +255,7 @@ delTeam = () =>{
                 <br/>
                 <div className="grey-text">
                   <br/>
-                  <p>
-                  <FormattedMessage
-                  id="TEAM.association"
-                  defaultMessage="Association:"
-                  />
-                  </p>
+                  <p>Association:</p>
                   <Input
                       name="Association"
                       value={(this.state.selectedAssociation ? this.state.selectedAssociation : '')}
@@ -285,12 +267,7 @@ delTeam = () =>{
                 <br/>
                 <div className="grey-text">
                   <br/>
-                  <p>
-                  <FormattedMessage
-                  id="TEAM.location"
-                  defaultMessage="Location:"
-                  />
-                  </p>
+                  <p>Location:</p>
                   <Input
                       name="Location"
                       value={(this.state.selectedLocation ? this.state.selectedLocation : '')}
@@ -302,12 +279,7 @@ delTeam = () =>{
                 <br/>
                 <div className="grey-text">
                   <br/>
-                  <p>
-                  <FormattedMessage
-                  id="TEAM.coach"
-                  defaultMessage="Coach:"
-                  />
-                  </p>
+                  <p>Coach:</p>
                   <Input
                       name="Coach"
                       value={(this.state.selectedCoach ? this.state.selectedCoach : '')}
@@ -319,12 +291,7 @@ delTeam = () =>{
                 <br/>
                 <div className="grey-text">
                   <br/>
-                  <p>
-                  <FormattedMessage
-                  id="TEAM.owner"
-                  defaultMessage="Owner:"
-                  />
-                  </p>
+                  <p>Owner:</p>
                   <Input
                       name="Owner"
                       value={(this.state.selectedOwner ? this.state.selectedOwner : '')}
@@ -339,12 +306,7 @@ delTeam = () =>{
             <Col xs={12} sm={4}>
               <br/>
 
-              <p className="h5 text-center mb-4">
-              <FormattedMessage
-              id="TEAM.registeredAssTitle"
-              defaultMessage="REGISTERED ASSOCIATIONS"
-              />
-              </p>
+              <p className="h5 text-center mb-4">REGISTERED ASSOCIATIONS</p>
               <div className="divlist">
               <ListGroup>
                       <div>
@@ -367,12 +329,7 @@ delTeam = () =>{
               </div>
               <br/>
 
-              <p className="h5 text-center mb-4">
-              <FormattedMessage
-              id="TEAM.registeredLocationTitle"
-              defaultMessage="REGISTERED LOCATIONS"
-              />
-              </p>
+              <p className="h5 text-center mb-4">REGISTERED LOCATIONS</p>
               <div className="divlist">
                 <ListGroup>
                     <div>
@@ -395,12 +352,7 @@ delTeam = () =>{
               </div>
               <br/>
 
-              <p className="h5 text-center mb-4">
-              <FormattedMessage
-              id="TEAM.registeredCoachesTitle"
-              defaultMessage="REGISTERED COACHES"
-              />
-              </p>
+              <p className="h5 text-center mb-4">REGISTERED COACHES</p>
               <div className="divlist">
               <ListGroup>
                       <div>
@@ -423,12 +375,7 @@ delTeam = () =>{
               </div>
               <br/>
 
-              <p className="h5 text-center mb-4">
-              <FormattedMessage
-              id="TEAM.registeredOwnerTitle"
-              defaultMessage="REGISTERED OWNERS"
-              />
-              </p>
+              <p className="h5 text-center mb-4">REGISTERED OWNERS</p>
               <div className="divlist">
               <ListGroup>
                       <div>
@@ -450,25 +397,9 @@ delTeam = () =>{
                 </ListGroup>
               </div>
               <div className="text-center">
-
-                <Button className="formbtnSave" color="primary" onClick={this.updateTeam}>
-                <FormattedMessage
-                id="TEAM.saveButton"
-                defaultMessage="Save"
-                />
-                 </Button>
-                <Button className="formbtnSave" color="primary" onClick={this.addTeam}>
-                <FormattedMessage
-                id="TEAM.createButton"
-                defaultMessage="Create"
-                />
-                 </Button>
-                <Button className="formbtnDel" color="primary" onClick={this.delTeam}>
-                <FormattedMessage
-                id="TEAM.deleteButton"
-                defaultMessage="Delete"
-                />
-                 </Button>
+                <Button className="formbtnSave" color="primary" onClick={this.updateTeam}>Save </Button>
+                <Button className="formbtnSave" color="primary" onClick={this.addTeam}>Create </Button>
+                <Button className="formbtnDel" color="primary" onClick={this.delTeam}>Delete </Button>
               </div>
 
             </Col>

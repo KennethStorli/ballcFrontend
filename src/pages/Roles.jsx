@@ -4,14 +4,18 @@ import { ListGroup, ListGroupItem, FormControl} from 'react-bootstrap';
 import { Button, Input } from 'mdbreact'
 import '../components/Teamlist.css'
 import { PostData } from '../PostData';
-import { FormattedMessage } from 'react-intl';
+
 
 export default class Roles extends Component {
   constructor(props) {
     super(props);
     this.state = {
       persons:[],
+      people:[],
       teams:[],
+      owners:[],
+      players:[],
+      coaches:[],
       selectTeam:[],
       first_name:'',
       last_name:'',
@@ -21,7 +25,10 @@ export default class Roles extends Component {
       player:false,
       number:'',
       person_id:'',
-      selected:'goalkeeper'
+      selected:'',
+      playernumber:'',
+      team: '',
+      normalPos:'',
 
 
     };
@@ -30,6 +37,8 @@ export default class Roles extends Component {
 
     this.onCoachCheck = this.onCoachCheck.bind(this)
     this.onOwnerCheck = this.onOwnerCheck.bind(this)
+    this.onPlayerCheck = this.onPlayerCheck.bind(this)
+
   }
   onChangeNumber(event){
     const number = event.target.value
@@ -46,7 +55,77 @@ export default class Roles extends Component {
     fetch(`http://ballc-frontend-be.herokuapp.com/teams`)
     .then(result => result.json())
     .then(teams => this.setState({teams}))
+
+    fetch(`http://ballc-frontend-be.herokuapp.com/coaches`)
+    .then(result => result.json())
+    .then(coaches => this.setState({coaches}))
+
+    fetch(`http://ballc-frontend-be.herokuapp.com/owners`)
+    .then(result => result.json())
+    .then(owners => this.setState({owners,
+    people: owners.person}))
+
+    fetch(`http://ballc-frontend-be.herokuapp.com/players`)
+    .then(result => result.json())
+    .then(players => this.setState({players}))
   }
+
+  getOwner(id) {
+    this.state.owners.forEach(owner => {
+      if(owner.person === id) {
+            this.setState({owner: true})
+        }
+      })
+    }
+    getCoach(id) {
+      this.state.coaches.forEach(owner => {
+        if(owner.person === id) {
+              this.setState({coach: true})
+          }
+        })
+      }
+      getPlayer(id) {
+        this.state.players.forEach(owner => {
+          if(owner.person == id) {this.setState({
+                  player: true,
+                  number:  owner.number,
+                  team: owner.team,
+                  normalPos: owner.normal_position,
+                })
+                if(owner.normal_position == "GOALKEEPER"){
+                  this.setState({selected: 'Goalkeeper'})
+                }
+                else if(owner.normal_position == "DEFENCE"){
+                  this.setState({selected: 'Defence'})
+                }
+                else if(owner.normal_position == "MIDFIELD"){
+                  this.setState({selected: 'Midfield'})
+                }
+                else if(owner.normal_position == "FORWARD"){
+                  this.setState({selected: 'Forward'})
+                }
+                this.state.teams.forEach(teams => {
+                  if(teams.team_id == owner.team) {
+                        this.setState({
+                          teamname: teams.teamName,
+                        })
+
+                  }
+            })
+          }
+        })
+      }
+
+
+
+  checkingPlayers(id){
+
+  }
+
+  checkingCoaches(id){
+
+  }
+
 
   onCoachCheck(e){
     this.setState({coach: !this.state.coach});
@@ -54,6 +133,10 @@ export default class Roles extends Component {
 
   onOwnerCheck(e){
     this.setState({owner: !this.state.owner});
+  }
+
+  onPlayerCheck(e){
+    this.setState({player: !this.state.player});
   }
 
   selectOption = (event) =>{
@@ -90,6 +173,7 @@ export default class Roles extends Component {
 
   }
     render(){
+      const owner = this.state.owners;
       return(
         <Grid>
           <div>
@@ -107,8 +191,18 @@ export default class Roles extends Component {
                                 person_id: name.person_id,
                                 first_name: name.first_name,
                                 last_name:name.last_name,
+                                selected: '',
+                                number:'',
+                                team:'',
+                                owner: false,
+                                coach: false,
+                                player:false,
 
                               });
+                              this.getOwner(name.person_id)
+                              this.getPlayer(name.person_id)
+                              this.getCoach(name.person_id)
+
 
                             }
                           }
@@ -120,12 +214,7 @@ export default class Roles extends Component {
                 </div>
               </Col>
               <Col xs={12} sm={6}>
-                <p>
-                <FormattedMessage
-                id="ROLES.name"
-                defaultMessage="Name:"
-                />
-                </p>
+                <p>Name:</p>
                 <p>{(this.state.first_name ? this.state.first_name: '')} {(this.state.last_name ? this.state.last_name: '')}</p>
 
                 <br/>
@@ -133,70 +222,49 @@ export default class Roles extends Component {
 
                 <br/>
                 <br/>
-                <Checkbox onClick={this.onCoachCheck} defaultChecked={this.state.admin}>
-                  <FormattedMessage
-                  id="ROLES.coach"
-                  defaultMessage="Coach"
-                  />
-                
-                </Checkbox>
+                <p>
+                  <input
+                    name="isGoing"
+                    type="checkbox"
+                    checked={this.state.coach}
+                    onChange={this.onCoachCheck} /> Coach </p>
+
 
                 <br/>
-                <br/>
-                <Checkbox onClick={this.onOwnerCheck} defaultChecked={this.state.admin}>
-                  <FormattedMessage
-                  id="ROLES.owner"
-                  defaultMessage="Owner"
-                  />
-                </Checkbox>
+                <p>
+                  <input
+                    name="isGoing"
+                    type="checkbox"
+                    checked={this.state.owner}
+                    onChange={this.onOwnerCheck} /> Owner </p>
+
 
                 <br/>
 
                 <br/>
+
+                <p>
+                  <input
+                    name="isGoing"
+                    type="checkbox"
+                    checked={this.state.player}
+                    onChange={this.onPlayerCheck} /> Player
+                </p>
+
                 <br/>
                 <div className="chooseTeam">
 
                   <Col xs={12} sm={6}>
-                    <p>
-                    <FormattedMessage
-                    id="ROLES.normPosition"
-                    defaultMessage="Normal Position"
-                    />
-                    </p>
+                    <p>Normal Position: {this.state.selected}</p>
                     <FormControl componentClass="select" onChange={this.selectOption} placeholder="goalkeeper">
-                      <option  value="goalkeeper">
-                      <FormattedMessage
-                      id="ROLES.posFormGoalkeeper"
-                      defaultMessage="Goalkeeper"
-                      />
-                      </option>
-                      <option value="defence">
-                      <FormattedMessage
-                      id="ROLES.posFormDefence"
-                      defaultMessage="Defence"
-                      />
-                      </option>
-                      <option value="midfield">
-                      <FormattedMessage
-                      id="ROLES.posFormMidfield"
-                      defaultMessage="Midfield"
-                      />
-                      </option>
-                      <option value="forward">
-                      <FormattedMessage
-                      id="ROLES.posFormForward"
-                      defaultMessage="Forward"
-                      />
-                      </option>
+                      <option  value="goalkeeper">Goalkeeper</option>
+                      <option value="defence">Defence</option>
+                      <option value="midfield">Midfield</option>
+                      <option value="forward">Forward</option>
                     </FormControl>
                   </Col>
                   <Col xs={12} sm={6}>
-                    <p>
-                    <FormattedMessage
-                    id="ROLES.number"
-                    defaultMessage="Number"
-                    />
-                       </p>
+                    <p> Number </p>
                     <Input
                       name="Number"
                       value={(this.state.number ? this.state.number : '')}
@@ -207,15 +275,10 @@ export default class Roles extends Component {
                   <br/>
                   <br/>
                   <br/>
-                  <p>
-                  <FormattedMessage
-                    id="ROLES.team"
-                    defaultMessage="Team"
-                    />
-                  </p>
+                  <p> Team </p>
                   <Input
                     name="team"
-                    value={(this.state.selectTeam ? this.state.selectTeam.teamName : '')}
+                    value={(this.state.teamname ? this.state.teamname : '')}
                     onChange={this.onChangeFName
                     }/>
                   <br/>
@@ -230,6 +293,7 @@ export default class Roles extends Component {
                               e => {
                                 this.setState({
                                   selectTeam: name,
+                                  teamname: name.teamName,
                                   team_id: name.team_id
                                 });
                               }
@@ -245,12 +309,9 @@ export default class Roles extends Component {
                 <br/>
                 <br/>
 
-                <Button onClick={this.addRole}>
-                <FormattedMessage
-                    id="ROLES.saveUserButton"
-                    defaultMessage="Save user"
-                    />
-                </Button>
+                <Button onClick={this.addRole}>Save role</Button>
+                <Button onClick={this.updateRole}>Update role</Button>
+
               </Col>
             </Row>
           </div>

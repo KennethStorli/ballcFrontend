@@ -3,7 +3,6 @@ import {Row, Grid, Col } from 'react-bootstrap';
 import { ListGroup, ListGroupItem} from 'react-bootstrap';
 import {Button, Input} from 'mdbreact'
 import '../components/Teamlist.css'
-import { FormattedMessage } from 'react-intl';
 import { PostData } from '../PostData';
 
 export default class User extends Component {
@@ -107,12 +106,7 @@ export default class User extends Component {
                 </div>
               </Col>
               <Col xs={12} sm={6}>
-                <p>
-                <FormattedMessage
-                id="USER.username"
-                defaultMessage="Username:"
-                />
-                </p>
+                <p>Username:</p>
                 <Input
                   name="firstname"
                   value={(this.state.name ? this.state.name: '')}
@@ -122,17 +116,13 @@ export default class User extends Component {
                 <br/>
                 <hr/>
                 <br/>
-                <p>
-                <FormattedMessage
-                id="USER.email"
-                defaultMessage="Email:"
-                />
-                </p>
+                <p>Email:</p>
                 <Input
                   name="firstname"
                   value={(this.state.email ? this.state.email: '')}
                   onChange={this.onChangeEmail.bind(this)
                   }/>
+
 
                 <br/>
                 <br/>
@@ -140,30 +130,13 @@ export default class User extends Component {
                   name="isGoing"
                   type="checkbox"
                   checked={this.state.admin}
-                  onChange={this.onAdminCheck} />
-                  <FormattedMessage
-                  id="USER.adminInput"
-                  defaultMessage="Admin"
-                  />
-                 </p>
+                  onChange={this.onAdminCheck} /> Admin </p>
 
 
                 <br/>
                 <br/>
-
-                <Button onClick={this.checkAdmin}>
-                <FormattedMessage
-                id="USER.saveUserButton"
-                defaultMessage="Save user"
-                />
-                </Button>
-                <Button className="formbtnDel" color="primary" >
-                <FormattedMessage
-                id="USER.deleteUserButton"
-                defaultMessage="Delete user"
-                />
-                </Button>
-
+                <Button onClick={this.checkAdmin}>Save user</Button>
+                <Button className="formbtnDel" color="primary" >Delete user</Button>
 
               </Col>
             </Row>

@@ -4,11 +4,7 @@ import Owner from './Owner';
 import Location from './Location';
 import Coach from './Coach';
 import './Teams.css'
-
-import { FormattedMessage } from 'react-intl';
-
 import { Row, Grid, Col} from 'react-bootstrap'
-
 
 export default class Teaminfo extends Component{
     constructor(props) {

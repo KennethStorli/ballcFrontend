@@ -1,11 +1,7 @@
 import React,  { Component } from 'react';
 import { Col, Grid, Row, ListGroup, ListGroupItem} from 'react-bootstrap';
 import { Button, Input } from 'mdbreact'
-
-import { FormattedMessage } from 'react-intl';
-
 import {PostData} from '../PostData';
-
 
 import '../components/Teamlist.css'
 
@@ -87,12 +83,7 @@ delAssociation = () =>{
           <div>
             <Row>
               <Col xs={12} sm={6}>
-                <p className="h5 text-center mb-4">
-                <FormattedMessage
-                id="CRUDASSOCIATION.registerTitle"
-                defaultMessage="REGISTERED ASSOCIATIONS"
-                />
-                </p>
+                <p className="h5 text-center mb-4">REGISTERED ASSOCIATIONS</p>
                 <br/>
                 <div className="Teamlist">
                   <ListGroup>
@@ -123,12 +114,7 @@ delAssociation = () =>{
                 <hr/>
                 <br/>
                 <br/>
-                <p>
-                <FormattedMessage
-                id="CRUDASSOCIATION.assName"
-                defaultMessage="Association name:"
-                />
-                </p>
+                <p>Association name:</p>
                 <Input
                   name="loc"
                   value={(this.state.selectAss ? this.state.association_name : '')}
@@ -140,12 +126,7 @@ delAssociation = () =>{
                 <hr/>
                 <br/>
                 <br/>
-                <p>
-                <FormattedMessage
-                id="CRUDASSOCIATION.description"
-                defaultMessage="Description:"
-                />
-                </p>
+                <p>Description:</p>
                 <Input
                   name="des"
                   value={(this.state.selectAss ? this.state.association_description : '' )}
@@ -161,28 +142,10 @@ delAssociation = () =>{
                 <br/>
 
                 <div className="text-center">
+                  <Button color="primary" onClick={this.createassociation} >Create new association</Button>
 
-                  <Button color="primary" onClick={this.createassociation} >
-                  <FormattedMessage
-                  id="CRUDASSOCIATION.newAssButton"
-                  defaultMessage="Create new association"
-                  />
-                  </Button>
-
-                  <Button className="formbtnSave" color="primary" onClick={this.updateAssociation} >
-                  <FormattedMessage
-                  id="CRUDASSOCIATION.saveEditButton"
-                  defaultMessage="Save edit"
-                  />
-                  </Button>
-
-                  <Button className="formbtnDel" color="primary" onClick={this.delAssociation} >
-                  <FormattedMessage
-                  id="CRUDASSOCIATION.deleteAssButton"
-                  defaultMessage="Delete association"
-                  />
-                  </Button>
-
+                  <Button className="formbtnSave" color="primary" onClick={this.updateAssociation} >Save edit</Button>
+                  <Button className="formbtnDel" color="primary" onClick={this.delAssociation} >Delete association</Button>
 
                 </div>
 

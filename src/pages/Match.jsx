@@ -2,13 +2,10 @@ import React, {Component} from 'react';
 import Select from 'react-select';
 import {Grid, Row, Col} from 'react-bootstrap'
 import {Button } from 'mdbreact'
-import { FormattedMessage } from 'react-intl';
-
 import DayPicker from 'react-day-picker';
 import Matchpositions from '../components/Matchpositions'
 import {PostData} from '../PostData';
 import axios from 'axios';
-
 
 
 export default class Match extends Component {
@@ -122,12 +119,7 @@ export default class Match extends Component {
             <br/>
             <Col xs={12} sm={4}></Col>
             <Col xs={12} sm={4}>
-              <p>
-              <FormattedMessage
-              id="MATCH.seasonTitle"
-              defaultMessage="SEASON"
-              />
-              </p>
+              <p>SEASON</p>
               <Select
                 value={selectedOptionSeason}
                 onChange={this.handleChangeSeason}
@@ -136,12 +128,7 @@ export default class Match extends Component {
             </Col>
             <br/><br/><br/>
             <Col xs={12} sm={6}>
-              <p>
-              <FormattedMessage
-              id="MATCH.homeTeamTitle"
-              defaultMessage="HOME TEAM"
-              />
-              </p>
+              <p>HOME TEAM</p>
               <Select
                 value={selectedOptionHome}
                 onChange={this.handleChangeHome}
@@ -149,12 +136,7 @@ export default class Match extends Component {
               />
             </Col>
             <Col xs={12} sm={6}>
-              <p>
-              <FormattedMessage
-              id="MATCH.awayTeamTitle"
-              defaultMessage="AWAY TEAM"
-              />
-              </p>
+              <p>AWAY TEAM</p>
 
               <Select
                 value={selectedOptionAway}
@@ -182,12 +164,7 @@ export default class Match extends Component {
 
             <Col xs={12} sm={6}>
               <br/><br/>
-              <p>
-              <FormattedMessage
-              id="MATCH.choseGameDate"
-              defaultMessage="Choose game date"
-              />
-              </p>
+              <p>Choose game date</p>
               <hr/>
               <DayPicker
                 onDayClick={this.handleDayClick}
@@ -198,20 +175,9 @@ export default class Match extends Component {
               <Col xs={12} sm={6}>
               <br/><br/><br/><br/>
 
-              <h3 className="greytext">
-              <FormattedMessage
-              id="MATCH.gameData"
-              defaultMessage="GAMEDATA:"
-              />
-              </h3>
+              <h3 className="greytext">GAMEDATA:</h3>
               {this.state.selectedOptionHome && this.state.selectedOptionAway ? (
-                <p>{this.state.selectedOptionHome.label} VS {this.state.selectedOptionAway.label}</p> ):(
-                <p>
-                <FormattedMessage
-                id="MATCH.selectMessage"
-                defaultMessage="Select teams to see gamedata"
-                />
-                </p>)}
+                <p>{this.state.selectedOptionHome.label} VS {this.state.selectedOptionAway.label}</p> ):(<p>Select teams to see gamedata</p>)}
 
               {this.state.selectedDay ? (
                 <p>
@@ -224,20 +190,8 @@ export default class Match extends Component {
                 <p></p>
               )}
 
-
-              <Button className="formbtnSave" color="primary" onClick={this.addMatch} >
-              <FormattedMessage
-              id="MATCH.saveResultButton"
-              defaultMessage="Save results"
-              />
-              </Button>
-              <Button className="formbtnDel" color="primary" onClick={this.delResult} >
-              <FormattedMessage
-              id="MATCH.deleteResultButton"
-              defaultMessage="Delete results"
-              />
-              </Button>
-
+              <Button className="formbtnSave" color="primary" onClick={this.addMatch} >Save results</Button>
+              <Button className="formbtnDel" color="primary" onClick={this.delResult} >Delete results</Button>
             </Col>
           </Row>
         </Grid>
