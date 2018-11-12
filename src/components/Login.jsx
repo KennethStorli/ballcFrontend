@@ -24,7 +24,7 @@ class Login extends React.Component  {
   login(){
     if(this.state.username && this.state.password){
       console.log("Login function");
-      PostData('login', this.state);
+      //PostData('login', this.state);
       const list = [...this.state.userDate];
       let user = Object.assign({}, this.state);    //creating copy of object
 
@@ -33,10 +33,25 @@ class Login extends React.Component  {
         password: user.password
       }
 
-      this.sendingData();
+      axios.post('http://ballc-frontend-be.herokuapp.com/login', this.state)
+      .then(function(response){
+        var reso  = JSON.stringify(response.data);
+
+      var responde = JSON.parse(reso);
+      if(responde.token == ""){
+        //alert("sorry dude you did put wrong info");
+      }else{
+      localStorage.setItem("userData", reso);
+      alert("Welcome Back " + responde.username);
+      responde = null;
+      window.location.reload(); 
+      }
+      
+      })
+
+      //this.sendingData();
       list.push(data);
 
-      
     }
   }
   onChange(e){
