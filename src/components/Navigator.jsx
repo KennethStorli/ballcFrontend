@@ -56,7 +56,7 @@ export default class Navigator extends Component {
 
   logingout(){
 
-    axios.get('http://localhost:8080/check')
+    axios.get('http://ballc-frontend-be.herokuapp.com/check')
     .then(function(response){
       console.log(response.data);
     })

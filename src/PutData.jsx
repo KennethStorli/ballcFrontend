@@ -1,5 +1,5 @@
 export function PutData(type, userData) {
-    let BaseURL = 'http://localhost:8080/';
+    let BaseURL = 'http://ballc-frontend-be.herokuapp.com/';
 
     return new Promise((resolve, reject) =>{
 
