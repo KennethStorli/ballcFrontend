@@ -24,13 +24,10 @@ import Watchlist from './pages/Watchlist'
 import WatchlistEdit from './pages/WatchlistEdit'
 import Matches from './pages/Matches'
 
-import axios from 'axios';
 
 
 import Navbar from './components/Navigator'
 import NavigatorAdm from './components/NavigatorAdm'
-
-
 
 class App extends Component {
 
@@ -56,8 +53,23 @@ class App extends Component {
     super(props);
     this.state = {
       show: false,
-     users:'',
+      showUser:false,
+      users: []
     };
+  }
+
+  componentDidMount(){
+    var userData = localStorage.getItem("userData");
+    var userString = JSON.parse(userData);
+    if(userString == null){
+      console.log("NOT LOGGED IN");
+    }else{
+      this.setState({users : JSON.parse(userData)});
+      this.setState({showUser: true});
+      if(userString.admin){
+        this.setState({show: true});
+      }
+    }
   }
 
 
@@ -78,7 +90,9 @@ class App extends Component {
       <Router>
         <div>
           <Navbar/>
-          <NavigatorAdm/>
+          { this.state.show ?  <NavigatorAdm/> : null}
+
+          
           {this.showUser()}
           {console.log(this.state.users)}
 
@@ -103,8 +117,8 @@ class App extends Component {
           <Route path="/Goaltypes" component={Goaltypes}></Route>
           <Route path="/Watchlist" component={Watchlist}></Route>
           <Route path="/WatchlistEdit" component={WatchlistEdit}></Route>
-          <Route path="/Matches" component={Matches}></Route>
 
+          <Route path="/Matches" component={Matches}></Route>
         </div>
       </Router>
     );

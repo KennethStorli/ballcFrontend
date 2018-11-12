@@ -97,7 +97,6 @@ export default class Match extends Component {
     var data = {
       match_date: user.selectedDayString,
       season: user.selectedOptionSeason,
-      location: '',
       home_team: user.selectedOptionHome,
       away_team: user.selectedOptionAway,
       positionsHome: user.positionsHome,
@@ -181,7 +180,12 @@ export default class Match extends Component {
                 <p>{this.state.selectedOptionHome.label} VS {this.state.selectedOptionAway.label}</p> ):(<p>Select teams to see gamedata</p>)}
 
               {this.state.selectedDay ? (
-                <p>Gamedate: {this.state.selectedDay.toLocaleDateString('en-GB')}</p>
+                <p>
+                <FormattedMessage
+                id="MATCH.gameDate"
+                defaultMessage="Gamedate:"
+                />
+                 {this.state.selectedDay.toLocaleDateString('en-GB')}</p>
               ) : (
                 <p></p>
               )}

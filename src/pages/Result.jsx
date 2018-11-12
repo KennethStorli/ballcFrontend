@@ -265,14 +265,24 @@ export default class Results extends Component {
                     <hr/>
 
                     <div className="newScore">
-                      <p>Select player</p>
+                      <p>
+                      <FormattedMessage
+                      id="RESULT.selectPlayerHome"
+                      defaultMessage="Select player"
+                      />
+                      </p>
                       <Select
                         value={this.playerHome}
                         onChange={this.handleChangePlayerHome}
                         options={players}
                       />
                       <br/>
-                      <p>Select goaltype</p>
+                      <p>
+                      <FormattedMessage
+                      id="RESULT.selectGoaltypeHome"
+                      defaultMessage="Select goaltype"
+                      />
+                      </p>
 
                       <Select
                         value={this.goalTypeHome}
@@ -280,7 +290,12 @@ export default class Results extends Component {
                         options={goaltypes}
                       />
 
-                      <Button className="formbtnSave" color="primary" onClick={this.selectgoalHome} >Save results</Button>
+                      <Button className="formbtnSave" color="primary" onClick={this.selectgoalHome} >
+                      <FormattedMessage
+                      id="RESULT.saveResultHomeButton"
+                      defaultMessage="Save results"
+                      />
+                      </Button>
 
                     </div>
                   </div>
@@ -309,14 +324,24 @@ export default class Results extends Component {
                     <hr/>
 
                     <div className="newScore">
-                      <p>Select player</p>
+                      <p>
+                      <FormattedMessage
+                      id="RESULT.selectPlayerAway"
+                      defaultMessage="Select player"
+                      />
+                      </p>
                       <Select
                         value={this.playerAway}
                         onChange={this.handleChangePlayerAway}
                         options={players}
                       />
                       <br/>
-                      <p>Select goaltype</p>
+                      <p>
+                      <FormattedMessage
+                      id="RESULT.selectGoaltypeAway"
+                      defaultMessage="Select goaltype"
+                      />
+                      </p>
 
                       <Select
                         value={this.goalTypeAway}
@@ -324,7 +349,12 @@ export default class Results extends Component {
                         options={goaltypes}
                       />
 
-                      <Button className="formbtnSave" color="primary" onClick={this.selectgoalAway} >Save results</Button>
+                      <Button className="formbtnSave" color="primary" onClick={this.selectgoalAway} >
+                      <FormattedMessage
+                      id="RESULT.saveResultAwayButton"
+                      defaultMessage="Save results"
+                      />
+                      </Button>
 
                     </div>
                   </div>

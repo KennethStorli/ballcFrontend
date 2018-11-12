@@ -1,0 +1,34 @@
+[
+  {
+    "id": "GOALTYPES.registerMes",
+    "defaultMessage": "REGISTERED GOALTYPES"
+  },
+  {
+    "id": "GOALTYPES.editGoalTypesTab",
+    "defaultMessage": "Edit Goaltype"
+  },
+  {
+    "id": "GOALTYPES.editGoalTypes",
+    "defaultMessage": "EDIT GOALTYPE"
+  },
+  {
+    "id": "GOALTYPES.saveEditButton",
+    "defaultMessage": "Save edit"
+  },
+  {
+    "id": "GOALTYPES.deleteButton",
+    "defaultMessage": "Delete goaltype"
+  },
+  {
+    "id": "GOALTYPES.newGoalTypesTab",
+    "defaultMessage": "New Goaltype"
+  },
+  {
+    "id": "GOALTYPES.newGoalTypes",
+    "defaultMessage": "NEW GOALTYPE"
+  },
+  {
+    "id": "GOALTYPES.newGoalButton",
+    "defaultMessage": "New Goaltype"
+  }
+]

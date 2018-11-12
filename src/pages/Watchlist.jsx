@@ -6,7 +6,7 @@ import AnonMatches from './Anonmatches'
 import '../components/UpdatePerson.css'
 import './Home.css'
 import './Teams.css'
-
+import { FormattedMessage } from 'react-intl';
 
 
 
@@ -14,8 +14,10 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      userCookie:'',
+      logedInUser:[],
       teams:[],
+      favPlayersList:[],
       teamID:'',
       filterText:'',
     };
@@ -27,6 +29,9 @@ export default class Home extends Component {
     .then(result => result.json())
     .then(teams => this.setState({teams}))
 
+    this.setState({userCookie: JSON.parse(localStorage.getItem("userData"))})
+
+    
   }
   addDefaultSrc(ev){
     ev.target.src = `images/teams/default.jpg`
@@ -34,18 +39,37 @@ export default class Home extends Component {
 
 
     render() {
+      var username = this.state.userCookie.username
+    fetch(`https://ballc-frontend-usersapi.herokuapp.com/users/` + username)
+    .then(result => result.json())
+    .then(logedInUser => this.setState({logedInUser}))
 
-
+    console.log('loged in user: ' + this.state.logedInUser)
     return(
       <div>
         <Grid>
-          <h1>Watchlist</h1>
+          <h1>
+          <FormattedMessage
+          id="WATCHLIST.watchlistTitle"
+          defaultMessage="Watchlist"
+          />
+          </h1>
           <Link to="/WatchlistEdit">
-            <Button>Edit watchlist</Button>
+            <Button>
+            <FormattedMessage
+            id="WATCHLIST.editWatchlistButton"
+            defaultMessage="Edit watchlist"
+            />
+            </Button>
           </Link>
           <Row>
             <Col xs={12} sm={6}>
-              <h2>Players</h2>
+              <h2>
+              <FormattedMessage
+              id="WATCHLIST.playerHeader"
+              defaultMessage="Players"
+              />
+              </h2>
               <h3>BIANCA EILERTSEN</h3>
               <hr/>
 
@@ -53,7 +77,12 @@ export default class Home extends Component {
               <p> CAREER GOALS: 6</p>
             </Col>
             <Col xs={12} sm={6}>
-              <h2>Teams</h2>
+              <h2>
+              <FormattedMessage
+              id="WATCHLIST.teamHeader"
+              defaultMessage="Teams"
+              />
+              </h2>
               <h3>Liverpool</h3>
               <hr/>
               <Col xs={12} sm={6}>
@@ -61,11 +90,31 @@ export default class Home extends Component {
               </Col>
               <Col xs={12} sm={6}>
                 <br/><br/>
-                <p>STATISTICS</p>
+                <p>
+                <FormattedMessage
+                id="WATCHLIST.statisticsHeader"
+                defaultMessage="STATISTICS"
+                />
+                </p>
                 <div className="content">
-                  <p>WIN: 6</p>
-                  <p>LOSS: 8</p>
-                  <p>DRAW: 2</p>
+                  <p>
+                  <FormattedMessage
+                  id="WATCHLIST.statisticsWin"
+                  defaultMessage="WIN:"
+                  />
+                   6</p>
+                  <p>
+                  <FormattedMessage
+                  id="WATCHLIST.statisticsLoss"
+                  defaultMessage="LOSS:"
+                  />
+                   8</p>
+                  <p>
+                  <FormattedMessage
+                  id="WATCHLIST.statisticsDraw"
+                  defaultMessage="DRAW:"
+                  />
+                   2</p>
                 </div>
               </Col>
             </Col>

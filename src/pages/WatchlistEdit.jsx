@@ -8,28 +8,28 @@ import '../components/UpdatePerson.css'
 import './Home.css'
 import './Teams.css'
 
-
+import { FormattedMessage } from 'react-intl';
 
 
 export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
-      teams:[],
+      numberOfFavPlayers:0,
+      numberOfFavTeams:0,
       players:[],
       teamsformatch:[],
       selectedOptionPlayers:[],
+      favPlayers:[],
+      favPlayerIds:[],
+      favTeams:[],
       teamID:'',
       filterText:'',
     };
 
-  }
+  }Matches
 
   componentDidMount() {
-    fetch(`https://ballc-frontend-be.herokuapp.com/teams`)
-    .then(result => result.json())
-    .then(teams => this.setState({teams}))
 
     fetch(`https://ballc-frontend-be.herokuapp.com/playersformatch`)
     .then(result => result.json())
@@ -40,14 +40,60 @@ export default class Home extends Component {
     .then(teamsformatch => this.setState({teamsformatch}))
 
   }
+
   addDefaultSrc(ev){
     ev.target.src = `images/teams/default.jpg`
   }
+
   handleChangePlayers = (selectedOptionPlayers) => {
-    this.setState({ selectedOptionPlayers});
+    this.setState({ 
+      favPlayers: [...this.state.favPlayers, selectedOptionPlayers]
+    });
+    this.removePlayer(selectedOptionPlayers)
+    console.log(this.state.favPlayers)
   }
+
+  removePlayer(player) {
+    var array = [...this.state.players];
+    var index = array.indexOf(player)
+    if (index !== -1) {
+      array.splice(index, 1);
+      this.setState({players: array});
+    }
+  }
+
+  removeFavPlayer(player) {
+    var array = [...this.state.favPlayers];
+    var index = array.indexOf(player)
+    if (index !== -1) {
+      array.splice(index, 1);
+      this.setState({favPlayers: array});
+    }
+  }
+
   handleChangeTeams = (selectedOptionTeams) => {
-    this.setState({ selectedOptionTeams});
+    this.setState({ 
+      favTeams: [...this.state.favTeams, selectedOptionTeams]
+    });
+    this.removeTeam(selectedOptionTeams)
+  }
+
+  removeTeam(team) {
+    var array = [...this.state.teamsformatch];
+    var index = array.indexOf(team)
+    if (index !== -1) {
+      array.splice(index, 1);
+      this.setState({teamsformatch: array});
+    }
+  }
+
+  removeFavTeam(team) {
+    var array = [...this.state.favTeams];
+    var index = array.indexOf(team)
+    if (index !== -1) {
+      array.splice(index, 1);
+      this.setState({favTeams: array});
+    }
   }
 
     render() {
@@ -58,13 +104,33 @@ export default class Home extends Component {
     return(
       <div>
         <Grid>
-          <h1>Edit watchlist</h1>
-          <p>Use the dropdown to add to your favourites</p>
-          <p>and the list to remove</p>
+          <h1>
+          <FormattedMessage
+          id="WATCHLISTEDIT.editWatchlistTitle"
+          defaultMessage="Edit watchlist"
+          />
+          </h1>
+          <p>
+          <FormattedMessage
+          id="WATCHLISTEDIT.instructionMessage"
+          defaultMessage="Use the dropdown to add to your favourites"
+          />
+          </p>
+          <p>
+          <FormattedMessage
+          id="WATCHLISTEDIT.instructionMessageTwo"
+          defaultMessage="and the list to remove"
+          />
+          </p>
           <Row>
 
             <Col xs={12} sm={6}>
-              <h3>Players</h3>
+            <h3>
+              <FormattedMessage
+              id="WATCHLISTEDIT.playerHeader"
+              defaultMessage="Players"
+              />
+              </h3>
 
 
               <Select
@@ -75,24 +141,22 @@ export default class Home extends Component {
               <div className="TeamlistMed">
 
                 <ListGroup>
-                  <ListGroupItem>
-                    1
-                  </ListGroupItem>
-                  <ListGroupItem>
-                    1
-                  </ListGroupItem>
-                  <ListGroupItem>
-                    1
-                  </ListGroupItem>
-                  <ListGroupItem>
-                    1
-                  </ListGroupItem>
-                  <ListGroupItem>
-                    1
-                  </ListGroupItem>
-                  <ListGroupItem>
-                    1
-                  </ListGroupItem>
+                      <div>
+                        {this.state.favPlayers.map(favPlayer =>
+                          <ListGroupItem
+                            className="listingplayer"
+                            onClick={
+                              e => {
+                                this.setState({
+                                  players:[...this.state.players, favPlayer]
+                                });
+                                this.removeFavPlayer(favPlayer)
+                              }
+                            }
+                            key={favPlayer.value}>
+                            {favPlayer.label}
+                          </ListGroupItem>)}
+                      </div>
                 </ListGroup>
 
               </div>
@@ -102,7 +166,12 @@ export default class Home extends Component {
             </Col>
 
             <Col xs={12} sm={6}>
-              <h3>Teams</h3>
+            <h3>
+              <FormattedMessage
+              id="WATCHLISTEDIT.teamsHeader"
+              defaultMessage="Teams"
+              />
+              </h3>
               <Select
                 value={selectedOptionTeams}
                 onChange={this.handleChangeTeams}
@@ -111,19 +180,22 @@ export default class Home extends Component {
               <div className="TeamlistMed">
 
                 <ListGroup>
-                  <ListGroupItem>
-                    1
-                  </ListGroupItem>
-                  <ListGroupItem>
-                    1
-                  </ListGroupItem>
-                  <ListGroupItem>
-                    1
-                  </ListGroupItem>
-                  <ListGroupItem>
-                    1
-                  </ListGroupItem>
-
+                      <div>
+                        {this.state.favTeams.map(favTeam =>
+                          <ListGroupItem
+                            className="listingplayer"
+                            onClick={
+                              e => {
+                                this.setState({
+                                  teamsformatch:[...this.state.teamsformatch, favTeam]
+                                });
+                                this.removeFavTeam(favTeam)
+                              }
+                            }
+                            key={favTeam.value}>
+                            {favTeam.label}
+                          </ListGroupItem>)}
+                      </div>
                 </ListGroup>
 
               </div>

@@ -18,6 +18,7 @@ export default class Home extends Component {
       teams:[],
       teamID:'',
       filterText:'',
+      showUser:false
     };
 
   }
@@ -26,6 +27,14 @@ export default class Home extends Component {
     fetch(`https://ballc-frontend-be.herokuapp.com/teams`)
     .then(result => result.json())
     .then(teams => this.setState({teams}))
+
+    var userData = localStorage.getItem("userData");
+    var userString = JSON.parse(userData);
+    if(userString == null){
+      console.log("NOT LOGGED IN");
+    }else{
+      this.setState({showUser: true});
+    }
 
   }
 
@@ -37,15 +46,26 @@ export default class Home extends Component {
     return(
       <div>
         <Grid>
+<<<<<<< HEAD
           <h1>Latest matches</h1>
+=======
+
+          <h1>
+          <FormattedMessage
+          id="HOME.latestTitle"
+          defaultMessage="Latest matches"
+          />
+          </h1>
+>>>>>>> master
           <Row>
             <br/>
             <br/>
             <br/>
             <br/>
 
-            {/* <AnonMatches/> */}
-            <UserMatches/>
+            { this.state.showUser ?  <UserMatches/> : <AnonMatches/>}
+            
+            
           </Row>
         </Grid>
       </div>

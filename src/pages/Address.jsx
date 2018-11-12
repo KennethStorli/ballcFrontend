@@ -219,7 +219,18 @@ export default class Address extends Component {
 
                     </div>
                   </Tab>
+<<<<<<< HEAD
                   <Tab eventKey={2} title="New Address">
+=======
+                  <Tab eventKey={2} title={
+                    <FormattedMessage
+                    id="ADDRESS.tabNewAddress"
+                    defaultMessage="New Address"
+                    />
+                  }
+
+                  >
+>>>>>>> master
                     <NewAddress/>
                   </Tab>
                 </Tabs>

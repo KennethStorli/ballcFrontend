@@ -1,0 +1,54 @@
+[
+  {
+    "id": "TEAM.editCreateTeamTitle",
+    "defaultMessage": "EDIT/CREATE TEAMS"
+  },
+  {
+    "id": "TEAM.teamName",
+    "defaultMessage": "Team name:"
+  },
+  {
+    "id": "TEAM.association",
+    "defaultMessage": "Association:"
+  },
+  {
+    "id": "TEAM.location",
+    "defaultMessage": "Location:"
+  },
+  {
+    "id": "TEAM.coach",
+    "defaultMessage": "Coach:"
+  },
+  {
+    "id": "TEAM.owner",
+    "defaultMessage": "Owner:"
+  },
+  {
+    "id": "TEAM.registeredAssTitle",
+    "defaultMessage": "REGISTERED ASSOCIATIONS"
+  },
+  {
+    "id": "TEAM.registeredLocationTitle",
+    "defaultMessage": "REGISTERED LOCATIONS"
+  },
+  {
+    "id": "TEAM.registeredCoachesTitle",
+    "defaultMessage": "REGISTERED COACHES"
+  },
+  {
+    "id": "TEAM.registeredOwnerTitle",
+    "defaultMessage": "REGISTERED OWNERS"
+  },
+  {
+    "id": "TEAM.saveButton",
+    "defaultMessage": "Save"
+  },
+  {
+    "id": "TEAM.createButton",
+    "defaultMessage": "Create"
+  },
+  {
+    "id": "TEAM.deleteButton",
+    "defaultMessage": "Delete"
+  }
+]

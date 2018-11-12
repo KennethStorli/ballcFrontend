@@ -56,6 +56,7 @@ export default class User extends Component {
     fetch(`https://ballc-frontend-be.herokuapp.com/userslist`)
     .then(result => result.json())
     .then(users => this.setState({users}))
+    console.log(this.state.users)
   }
 
   updateUser = () =>{

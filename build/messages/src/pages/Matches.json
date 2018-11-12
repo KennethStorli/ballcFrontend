@@ -1,0 +1,14 @@
+[
+  {
+    "id": "MATCHES.allMatchesTitle",
+    "defaultMessage": "All Matches"
+  },
+  {
+    "id": "MATCHES.seasonHeader",
+    "defaultMessage": "Season"
+  },
+  {
+    "id": "MATCHES.vs",
+    "defaultMessage": "VS"
+  }
+]

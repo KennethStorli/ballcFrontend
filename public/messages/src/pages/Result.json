@@ -1,0 +1,46 @@
+[
+  {
+    "id": "RESULT.matchesTitle",
+    "defaultMessage": "MATCHES"
+  },
+  {
+    "id": "RESULT.homeScoreTitle",
+    "defaultMessage": "SCORE"
+  },
+  {
+    "id": "RESULT.selectPlayerHome",
+    "defaultMessage": "Select player"
+  },
+  {
+    "id": "RESULT.selectGoaltypeHome",
+    "defaultMessage": "Select goaltype"
+  },
+  {
+    "id": "RESULT.saveResultHomeButton",
+    "defaultMessage": "Save results"
+  },
+  {
+    "id": "RESULT.awayScoreTitle",
+    "defaultMessage": "SCORE"
+  },
+  {
+    "id": "RESULT.selectPlayerAway",
+    "defaultMessage": "Select player"
+  },
+  {
+    "id": "RESULT.selectGoaltypeAway",
+    "defaultMessage": "Select goaltype"
+  },
+  {
+    "id": "RESULT.saveResultAwayButton",
+    "defaultMessage": "Save results"
+  },
+  {
+    "id": "RESULT.saveButton",
+    "defaultMessage": "Save results"
+  },
+  {
+    "id": "RESULT.delButton",
+    "defaultMessage": "Delete results"
+  }
+]
