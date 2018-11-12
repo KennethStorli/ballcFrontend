@@ -55,12 +55,13 @@ export default class Navigator extends Component {
   }
 
   logingout(){
-
+/*
     axios.get('http://ballc-frontend-be.herokuapp.com/check')
     .then(function(response){
       console.log(response.data);
-    })
 
+    })
+*/
     localStorage.setItem("userData", null);
     window.location.reload(); 
 
