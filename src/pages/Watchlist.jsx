@@ -14,8 +14,10 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      userCookie:'',
+      logedInUser:[],
       teams:[],
+      favPlayersList:[],
       teamID:'',
       filterText:'',
     };
@@ -27,6 +29,9 @@ export default class Home extends Component {
     .then(result => result.json())
     .then(teams => this.setState({teams}))
 
+    this.setState({userCookie: JSON.parse(localStorage.getItem("userData"))})
+
+    
   }
   addDefaultSrc(ev){
     ev.target.src = `images/teams/default.jpg`
@@ -34,8 +39,12 @@ export default class Home extends Component {
 
 
     render() {
+      var username = this.state.userCookie.username
+    fetch(`https://ballc-frontend-usersapi.herokuapp.com/users/` + username)
+    .then(result => result.json())
+    .then(logedInUser => this.setState({logedInUser}))
 
-
+    console.log('loged in user: ' + this.state.logedInUser)
     return(
       <div>
         <Grid>

@@ -29,8 +29,6 @@ import Matches from './pages/Matches'
 import Navbar from './components/Navigator'
 import NavigatorAdm from './components/NavigatorAdm'
 
-
-
 class App extends Component {
 
   // constructor() {
@@ -119,8 +117,8 @@ class App extends Component {
           <Route path="/Goaltypes" component={Goaltypes}></Route>
           <Route path="/Watchlist" component={Watchlist}></Route>
           <Route path="/WatchlistEdit" component={WatchlistEdit}></Route>
-          <Route path="/Matches" component={Matches}></Route>
 
+          <Route path="/Matches" component={Matches}></Route>
         </div>
       </Router>
     );
