@@ -9,19 +9,53 @@ export default class Match extends Component {
     constructor(props) {
       super(props);
       this.state = {
-        players:props.players,
-        goaltypes:props.goaltypes,
-        selectedPlayer: props.selectedPlayer,
-        selectedGoal: props.selectedGoal,
-
+        players:[],
+        goaltypes:[],
+        selectedPlayer:'',
+        selectedGoal:'',
+        teamID: props.team,
       };
 
-      this.handleChangePlayer = props.handleChangePlayer;
-      this.handleChangeGoal = props.handleChangeGoal;
-      this.selectgoal = props.selectgoal;
+      this.player ='';
+      this.goal = '';
+      this.selectgoal = this.selectgoal.bind(this);  
+      this.handleChangePlayer = this.handleChangePlayer.bind(this);
+      this.handleChangeGoal = this.handleChangeGoal.bind(this);
     }
 
 
+    componentDidMount(){
+      fetch(`https://ballc-frontend-be.herokuapp.com/playersteam/${this.state.teamID}`)
+      .then(result => result.json())
+      .then(players => this.setState({players}))
+  
+      fetch(`https://ballc-frontend-be.herokuapp.com/goaltypeformatch`)
+      .then(result => result.json())
+      .then(goaltypes => this.setState({goaltypes}))
+    }
+
+    handleChangePlayer = (selectedPlayer) => {
+
+      this.player = selectedPlayer;
+      console.log(`Option selected:`, this.player);  
+
+    }
+
+    handleChangeGoal = (selectedGoal) =>{
+      this.goal = selectedGoal;
+      console.log(`Option selected:`, this.goal);
+    }
+
+    selectgoal(){
+
+      //console.log(this.goals);
+      var fullgoal = {
+        player: this.player,
+        goal: this.goal
+      }
+      this.props.newData(fullgoal);
+      //PostData('positions', this.positions);
+    }
 
 
     render(props) {

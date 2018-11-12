@@ -26,7 +26,11 @@ export default class Results extends Component {
       match_id: '',
       players:[],
       goaltypes:[],
+      homeplayers: [],
+      awayplayers:[],
 
+      homeID:'',
+      awayID: '',
       homegoals: [],
       awaygoals: [],
 
@@ -34,7 +38,8 @@ export default class Results extends Component {
 
     this.handleChangePlayerHome = this.handleChangePlayerHome.bind(this);
     this.handleChangePlayerAway = this.handleChangePlayerAway.bind(this);
-
+    this.ongetDataHome = this.ongetDataHome.bind(this);
+    this.ongetDataAway = this.ongetDataAway.bind(this);
     this.handleChangeGoalHome = this.handleChangeGoalHome.bind(this);
     this.handleChangeGoalAway = this.handleChangeGoalAway.bind(this);
 
@@ -63,6 +68,14 @@ export default class Results extends Component {
   }
 }
 
+ongetDataHome(data){
+  this.state.homegoals.push(data);
+  console.log(this.state.homegoals);
+}
+ongetDataAway(data){
+  this.state.awaygoals.push(data);
+  console.log(this.state.homegoals);
+}
 
   filterUpdateHome(event){
     var emptyarray = []
@@ -95,10 +108,6 @@ export default class Results extends Component {
     fetch(`https://ballc-backend-api.herokuapp.com/teams`)
     .then(result => result.json())
     .then(teams => this.setState({teams}))
-
-    fetch(`https://ballc-frontend-be.herokuapp.com/playersformatch`)
-    .then(result => result.json())
-    .then(players => this.setState({players}))
 
     fetch(`https://ballc-frontend-be.herokuapp.com/goaltypeformatch`)
     .then(result => result.json())
@@ -142,6 +151,8 @@ export default class Results extends Component {
 
   }
 
+  /*
+
   selectgoalHome = () => {
     //let user = Object.assign({}, this.state.goals);    //creating copy of object
 
@@ -171,7 +182,7 @@ export default class Results extends Component {
 
 
   }
-
+*/
   saveResult = () =>{
     let user = Object.assign({}, this.state);    //creating copy of object
 
@@ -183,9 +194,8 @@ export default class Results extends Component {
       match_id: user.match_id
 
     }
-    //PostData('result', data);
 
-    var newhome = this.state.homegoals.slice();
+    //PostData('result', data);
 
     let data2 = {
       homegoals: this.state.homegoals,
@@ -205,7 +215,10 @@ export default class Results extends Component {
     const { selectedGoal } = this.state.goaltypes;
 */
 
-    let players = this.state.players
+    let homeplayers = this.state.homeplayers
+    let awayplayers = this.state.homeplayers
+
+    console.log(homeplayers);
     let goaltypes = this.state.goaltypes
 
 
@@ -236,7 +249,9 @@ export default class Results extends Component {
                               awayteam: name.away_team,
                               match_id: name.match_id
                             });
+                            console.log(this.state.hometeam);
                           }
+                          
                         }
                         key={name.match_id}>
                         {this.getTeamName(name.home_team)} vs {this.getTeamName(name.away_team)} on {name.match_date}
@@ -260,46 +275,8 @@ export default class Results extends Component {
 
               <div className="ScoreList">
                 {this.state.emptyarrayHome.map(team =>
-                  <div key={team}>
 
-                    <hr/>
-
-                    <div className="newScore">
-                      <p>
-                      <FormattedMessage
-                      id="RESULT.selectPlayerHome"
-                      defaultMessage="Select player"
-                      />
-                      </p>
-                      <Select
-                        value={this.playerHome}
-                        onChange={this.handleChangePlayerHome}
-                        options={players}
-                      />
-                      <br/>
-                      <p>
-                      <FormattedMessage
-                      id="RESULT.selectGoaltypeHome"
-                      defaultMessage="Select goaltype"
-                      />
-                      </p>
-
-                      <Select
-                        value={this.goalTypeHome}
-                        onChange={this.handleChangeGoalHome}
-                        options={goaltypes}
-                      />
-
-                      <Button className="formbtnSave" color="primary" onClick={this.selectgoalHome} >
-                      <FormattedMessage
-                      id="RESULT.saveResultHomeButton"
-                      defaultMessage="Save results"
-                      />
-                      </Button>
-
-                    </div>
-                  </div>
-
+                  <Goal team = {this.state.hometeam} newData= {this.ongetDataHome} />
                 )}
 
               </div>
@@ -319,48 +296,7 @@ export default class Results extends Component {
                 onChange={this.filterUpdateAway.bind(this)}/>
               <div className="ScoreList">
                 {this.state.emptyarrayAway.map(team =>
-                  <div key={team}>
-
-                    <hr/>
-
-                    <div className="newScore">
-                      <p>
-                      <FormattedMessage
-                      id="RESULT.selectPlayerAway"
-                      defaultMessage="Select player"
-                      />
-                      </p>
-                      <Select
-                        value={this.playerAway}
-                        onChange={this.handleChangePlayerAway}
-                        options={players}
-                      />
-                      <br/>
-                      <p>
-                      <FormattedMessage
-                      id="RESULT.selectGoaltypeAway"
-                      defaultMessage="Select goaltype"
-                      />
-                      </p>
-
-                      <Select
-                        value={this.goalTypeAway}
-                        onChange={this.handleChangeGoalAway}
-                        options={goaltypes}
-                      />
-
-                      <Button className="formbtnSave" color="primary" onClick={this.selectgoalAway} >
-                      <FormattedMessage
-                      id="RESULT.saveResultAwayButton"
-                      defaultMessage="Save results"
-                      />
-                      </Button>
-
-                    </div>
-                  </div>
-                  //this.state.awaygoals.push(goal)
-
-
+                  <Goal team = {this.state.awayteam} newData= {this.ongetDataAway} />
                 )}
 
               </div>
