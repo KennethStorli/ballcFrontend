@@ -205,10 +205,6 @@ export default class Person extends Component {
     }
     PostData('delperson', data5);
 
-    fetch(`http://ballc-frontend-be.herokuapp.com/userslist`)
-    .then(result => {
-     console.log(result.text())
-    })
   }
 
   updateContact = () => {
