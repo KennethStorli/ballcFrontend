@@ -33,7 +33,7 @@ class Login extends React.Component  {
         password: user.password
       }
 
-      axios.post('http://localhost:8080/login', this.state)
+      axios.post('http://ballc-frontend-be.herokuapp.com/login', this.state)
       .then(function(response){
         var reso  = JSON.stringify(response.data);
 
