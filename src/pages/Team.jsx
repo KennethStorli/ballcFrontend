@@ -5,8 +5,6 @@ import { Input, Button } from 'mdbreact';
 import SearchSmall from '../components/SearchSmall'
 import '../components/UpdatePerson.css'
 import './Home.css'
-import { FormattedMessage } from 'react-intl';
-
 import {PostData} from '../PostData';
 
 
@@ -23,6 +21,8 @@ export default class Team extends Component {
       owners:[],
       persons:[],
       ownerNames:[],
+      availableOwners:[],
+      availableCoaches:[],
       selectedAssociation:'',
       selectedCoach:'',
       selectedLocation:'',
@@ -120,6 +120,79 @@ export default class Team extends Component {
       }
     })
     return teamOwnerName;
+  }
+
+  setAvailableOwners() {
+    var tempAvailableOwnerIds = []
+    var tempOccupiedOwnerIds = []
+    var availableOwners = []
+    var index;
+
+    this.state.owners.forEach(owner => {
+      tempAvailableOwnerIds.push(owner.owner_id)
+    })
+    this.state.teams.forEach(team => {
+      tempOccupiedOwnerIds.push(team.owner)
+    })
+    
+    for (var i = 0; i < tempOccupiedOwnerIds.length; i++) {
+      index = tempAvailableOwnerIds.indexOf(tempOccupiedOwnerIds[i]);
+      if(index > -1) {
+        tempAvailableOwnerIds.splice(index, 1);
+      }
+    }
+    tempAvailableOwnerIds.forEach(owner => {
+      availableOwners.push(this.getOwnerById(owner))
+    })
+    this.state.availableOwners = availableOwners.slice()
+  }
+
+  getOwnerById(id) {
+    var tempOwner;
+    this.state.owners.forEach(owner => {
+      if(id === owner.owner_id) {
+        tempOwner = owner;
+        
+      }
+    })
+    return tempOwner;
+  }
+
+  setAvailableCoaches() {
+    var tempAvailableCoachIds = []
+    var tempOccupiedCoachIds = []
+    var availableCoaches = []
+    var index;
+
+    this.state.coaches.forEach(coach => {
+      tempAvailableCoachIds.push(coach.coach_id)
+    })
+    this.state.teams.forEach(team => {
+      tempOccupiedCoachIds.push(team.coach)
+    })
+    
+    for (var i = 0; i < tempOccupiedCoachIds.length; i++) {
+      index = tempAvailableCoachIds.indexOf(tempOccupiedCoachIds[i]);
+      if(index > -1) {
+        tempAvailableCoachIds.splice(index, 1);
+      }
+    }
+    tempAvailableCoachIds.forEach(coach => {
+      availableCoaches.push(this.getCoachById(coach))
+    })
+    console.log(availableCoaches)
+    this.state.availableCoaches = availableCoaches.slice()
+  }
+
+  getCoachById(id) {
+    var tempCoach;
+    this.state.coaches.forEach(coach => {
+      if(id === coach.coach_id) {
+        tempCoach = coach;
+        
+      }
+    })
+    return tempCoach;
   }
 
   getPersonName(id) {
@@ -228,7 +301,6 @@ delTeam = () =>{
                               selectedOwner: this.getTeamOwner(team.owner)
                             });
                           }
-
                         }
                         
                         key={team.team_id}>
@@ -243,21 +315,11 @@ delTeam = () =>{
 
               <br/>
 
-              <p className="h5 text-center mb-4">
-              <FormattedMessage
-              id="TEAM.editCreateTeamTitle"
-              defaultMessage="EDIT/CREATE TEAMS"
-              />
-              </p>
+              <p className="h5 text-center mb-4">EDIT/CREATE TEAMS</p>
               <form>
                 <div className="grey-text">
                   <br/>
-                  <p>
-                  <FormattedMessage
-                  id="TEAM.teamName"
-                  defaultMessage="Team name:"
-                  />
-                  </p>
+                  <p>Team name:</p>
                   <Input
                       name="Team Name"
                       value={this.state.selectedTeamName ? this.state.selectedTeamName : ''}
@@ -268,12 +330,7 @@ delTeam = () =>{
                 <br/>
                 <div className="grey-text">
                   <br/>
-                  <p>
-                  <FormattedMessage
-                  id="TEAM.association"
-                  defaultMessage="Association:"
-                  />
-                  </p>
+                  <p>Association:</p>
                   <Input
                       name="Association"
                       value={(this.state.selectedAssociation ? this.state.selectedAssociation : '')}
@@ -285,12 +342,7 @@ delTeam = () =>{
                 <br/>
                 <div className="grey-text">
                   <br/>
-                  <p>
-                  <FormattedMessage
-                  id="TEAM.location"
-                  defaultMessage="Location:"
-                  />
-                  </p>
+                  <p>Location:</p>
                   <Input
                       name="Location"
                       value={(this.state.selectedLocation ? this.state.selectedLocation : '')}
@@ -302,12 +354,7 @@ delTeam = () =>{
                 <br/>
                 <div className="grey-text">
                   <br/>
-                  <p>
-                  <FormattedMessage
-                  id="TEAM.coach"
-                  defaultMessage="Coach:"
-                  />
-                  </p>
+                  <p>Coach:</p>
                   <Input
                       name="Coach"
                       value={(this.state.selectedCoach ? this.state.selectedCoach : '')}
@@ -319,12 +366,7 @@ delTeam = () =>{
                 <br/>
                 <div className="grey-text">
                   <br/>
-                  <p>
-                  <FormattedMessage
-                  id="TEAM.owner"
-                  defaultMessage="Owner:"
-                  />
-                  </p>
+                  <p>Owner:</p>
                   <Input
                       name="Owner"
                       value={(this.state.selectedOwner ? this.state.selectedOwner : '')}
@@ -339,12 +381,7 @@ delTeam = () =>{
             <Col xs={12} sm={4}>
               <br/>
 
-              <p className="h5 text-center mb-4">
-              <FormattedMessage
-              id="TEAM.registeredAssTitle"
-              defaultMessage="REGISTERED ASSOCIATIONS"
-              />
-              </p>
+              <p className="h5 text-center mb-4">REGISTERED ASSOCIATIONS</p>
               <div className="divlist">
               <ListGroup>
                       <div>
@@ -367,12 +404,7 @@ delTeam = () =>{
               </div>
               <br/>
 
-              <p className="h5 text-center mb-4">
-              <FormattedMessage
-              id="TEAM.registeredLocationTitle"
-              defaultMessage="REGISTERED LOCATIONS"
-              />
-              </p>
+              <p className="h5 text-center mb-4">REGISTERED LOCATIONS</p>
               <div className="divlist">
                 <ListGroup>
                     <div>
@@ -395,16 +427,12 @@ delTeam = () =>{
               </div>
               <br/>
 
-              <p className="h5 text-center mb-4">
-              <FormattedMessage
-              id="TEAM.registeredCoachesTitle"
-              defaultMessage="REGISTERED COACHES"
-              />
-              </p>
+              <p className="h5 text-center mb-4">AVAILABLE COACHES</p>
               <div className="divlist">
               <ListGroup>
                       <div>
-                        {this.state.coaches.map(coach =>
+                      {this.setAvailableCoaches()}
+                        {this.state.availableCoaches.map(coach =>
                           <ListGroupItem
                             className="listingplayer"
                             onClick={
@@ -423,16 +451,12 @@ delTeam = () =>{
               </div>
               <br/>
 
-              <p className="h5 text-center mb-4">
-              <FormattedMessage
-              id="TEAM.registeredOwnerTitle"
-              defaultMessage="REGISTERED OWNERS"
-              />
-              </p>
+              <p className="h5 text-center mb-4">AVAILABLE OWNERS</p>
               <div className="divlist">
               <ListGroup>
                       <div>
-                        {this.state.owners.map(owner =>
+                      {this.setAvailableOwners()}
+                        {this.state.availableOwners.map(owner =>
                           <ListGroupItem
                             className="listingplayer"
                             onClick={
@@ -450,25 +474,9 @@ delTeam = () =>{
                 </ListGroup>
               </div>
               <div className="text-center">
-
-                <Button className="formbtnSave" color="primary" onClick={this.updateTeam}>
-                <FormattedMessage
-                id="TEAM.saveButton"
-                defaultMessage="Save"
-                />
-                 </Button>
-                <Button className="formbtnSave" color="primary" onClick={this.addTeam}>
-                <FormattedMessage
-                id="TEAM.createButton"
-                defaultMessage="Create"
-                />
-                 </Button>
-                <Button className="formbtnDel" color="primary" onClick={this.delTeam}>
-                <FormattedMessage
-                id="TEAM.deleteButton"
-                defaultMessage="Delete"
-                />
-                 </Button>
+                <Button className="formbtnSave" color="primary" onClick={this.updateTeam}>Save </Button>
+                <Button className="formbtnSave" color="primary" onClick={this.addTeam}>Create </Button>
+                <Button className="formbtnDel" color="primary" onClick={this.delTeam}>Delete </Button>
               </div>
 
             </Col>
