@@ -187,18 +187,6 @@ export default class Results extends Component {
     .then(function(response){
     })
 
-    delMatch = () =>{
-      let user = Object.assign({}, this.state);    //creating copy of object
-  
-      let data ={
-        match_id: user.match_id
-      }
-      axios.post('http://ballc-frontend-be.herokuapp.com/delmatch', data)
-      .then(function(response){
-        window.location.reload(); 
-
-      })
-    }
 
     var newhome = this.state.homegoals.slice();
 
@@ -215,6 +203,19 @@ export default class Results extends Component {
     })
 
 
+  }
+
+  delMatch = () =>{
+    let user = Object.assign({}, this.state);    //creating copy of object
+
+    let data ={
+      match_id: user.match_id
+    }
+    axios.post('http://ballc-frontend-be.herokuapp.com/delmatch', data)
+    .then(function(response){
+      window.location.reload(); 
+
+    })
   }
 
   render() {
