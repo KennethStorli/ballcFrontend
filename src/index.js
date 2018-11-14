@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Navbar, Nav, NavItem, NavDropdown, MenuItem, Glyphicon } from 'react-bootstrap';
 import './index.css';
 import App from './App';
+import './components/NavigatorAdm.css'
 import * as serviceWorker from './serviceWorker';
 
 
@@ -58,9 +60,22 @@ class IntlProviderWrapper extends React.Component {
 
     const { locale, messages } = this.state;
     return (
-        <div> 
-        <button type="button" onClick={this.switchToNorwegian}>Norsk</button>
-        <button type="button" onClick={this.switchToEnglish}>Engelsk</button>
+        <div className="NavigatorAdm2"> 
+        <Navbar inverse collapseOnSelect > 
+          <Navbar.Collapse>
+          
+            <Nav pullRight>
+
+              <NavItem eventKey={1} onClick={this.switchToNorwegian}>
+                NO
+              </NavItem>
+              <NavItem eventKey={1} onClick={this.switchToEnglish}>
+                EN
+              </NavItem>
+              
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
         <IntlProvider
           key={locale}
           locale={locale}

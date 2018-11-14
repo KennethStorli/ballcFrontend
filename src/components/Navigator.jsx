@@ -81,9 +81,9 @@ export default class Navigator extends Component {
   render(){
 
     return(
-      <div>
+      <div className="NavigatorAdm">
 
-        <Navbar inverse collapseOnSelect>
+        <Navbar inverse collapseOnSelect >
           <Navbar.Header>
             <Navbar.Brand>
               <a href="/">Foul</a>
@@ -104,12 +104,7 @@ export default class Navigator extends Component {
 
               
               { this.state.logged ? <NavItem eventKey={1} onClick={this.handleShow}>Login</NavItem> : <NavItem eventKey={1} onClick={this.logingout}>Logout</NavItem>}
-              <NavItem eventKey={1} >
-                NO
-                </NavItem>
-              <NavItem eventKey={1} >
-                EN
-              </NavItem>
+           
               
               { this.state.logged ? null : <NavItem eventKey={1} href="/Watchlist" to="/Watchlist"><Glyphicon glyph="star" /></NavItem>}
 
