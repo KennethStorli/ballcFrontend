@@ -187,6 +187,19 @@ export default class Results extends Component {
     .then(function(response){
     })
 
+    delMatch = () =>{
+      let user = Object.assign({}, this.state);    //creating copy of object
+  
+      let data ={
+        match_id: user.match_id
+      }
+      axios.post('http://ballc-frontend-be.herokuapp.com/delmatch', data)
+      .then(function(response){
+        window.location.reload(); 
+
+      })
+    }
+
     var newhome = this.state.homegoals.slice();
 
     let data2 = {
@@ -378,10 +391,10 @@ export default class Results extends Component {
               defaultMessage="Save results"
               />
               </Button>
-              <Button className="formbtnDel" color="primary" onClick={this.delResult} >
+              <Button className="formbtnDel" color="primary" onClick={this.delMatch} >
               <FormattedMessage
               id="RESULT.delButton"
-              defaultMessage="Delete results"
+              defaultMessage="Delete match"
               />
               </Button>
 

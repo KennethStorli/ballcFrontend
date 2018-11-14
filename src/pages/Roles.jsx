@@ -195,7 +195,7 @@ export default class Roles extends Component {
                       defaultMessage="Midfield"
                       />
                       </option>
-                      <option value="forward">
+                      <option value="jjjj">
                       <FormattedMessage
                       id="ROLES.posFormForward"
                       defaultMessage="Forward"
@@ -261,7 +261,7 @@ export default class Roles extends Component {
                 <Button onClick={this.addRole}>
                 <FormattedMessage
                     id="ROLES.saveUserButton"
-                    defaultMessage="Save user"
+                    defaultMessage="Save Role"
                     />
                 </Button>
               </Col>

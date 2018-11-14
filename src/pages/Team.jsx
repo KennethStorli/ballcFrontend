@@ -6,6 +6,7 @@ import SearchSmall from '../components/SearchSmall'
 import '../components/UpdatePerson.css'
 import './Home.css'
 import {PostData} from '../PostData';
+import axios from 'axios';
 
 
 
@@ -244,7 +245,10 @@ addTeam = () =>{
     owner : user.owner_id
   }
 
-  PostData('addteam', data);
+  axios.post('http://ballc-frontend-be.herokuapp.com/addteam', data)
+  .then(function(response){
+    window.location.reload(); 
+  })
 }
 
 updateTeam = () =>{
@@ -259,7 +263,10 @@ updateTeam = () =>{
     team_id: user.team_id
   }
 
-  PostData('updateteam', data);
+  axios.post('http://ballc-frontend-be.herokuapp.com/updateteam', data)
+  .then(function(response){
+    window.location.reload(); 
+  })
 }
 
 delTeam = () =>{
@@ -269,7 +276,10 @@ delTeam = () =>{
     team_id: user.team_id
   }
 
-  PostData('delteam', data);
+  axios.post('http://ballc-frontend-be.herokuapp.com/delteam', data)
+  .then(function(response){
+    window.location.reload(); 
+  })
 }
 
 
