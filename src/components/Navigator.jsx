@@ -109,7 +109,13 @@ export default class Navigator extends Component {
               <NavItem>
               
               </NavItem>
-              { this.state.logged ? <NavItem eventKey={1} onClick={this.handleShow}>login</NavItem> : <NavItem eventKey={1} onClick={this.logingout}>logout</NavItem>}
+              { this.state.logged ? <NavItem eventKey={1} onClick={this.handleShow}>Login</NavItem> : <NavItem eventKey={1} onClick={this.logingout}>Logout</NavItem>}
+              <NavItem eventKey={1} >
+                NO
+                </NavItem>
+              <NavItem eventKey={1} >
+                EN
+              </NavItem>
               
               <NavItem eventKey={1} href="/Watchlist" to="/Watchlist">
                 <Glyphicon glyph="star" />
@@ -121,6 +127,8 @@ export default class Navigator extends Component {
               <NavItem eventKey={1} href="/Profile" to="/Profile">
                 <Glyphicon glyph="cog" />
               </NavItem>
+             
+              
               <NavItem eventKey={1} onClick={this.handleShowHelp}>
                 <Glyphicon glyph="question-sign" />
               </NavItem>
