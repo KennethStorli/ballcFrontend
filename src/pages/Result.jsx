@@ -8,7 +8,7 @@ import { FormattedMessage } from 'react-intl';
 import Result from './Result'
 import {Button, Input } from 'mdbreact'
 import {PostData} from '../PostData';
-
+import axios from 'axios';
 
 
 export default class Results extends Component {
@@ -183,7 +183,9 @@ export default class Results extends Component {
       match_id: user.match_id
 
     }
-    //PostData('result', data);
+    axios.post('http://ballc-frontend-be.herokuapp.com/result', data)
+    .then(function(response){
+    })
 
     var newhome = this.state.homegoals.slice();
 
@@ -194,7 +196,10 @@ export default class Results extends Component {
 
     }
 
-    PostData('addgoal', data2);
+    axios.post('http://ballc-frontend-be.herokuapp.com/addgoal', data2)
+    .then(function(response){
+      window.location.reload(); 
+    })
 
 
   }

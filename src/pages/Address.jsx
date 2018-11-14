@@ -4,6 +4,7 @@ import { ListGroup, ListGroupItem} from 'react-bootstrap';
 import { Button, Input } from 'mdbreact'
 import  NewAddress from '../components/NewAddress'
 import '../components/Teamlist.css'
+import axios from 'axios';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -98,7 +99,10 @@ export default class Address extends Component {
       city: user.city,
       country: user.country
     }
-    PostData('/updateaddress', data);
+    axios.post('http://ballc-frontend-be.herokuapp.com/updateaddress', data)
+    .then(function(response){
+      window.location.reload(); 
+    })
   }
 
   delAddress = () =>{
@@ -113,7 +117,10 @@ export default class Address extends Component {
       city: user.city,
       country: user.country
     }
-    PostData('/deladdress', data);
+    axios.post('http://ballc-frontend-be.herokuapp.com/deladdress', data)
+    .then(function(response){
+      window.location.reload(); 
+    })
   }
     render(){
 

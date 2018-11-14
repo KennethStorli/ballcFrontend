@@ -3,6 +3,7 @@ import {  Col } from 'react-bootstrap';
 import { Button, Input } from 'mdbreact'
 import '../components/Teamlist.css'
 import {PostData} from '../PostData';
+import axios from 'axios';
 
 
 
@@ -82,7 +83,10 @@ export default class NewAddress extends Component {
       city: user.city,
       country: user.country
     }
-    PostData('/addaddress', data);
+    axios.post('http://ballc-frontend-be.herokuapp.com/addaddress', data)
+    .then(function(response){
+      window.location.reload(); 
+    })
   }
 
     render(){

@@ -5,6 +5,7 @@ import { Button, Input } from 'mdbreact'
 import { Link } from 'react-router-dom'
 import  NewLocation from '../components/NewLocation'
 import { FormattedMessage } from 'react-intl';
+import axios from 'axios';
 
 import {PostData} from '../PostData';
 
@@ -68,7 +69,10 @@ export default class CRUDLocation extends Component {
       description: user.location_description
   
     }
-    PostData('/updatelocation', data);
+    axios.post('http://ballc-frontend-be.herokuapp.com/updatelocation', data)
+    .then(function(response){
+      window.location.reload(); 
+    })
   }
 
   delLocation = () =>{
@@ -81,7 +85,10 @@ export default class CRUDLocation extends Component {
       description: user.location_description
   
     }
-    PostData('/dellocation', data);
+    axios.post('http://ballc-frontend-be.herokuapp.com/dellocation', data)
+    .then(function(response){
+      window.location.reload(); 
+    })
   }
   
     render(){

@@ -106,7 +106,10 @@ export default class Match extends Component {
       positionsAway: user.positionsAway
 
     }
-    PostData('addmatch', data)
+    axios.post('http://ballc-frontend-be.herokuapp.com/addmatch', data)
+    .then(function(response){
+      window.location.reload(); 
+    })
   }
 
   render() {

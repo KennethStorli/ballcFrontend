@@ -4,6 +4,7 @@ import { Grid, Row, Col } from 'react-bootstrap'
 import DayPicker from 'react-day-picker';
 import {Button} from 'mdbreact'
 import { FormattedMessage } from 'react-intl';
+import axios from 'axios';
 
 import {PostData} from '../PostData';
 
@@ -85,7 +86,10 @@ export default class NewSeason extends Component{
         description: user.seasonDescription
       }
 
-      PostData('/addseason', data)
+      axios.post('http://ballc-frontend-be.herokuapp.com/addseason', data)
+      .then(function(response){
+        window.location.reload(); 
+      })
     }
     render() {
 

@@ -5,6 +5,7 @@ import {Button, Input} from 'mdbreact'
 import '../components/Teamlist.css'
 import { FormattedMessage } from 'react-intl';
 import { PostData } from '../PostData';
+import axios from 'axios';
 
 export default class User extends Component {
   constructor(props) {
@@ -51,7 +52,10 @@ export default class User extends Component {
       username: user.name,
       admin: user.admin
     }
-    PostData('setadmin', data)
+    axios.post('http://ballc-frontend-be.herokuapp.com/setadmin', data)
+    .then(function(response){
+      window.location.reload(); 
+    })
   }
   componentDidMount() {
     fetch(`https://ballc-frontend-be.herokuapp.com/userslist`)
@@ -71,7 +75,10 @@ export default class User extends Component {
       username:user.name,
     }
 
-    PostData('updateuser', data)
+    axios.post('http://ballc-frontend-be.herokuapp.com/updateuser', data)
+    .then(function(response){
+      window.location.reload(); 
+    })
   }
   
     render(){

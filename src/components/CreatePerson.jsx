@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Input, Button } from 'mdbreact';
 import { Col } from 'react-bootstrap';
 import {PostData} from '../PostData';
+import axios from 'axios';
 
 
 
@@ -32,7 +33,11 @@ constructor(props){
 createperson(){
     if(this.state.firstname && this.state.lastname && this.state.dob){
       console.log("Success in creating a person");
-      PostData('regperson', this.state)
+      axios.post('http://ballc-frontend-be.herokuapp.com/regperson', this.state)
+      .then(function(response){
+        window.location.reload(); 
+      })
+
     }
     else {
       alert("Please fill out all the fields!")

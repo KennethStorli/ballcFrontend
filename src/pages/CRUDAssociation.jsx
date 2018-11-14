@@ -3,6 +3,7 @@ import { Col, Grid, Row, ListGroup, ListGroupItem} from 'react-bootstrap';
 import { Button, Input } from 'mdbreact'
 
 import { FormattedMessage } from 'react-intl';
+import axios from 'axios';
 
 import {PostData} from '../PostData';
 
@@ -54,7 +55,10 @@ createassociation = () =>{
     description: user.association_description
 
   }
-  PostData('/addassociation', data);
+  axios.post('http://ballc-frontend-be.herokuapp.com/addassociation', data)
+  .then(function(response){
+    window.location.reload(); 
+  })
 }
 
 updateAssociation = () =>{
@@ -66,7 +70,10 @@ updateAssociation = () =>{
     description: user.association_description
 
   }
-  PostData('/updateassociation', data);
+  axios.post('http://ballc-frontend-be.herokuapp.com/updateassociation', data)
+  .then(function(response){
+    window.location.reload(); 
+  })
 }
 
 delAssociation = () =>{
@@ -78,7 +85,10 @@ delAssociation = () =>{
     description: user.association_description
 
   }
-  PostData('/delassociation', data);
+  axios.post('http://ballc-frontend-be.herokuapp.com/delassociation', data)
+  .then(function(response){
+    window.location.reload(); 
+  })
 }
 
     render(){

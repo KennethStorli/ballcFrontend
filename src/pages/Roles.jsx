@@ -5,6 +5,7 @@ import { Button, Input } from 'mdbreact'
 import '../components/Teamlist.css'
 import { PostData } from '../PostData';
 import { FormattedMessage } from 'react-intl';
+import axios from 'axios';
 
 export default class Roles extends Component {
   constructor(props) {
@@ -72,6 +73,7 @@ export default class Roles extends Component {
       team_id:user.team_id
     }
 
+
     if(this.state.number !== ''){
       this.setState({player: true});
       var data3 = {
@@ -81,10 +83,21 @@ export default class Roles extends Component {
         team: user.team_id
       }
       var data2 = {...data, ...data3 }
+      console.log(data2);
       console.log("it is a player");
-      PostData('addrole', data2);
+      /*
+      axios.post('http://ballc-frontend-be.herokuapp.com/addrole', data2)
+      .then(function(response){
+        window.location.reload(); 
+      })
+      */
     }else{
-      PostData('addrole', data);
+      /*
+      axios.post('http://ballc-frontend-be.herokuapp.com/addrole', data)
+      .then(function(response){
+        window.location.reload(); 
+      })
+      */
     }
 
 

@@ -9,7 +9,7 @@ import '../components/UpdatePerson.css'
 import './Home.css';
 import {PostData} from '../PostData';
 import { FormattedMessage } from 'react-intl';
-
+import axios from 'axios';
 import '../components/Teamlist.css'
 
 import './Home.css'
@@ -179,7 +179,9 @@ export default class Person extends Component {
       date_of_birth: user.dob
 
     }
-    PostData('updateperson', data);
+    axios.post('http://ballc-frontend-be.herokuapp.com/updateperson', data)
+    .then(function(response){
+    })
     var data2 = {
       location: user.location,
       address_id: user.address_id,
@@ -190,7 +192,10 @@ export default class Person extends Component {
       city: user.city,
       country: user.country
     }
-    PostData('updateaddress', data2);
+    axios.post('http://ballc-frontend-be.herokuapp.com/updateaddress', data2)
+    .then(function(response){
+      window.location.reload(); 
+    })
 
 
   }
@@ -203,8 +208,10 @@ export default class Person extends Component {
       address_id: user.address_id,
       person_id: user.person_id
     }
-    PostData('delperson', data5);
-
+    axios.post('http://ballc-frontend-be.herokuapp.com/delperson', data5)
+    .then(function(response){
+      window.location.reload(); 
+    })
   }
 
   updateContact = () => {
@@ -220,7 +227,10 @@ export default class Person extends Component {
     }
 
     console.log(data3);
-    PostData('updatecontact', data3);
+    axios.post('http://ballc-frontend-be.herokuapp.com/updatecontact', data3)
+    .then(function(response){
+      window.location.reload(); 
+    })
   }
 
   addContact = () => {
@@ -233,7 +243,10 @@ export default class Person extends Component {
       contact_detail: user.contact_detail,
     }
 
-    PostData('addcontact', data4);
+    axios.post('http://ballc-frontend-be.herokuapp.com/addcontact', data4)
+    .then(function(response){
+      window.location.reload(); 
+    })
   }
 
   delContact = () => {
@@ -247,7 +260,12 @@ export default class Person extends Component {
       contact_detail: user.contact_detail,
     }
 
-    PostData('delcontact', data4);
+
+    
+    axios.post('http://ballc-frontend-be.herokuapp.com/delcontact', data4)
+    .then(function(response){
+      window.location.reload(); 
+    })
   }
 
     render() {

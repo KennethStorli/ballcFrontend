@@ -102,18 +102,15 @@ export default class Navigator extends Component {
             </Nav>
             <Nav pullRight>
 
-              <NavItem eventKey={4} href="/User" to="/User">
-                Profile
-                <p>{this.state.username}</p>
-              </NavItem>
-              <NavItem>
               
-              </NavItem>
+              { this.state.logged ? null : <NavItem eventKey={4} href="/User" to="/User">Profile</NavItem>}
+
               { this.state.logged ? <NavItem eventKey={1} onClick={this.handleShow}>login</NavItem> : <NavItem eventKey={1} onClick={this.logingout}>logout</NavItem>}
               
-              <NavItem eventKey={1} href="/Watchlist" to="/Watchlist">
-                <Glyphicon glyph="star" />
-              </NavItem>
+              
+              { this.state.logged ? null : <NavItem eventKey={1} href="/Watchlist" to="/Watchlist"><Glyphicon glyph="star" /></NavItem>}
+
+
               <NavItem eventKey={1} href="/Profile" to="/Profile">
                 <Glyphicon glyph="user" />
               </NavItem>
