@@ -8,7 +8,7 @@ import { FormattedMessage } from 'react-intl';
 import Result from './Result'
 import {Button, Input } from 'mdbreact'
 import {PostData} from '../PostData';
-
+import axios from 'axios';
 
 
 export default class Results extends Component {
@@ -183,7 +183,10 @@ export default class Results extends Component {
       match_id: user.match_id
 
     }
-    //PostData('result', data);
+    axios.post('http://ballc-frontend-be.herokuapp.com/result', data)
+    .then(function(response){
+    })
+
 
     var newhome = this.state.homegoals.slice();
 
@@ -194,9 +197,25 @@ export default class Results extends Component {
 
     }
 
-    PostData('addgoal', data2);
+    axios.post('http://ballc-frontend-be.herokuapp.com/addgoal', data2)
+    .then(function(response){
+      window.location.reload(); 
+    })
 
 
+  }
+
+  delMatch = () =>{
+    let user = Object.assign({}, this.state);    //creating copy of object
+
+    let data ={
+      match_id: user.match_id
+    }
+    axios.post('http://ballc-frontend-be.herokuapp.com/delmatch', data)
+    .then(function(response){
+      window.location.reload(); 
+
+    })
   }
 
   render() {
@@ -373,10 +392,10 @@ export default class Results extends Component {
               defaultMessage="Save results"
               />
               </Button>
-              <Button className="formbtnDel" color="primary" onClick={this.delResult} >
+              <Button className="formbtnDel" color="primary" onClick={this.delMatch} >
               <FormattedMessage
               id="RESULT.delButton"
-              defaultMessage="Delete results"
+              defaultMessage="Delete match"
               />
               </Button>
 

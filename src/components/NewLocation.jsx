@@ -3,6 +3,7 @@ import { ListGroup, ListGroupItem } from 'react-bootstrap';
 import { Button, Input } from 'mdbreact'
 import '../components/Teamlist.css'
 import {PostData} from '../PostData';
+import axios from 'axios';
 
 
 export default class NewLocation extends Component {
@@ -49,7 +50,10 @@ onChangeA2(event){
     description: user.description
 
   }
-  PostData('/addlocation', data);
+  axios.post('http://ballc-frontend-be.herokuapp.com/addlocation', data)
+  .then(function(response){
+    window.location.reload(); 
+  })
  }
 
     render(){
