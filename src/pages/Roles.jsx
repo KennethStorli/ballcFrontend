@@ -176,31 +176,12 @@ export default class Roles extends Component {
                     defaultMessage="Normal Position"
                     />
                     </p>
-                    <FormControl componentClass="select" onChange={this.selectOption} placeholder="goalkeeper">
-                      <option  value="goalkeeper">
-                      <FormattedMessage
-                      id="ROLES.posFormGoalkeeper"
-                      defaultMessage="Goalkeeper"
-                      />
-                      </option>
-                      <option value="defence">
-                      <FormattedMessage
-                      id="ROLES.posFormDefence"
-                      defaultMessage="Defence"
-                      />
-                      </option>
-                      <option value="midfield">
-                      <FormattedMessage
-                      id="ROLES.posFormMidfield"
-                      defaultMessage="Midfield"
-                      />
-                      </option>
-                      <option value="jjjj">
-                      <FormattedMessage
-                      id="ROLES.posFormForward"
-                      defaultMessage="Forward"
-                      />
-                      </option>
+                    
+                    <FormControl componentClass="select" placeholder="goalkeeper">
+                      <option value="goalkeeper">Goalkeeper</option>
+                      <option value="defence">Defence</option>
+                      <option value="midfield">Midfield</option>
+                      <option value="forward">Forward</option>
                     </FormControl>
                   </Col>
                   <Col xs={12} sm={6}>
@@ -272,3 +253,34 @@ export default class Roles extends Component {
       )
     }
   }
+
+
+  /*
+
+  <FormControl componentClass="select" onChange={this.selectOption} placeholder="goalkeeper">
+                      <option  value="goalkeeper">
+                      <FormattedMessage
+                      id="ROLES.posFormGoalkeeper"
+                      defaultMessage="Goalkeeper"
+                      />
+                      </option>
+                      <option value="defence">
+                      <FormattedMessage
+                      id="ROLES.posFormDefence"
+                      defaultMessage="Defence"
+                      />
+                      </option>
+                      <option value="midfield">
+                      <FormattedMessage
+                      id="ROLES.posFormMidfield"
+                      defaultMessage="Midfield"
+                      />
+                      </option>
+                      <option value="jjjj">
+                      <FormattedMessage
+                      id="ROLES.posFormForward"
+                      defaultMessage="Forward"
+                      />
+                      </option>
+                    </FormControl>
+  */

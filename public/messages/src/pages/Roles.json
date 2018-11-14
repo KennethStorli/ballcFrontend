@@ -16,22 +16,6 @@
     "defaultMessage": "Normal Position"
   },
   {
-    "id": "ROLES.posFormGoalkeeper",
-    "defaultMessage": "Goalkeeper"
-  },
-  {
-    "id": "ROLES.posFormDefence",
-    "defaultMessage": "Defence"
-  },
-  {
-    "id": "ROLES.posFormMidfield",
-    "defaultMessage": "Midfield"
-  },
-  {
-    "id": "ROLES.posFormForward",
-    "defaultMessage": "Forward"
-  },
-  {
     "id": "ROLES.number",
     "defaultMessage": "Number"
   },
